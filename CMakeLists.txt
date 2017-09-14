@@ -1,7 +1,15 @@
 cmake_minimum_required(VERSION 3.8)
-project(opsin_cpp)
+include("HunterGate.cmake")
+HunterGate(URL "https://github.com/ruslo/hunter/archive/v0.16.15.tar.gz" SHA1 "6974c2150fc0d3b09de3ad1efcbf15d360647ffa")
 
+project(opsin_cpp)
 set(CMAKE_CXX_STANDARD 11)
+
+hunter_add_package(Boost)
+find_package(Boost 1.60 REQUIRED)
+include_directories(${Boost_INCLUDE_DIR})
+
+include_directories("utils")
 
 set(SOURCE_FILES
         opsin-core/src/main/java/uk/ac/cam/ch/wwmm/opsin/AmbiguityChecker.cpp
@@ -232,8 +240,9 @@ set(SOURCE_FILES
         opsin-inchi/src/test/java/uk/ac/cam/ch/wwmm/opsin/InchiOutputTest.h
         opsin-inchi/src/test/java/uk/ac/cam/ch/wwmm/opsin/NomenclatureIntegrationTest.cpp
         opsin-inchi/src/test/java/uk/ac/cam/ch/wwmm/opsin/NomenclatureIntegrationTest.h
-        RectangularVectors.h
-        stringbuilder.h
-        stringhelper.h)
+        utils/RectangularVectors.h
+        utils/stringbuilder.h
+        utils/stringhelper.h)
 
 add_executable(opsin_cpp ${SOURCE_FILES})
+target_link_libraries(opsin_cpp LINK_PUBLIC ${Boost_LIBRARIES})
