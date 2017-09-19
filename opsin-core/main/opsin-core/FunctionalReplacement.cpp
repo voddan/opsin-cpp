@@ -18,7 +18,7 @@
 #include "OutAtom.h"
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 
 int FunctionalReplacement::SortInfixTransformations::compare(const std::wstring &infixTransformation1,

@@ -1,3 +1,4 @@
+#include <set>
 #include "Atom.h"
 #include "AtomParity.h"
 #include "Bond.h"
@@ -8,11 +9,9 @@
 #include "StructureBuildingException.h"
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
-//						import static uk.ac.cam.ch.wwmm.opsin.OpsinTools.*;
-PropertyKey<java::util::Set < Atom * >*> *
+PropertyKey<std::set < Atom * >*> *
 const Atom::AMBIGUOUS_ELEMENT_ASSIGNMENT =
-        new PropertyKey<java::util::Set < Atom * > * > (L"ambiguousElementAssignment");
+        new PropertyKey<std::set < Atom * > * > (L"ambiguousElementAssignment");
 PropertyKey<int> *const Atom::ATOM_CLASS = new PropertyKey<int>(L"atomClass");
 PropertyKey<std::wstring> *const Atom::HOMOLOGY_GROUP = new PropertyKey<std::wstring>(L"homologyGroup");
 PropertyKey<std::vector<Atom *>> *const Atom::POSITION_VARIATION_BOND = new PropertyKey<std::vector<Atom *>>(

@@ -37,7 +37,7 @@ using org::apache::log4j::Level;
 using org::apache::log4j::Logger;
 using com::ctc::wstx::api::WstxOutputProperties;
 using com::ctc::wstx::stax::WstxOutputFactory;
-using OPSIN_RESULT_STATUS = uk::ac::cam::ch::wwmm::opsin::OpsinResult::OPSIN_RESULT_STATUS;
+using OPSIN_RESULT_STATUS = OpsinResult::OPSIN_RESULT_STATUS;
 NameToStructure *NameToStructure::NTS_INSTANCE;
 
 //JAVA TO C++ CONVERTER WARNING: The following method was originally marked 'synchronized':

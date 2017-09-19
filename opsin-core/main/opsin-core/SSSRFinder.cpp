@@ -69,8 +69,8 @@ std::vector<Bond *> SSSRFinder::getAncestors1(Atom *atom, std::unordered_map<Ato
     return newBondSet;
 }
 
-void SSSRFinder::expand(Atom *atom, Atom *parentAtom, Set<Atom *> *usedAtoms,
-                        std::unordered_map<Atom *, Atom *> &atomToParentMap, Set<Bond *> *linkBondSet) {
+void SSSRFinder::expand(Atom *atom, Atom *parentAtom, std::set<Atom *> *usedAtoms,
+                        std::unordered_map<Atom *, Atom *> &atomToParentMap, std::set<Bond *> *linkBondSet) {
 
     usedAtoms->add(atom);
     atomToParentMap[atom] = parentAtom;

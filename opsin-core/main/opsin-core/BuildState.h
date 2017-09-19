@@ -14,7 +14,7 @@ class NameToStructureConfig;
 class OpsinWarning;
 
 
-using OpsinWarningType = uk::ac::cam::ch::wwmm::opsin::OpsinWarning::OpsinWarningType;
+using OpsinWarningType = OpsinWarning::OpsinWarningType;
 
 /// <summary>
 /// Used to pass the current configuration and FragmentManager around

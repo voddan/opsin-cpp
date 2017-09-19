@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <vector>
 #include <algorithm>
+#include <set>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class Fragment;
@@ -42,8 +43,8 @@ private:
     static std::vector<Bond *> getAncestors1(Atom *atom, std::unordered_map<Atom *, Atom *> &atomToParentMap);
 
     static void
-    expand(Atom *atom, Atom *parentAtom, Set<Atom *> *usedAtoms, std::unordered_map<Atom *, Atom *> &atomToParentMap,
-           Set<Bond *> *linkBondSet);
+    expand(Atom *atom, Atom *parentAtom, std::set<Atom *> *usedAtoms, std::unordered_map<Atom *, Atom *> &atomToParentMap,
+           std::set<Bond *> *linkBondSet);
 
     static bool reduceRingSizes(Ring *ring, std::vector<Ring *> &newList);
 

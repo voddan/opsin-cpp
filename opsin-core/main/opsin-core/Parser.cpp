@@ -22,7 +22,7 @@
 
 
 using org::apache::log4j::Logger;
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 
 Parser::Parser() throw(IOException) : tokeniser(new Tokeniser(parseRules)), wordRules(new WordRules(resources)),

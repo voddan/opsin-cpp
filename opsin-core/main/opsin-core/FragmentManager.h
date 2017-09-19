@@ -6,6 +6,8 @@
 #include <vector>
 #include <stdexcept>
 #include <boost/optional.hpp>
+#include <set>
+#include <utils/collectionhelper.hpp>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class Bond;
@@ -18,7 +20,7 @@ class Atom;
 class BuildState;
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 
@@ -36,13 +38,12 @@ class FragmentManager {
     /// <summary>
     /// A mapping between fragments and inter fragment bonds </summary>
 private:
-    const std::unordered_map<Fragment *, Set < Bond * >*>
-    fragToInterFragmentBond = new LinkedHashMap < Fragment *, Set<Bond *>
-    *>();
+    const std::map<Fragment *, std::set < Bond * >*>fragToInterFragmentBond{};
 
     /// <summary>
     /// All of the atom-containing fragments in the molecule </summary>
-    Set<Fragment *> *const fragments = fragToInterFragmentBond.keySet();
+//    std::set<Fragment *> *const fragments = extract_keys(fragToInterFragmentBond);
+    std::set<Fragment *> const fragments = vector2set(extract_keys(fragToInterFragmentBond));
 
     /// <summary>
     /// A builder for fragments specified as SMILES </summary>
@@ -189,7 +190,7 @@ public:
     /// <exception cref="StructureBuildingException"> </exception>
     virtual void checkValencies() throw(StructureBuildingException);
 
-    virtual Set<Fragment *> *getFragments();
+    virtual std::set<Fragment *> *getFragments();
 
     /// <summary>
     /// Registers a fragment </summary>
@@ -267,7 +268,7 @@ private:
     /// <param name="frag"> </param>
     /// <returns> set of inter fragment bonds </returns>
 public:
-    virtual Set<Bond *> *getInterFragmentBonds(Fragment *frag);
+    virtual std::set<Bond *> *getInterFragmentBonds(Fragment *frag);
 
     /// <summary>
     /// Create a new Atom of the given element belonging to the given fragment </summary>

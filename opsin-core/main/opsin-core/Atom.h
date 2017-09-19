@@ -20,8 +20,6 @@ class Fragment;
 
 class StructureBuildingException;
 
-
-using namespace uk::ac::cam::ch::wwmm::opsin;
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
 //						import static uk.ac.cam.ch.wwmm.opsin.OpsinTools.*;
 
@@ -75,7 +73,7 @@ private:
     /// <summary>
     /// A set of atoms that were equally plausible to perform functional replacement on </summary>
 public:
-    static PropertyKey<Set < Atom * >*> *
+    static PropertyKey<std::set < Atom * >*> *
     const AMBIGUOUS_ELEMENT_ASSIGNMENT;
     /// <summary>
     /// The atom class which will be output when serialised to SMILES. Useful for distinguishing attachment points </summary>

@@ -22,9 +22,9 @@
 #include "StereochemistryHandler.h"
 
 
-using StereoBond = uk::ac::cam::ch::wwmm::opsin::StereoAnalyser::StereoBond;
-using StereoCentre = uk::ac::cam::ch::wwmm::opsin::StereoAnalyser::StereoCentre;
-using namespace uk::ac::cam::ch::wwmm::opsin;
+using StereoBond = StereoAnalyser::StereoBond;
+using StereoCentre = StereoAnalyser::StereoCentre;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 //						import static uk.ac.cam.ch.wwmm.opsin.OpsinTools.*;
 //						import static uk.ac.cam.ch.wwmm.opsin.StructureBuildingMethods.*;

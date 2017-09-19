@@ -3,9 +3,9 @@
 #include <string>
 #include <vector>
 #include <boost/algorithm/string.hpp>
-#include <boost/algorithm/string/predicate.hpp>
 #include <boost/optional.hpp>
 #include "stringbuilder.h"
+#include <boost/regex.hpp>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class ParseRules;
@@ -19,15 +19,13 @@ class ParsingException;
 class CASTools {
 
 private:
-    static Pattern *const matchCasCollectiveIndex = Pattern::compile(
-            L"([\\[\\(\\{]([1-9][0-9]?[cC][iI][, ]?)+[\\]\\)\\}])+|[1-9][0-9]?[cC][iI]", Pattern::CASE_INSENSITIVE);
-    static Pattern *const matchAcid = Pattern::compile(L"acid[\\]\\)\\}]*", Pattern::CASE_INSENSITIVE);
-    static Pattern *const matchCommaSpace = Pattern::compile(L", ");
-    static Pattern *const matchCompoundWithPhrase = Pattern::compile(L"(compd\\. with|compound with|and) ",
-                                                                     Pattern::CASE_INSENSITIVE);
-    static Pattern *const matchFunctionalTermAllowingSubstituentPrefix = Pattern::compile(
+    static const boost::basic_regex matchCasCollectiveIndex{L"([\\[\\(\\{]([1-9][0-9]?[cC][iI][, ]?)+[\\]\\)\\}])+|[1-9][0-9]?[cC][iI]", boost::regex::icase};
+    static const boost::regex matchAcid{L"acid[\\]\\)\\}]*", boost::regex::icase};
+    static const boost::regex matchCommaSpace{L", "};
+    static const boost::regex matchCompoundWithPhrase{L"(compd\\. with|compound with|and) ", boost::regex::icase};
+    static const boost::regex matchFunctionalTermAllowingSubstituentPrefix{
             L"(amide|hydrazide|(thi|selen|tellur)?oxime|hydrazone|(iso)?(semicarbazone|thiosemicarbazone|selenosemicarbazone|tellurosemicarbazone)|imide|imine|semioxamazone)[\\]\\)\\}]*",
-            Pattern::CASE_INSENSITIVE);
+            boost::regex::icase};
 
     /// <summary>
     /// Inverts a CAS name.

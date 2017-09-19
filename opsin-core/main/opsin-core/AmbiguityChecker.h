@@ -7,7 +7,7 @@
 #include <boost/optional.hpp>
 #include <set>
 #include "stringhelper.h"
-#include "bitarray.h"
+#include <base_c/bitarray.h>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class Atom;
@@ -27,7 +27,7 @@ public:
 
     static bool allAtomsEquivalent(std::vector<Atom *> &atoms);
 
-    static bool allBondsEquivalent(Collection<Bond *> *bonds);
+    static bool allBondsEquivalent(std::vector<Bond *> *bonds);
 
 private:
     static std::wstring bondToCanonicalEnvironString(StereoAnalyser *analyser, Bond *b);

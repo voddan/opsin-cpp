@@ -24,8 +24,8 @@ class StereoAnalyser {
     /// <summary>
     /// The atoms/bonds upon which this StereoAnalyser is operating </summary>
 private:
-    Collection<Atom *> *const atoms;
-    Collection<Bond *> *const bonds;
+    std::vector<Atom *> *const atoms;
+    std::vector<Bond *> *const bonds;
 
     /// <summary>
     /// Maps each atom to its currently assigned colour. Eventually all atoms in non identical environments will have different colours. Higher is higher priority </summary>
@@ -166,7 +166,7 @@ public:
     /// NOTE: All bonds of every atom must be in the set of bonds, no atom may have a bond to an atom not in the list </summary>
     /// <param name="atoms"> </param>
     /// <param name="bonds"> </param>
-    StereoAnalyser(Collection<Atom *> *atoms, Collection<Bond *> *bonds);
+    StereoAnalyser(std::vector<Atom *> *atoms, std::vector<Bond *> *bonds);
 
     /// <summary>
     /// Adds "ghost" atoms in the same way as the CIP rules for handling double bonds

@@ -21,7 +21,7 @@
 #include "CipOrderingException.h"
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 
 FragmentManager::FragmentManager(SMILESFragmentBuilder *sBuilder, IDManager *idManager) : sBuilder(sBuilder),
@@ -53,7 +53,7 @@ Fragment *FragmentManager::getUnifiedFragment() {
     Fragment *uniFrag = new Fragment(L"");
     for (auto entry : fragToInterFragmentBond) {
         Fragment *f = entry.first;
-        Set<Bond *> * interFragmentBonds = entry.second;
+        std::set<Bond *> * interFragmentBonds = entry.second;
         for (auto atom : f->getAtomList()) {
             uniFrag->addAtom(atom);
         }
@@ -81,7 +81,7 @@ void FragmentManager::incorporateFragment(Fragment *childFrag, Fragment *parentF
     parentFrag->incorporateOutAtoms(childFrag);
     parentFrag->incorporateFunctionalAtoms(childFrag);
 
-    Set<Bond *> * interFragmentBonds = fragToInterFragmentBond[childFrag];
+    std::set<Bond *> * interFragmentBonds = fragToInterFragmentBond.at(childFrag);
     if (interFragmentBonds == nullptr) {
         throw StructureBuildingException(L"Fragment not registered with this FragmentManager!");
     }
@@ -90,7 +90,7 @@ void FragmentManager::incorporateFragment(Fragment *childFrag, Fragment *parentF
             //bond is now enclosed within parentFrag so make it an intra-fragment bond
             //and remove it from the inter-fragment set of the parentFrag
             parentFrag->addBond(bond);
-            fragToInterFragmentBond[parentFrag]->remove(bond);
+            fragToInterFragmentBond.at(parentFrag)->remove(bond);
         } else {
             //bond was an inter-fragment bond between the childFrag and another frag
             //It is now between the parentFrag and another frag
@@ -186,20 +186,20 @@ Set<Fragment *> *FragmentManager::getFragments() {
 }
 
 void FragmentManager::addFragment(Fragment *frag) {
-    fragToInterFragmentBond[frag] = new LinkedHashSet<Bond *>();
+    fragToInterFragmentBond.at(frag) = new LinkedHashSet<Bond *>();
 }
 
 void FragmentManager::removeFragment(Fragment *frag) throw(StructureBuildingException) {
-    Set<Bond *> * interFragmentBondsInvolvingFragmentSet = fragToInterFragmentBond[frag];
+    std::set<Bond *> * interFragmentBondsInvolvingFragmentSet = fragToInterFragmentBond.at(frag);
     if (interFragmentBondsInvolvingFragmentSet == nullptr) {
         throw StructureBuildingException(L"Fragment not registered with this FragmentManager!");
     }
     std::vector<Bond *> interFragmentBondsInvolvingFragment(interFragmentBondsInvolvingFragmentSet);
     for (auto bond : interFragmentBondsInvolvingFragment) {
         if (bond->getFromAtom()->getFrag() == frag) {
-            fragToInterFragmentBond[bond->getToAtom()->getFrag()]->remove(bond);
+            fragToInterFragmentBond.at(bond->getToAtom()->getFrag())->remove(bond);
         } else {
-            fragToInterFragmentBond[bond->getFromAtom()->getFrag()]->remove(bond);
+            fragToInterFragmentBond.at(bond->getFromAtom()->getFrag())->remove(bond);
         }
     }
     fragToInterFragmentBond.erase(frag);
@@ -278,9 +278,9 @@ Fragment *FragmentManager::copyAndRelabelFragment(Fragment *originalFragment, in
             AtomParity *newAtomParity = new AtomParity(newAtomRefs4, atom->getAtomParity()->getParity());
             oldToNewAtomMap[atom]->setAtomParity(newAtomParity);
         }
-        Set<Atom *> * oldAmbiguousElementAssignmentAtoms = atom->getProperty(Atom::AMBIGUOUS_ELEMENT_ASSIGNMENT);
+        std::set<Atom *> * oldAmbiguousElementAssignmentAtoms = atom->getProperty(Atom::AMBIGUOUS_ELEMENT_ASSIGNMENT);
         if (oldAmbiguousElementAssignmentAtoms != nullptr) {
-            Set<Atom *> * newAtoms = new LinkedHashSet<Atom *>();
+            std::set<Atom *> * newAtoms = new LinkedHashSet<Atom *>();
             for (auto oldAtom : oldAmbiguousElementAssignmentAtoms) {
                 newAtoms->add(oldToNewAtomMap[oldAtom]);
             }
@@ -334,7 +334,7 @@ Fragment *FragmentManager::copyAndRelabelFragment(Fragment *originalFragment, in
     if (originalFragment->getDefaultInAtom() != nullptr) {
         newFragment->setDefaultInAtom(oldToNewAtomMap[originalFragment->getDefaultInAtom()]);
     }
-    Set<Bond *> * bondSet = originalFragment->getBondSet();
+    std::set<Bond *> * bondSet = originalFragment->getBondSet();
     for (auto bond : bondSet) {
         Bond *newBond = createBond(oldToNewAtomMap[bond->getFromAtom()], oldToNewAtomMap[bond->getToAtom()],
                                    bond->getOrder());
@@ -382,9 +382,9 @@ Element *FragmentManager::cloneElement(BuildState *state, Element *elementToBeCl
         }
         state->xmlSuffixMap[clonedGroups[i]] = newSuffixFragments;
     }
-    Set<Bond *> * interFragmentBondsToClone = new LinkedHashSet<Bond *>();
+    std::set<Bond *> * interFragmentBondsToClone = new LinkedHashSet<Bond *>();
     for (auto originalFragment : oldNewFragmentMapping) { //add inter fragment bonds to cloned fragments
-        for (auto bond : fragToInterFragmentBond[originalFragment->first]) {
+        for (auto bond : fragToInterFragmentBond.at(originalFragment->first)) {
             interFragmentBondsToClone->add(bond);
         }
     }
@@ -441,21 +441,21 @@ void FragmentManager::replaceAtomWithAnotherAtomPreservingConnectivity(Atom *ato
 }
 
 void FragmentManager::removeInterFragmentBondIfPresent(Bond *bond) {
-    fragToInterFragmentBond[bond->getFromAtom()->getFrag()]->remove(bond);
-    fragToInterFragmentBond[bond->getToAtom()->getFrag()]->remove(bond);
+    (*fragToInterFragmentBond.at(bond->getFromAtom()->getFrag()))->remove(bond);
+    (*fragToInterFragmentBond.at(bond->getToAtom()->getFrag()))->remove(bond);
 }
 
 void FragmentManager::addInterFragmentBond(Bond *bond) {
-    fragToInterFragmentBond[bond->getFromAtom()->getFrag()]->add(bond);
-    fragToInterFragmentBond[bond->getToAtom()->getFrag()]->add(bond);
+    (*fragToInterFragmentBond.at(bond->getFromAtom()->getFrag()))->add(bond);
+    (*fragToInterFragmentBond.at(bond->getToAtom()->getFrag()))->add(bond);
 }
 
-Set<Bond *> *FragmentManager::getInterFragmentBonds(Fragment *frag) {
-    Set<Bond *> * interFragmentBonds = fragToInterFragmentBond[frag];
+std::set<Bond *> *FragmentManager::getInterFragmentBonds(Fragment *frag) {
+    std::set<Bond *> * interFragmentBonds = fragToInterFragmentBond.at(frag);
     if (interFragmentBonds == nullptr) {
         throw std::invalid_argument("Fragment not registered with this FragmentManager!");
     }
-    return Collections::unmodifiableSet(interFragmentBonds);
+    return interFragmentBonds;
 }
 
 Atom *FragmentManager::createAtom(ChemEl chemEl, Fragment *frag) {
@@ -482,7 +482,7 @@ void FragmentManager::removeAtomAndAssociatedBonds(Atom *atom) {
         removeBond(bond);
     }
     atom->getFrag()->removeAtom(atom);
-    Set<Atom *> * ambiguousElementAssignment = atom->getProperty(Atom::AMBIGUOUS_ELEMENT_ASSIGNMENT);
+    std::set<Atom *> * ambiguousElementAssignment = atom->getProperty(Atom::AMBIGUOUS_ELEMENT_ASSIGNMENT);
     if (ambiguousElementAssignment != nullptr) {
         ambiguousElementAssignment->remove(atom);
         if (ambiguousElementAssignment->size() == 1) {

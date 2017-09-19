@@ -20,9 +20,9 @@ class StereochemistryException;
 class Fragment;
 
 
-using StereoBond = uk::ac::cam::ch::wwmm::opsin::StereoAnalyser::StereoBond;
-using StereoCentre = uk::ac::cam::ch::wwmm::opsin::StereoAnalyser::StereoCentre;
-using namespace uk::ac::cam::ch::wwmm::opsin;
+using StereoBond = StereoAnalyser::StereoBond;
+using StereoCentre = StereoAnalyser::StereoCentre;
+
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 
@@ -153,7 +153,7 @@ private:
     bool attemptAssignmentOfCisTransRingStereoToFragment(Fragment *fragment,
                                                          Element *stereoChemistryEl) throw(StructureBuildingException);
 
-    Set<Bond *> *determinePeripheryBonds(Fragment *fragment);
+    std::set<Bond *> *determinePeripheryBonds(Fragment *fragment);
 
     void applyStereoChemistryToCisTransOnRing(Atom *a1, Atom *a2, std::vector<std::vector<Atom *>> &paths,
                                               std::vector<Atom *> &fragmentAtoms,

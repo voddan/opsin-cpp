@@ -10,6 +10,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/optional.hpp>
+#include <boost/regex.hpp>
 #include "stringhelper.h"
 #include "stringbuilder.h"
 
@@ -19,7 +20,7 @@ class ComponentGenerationException;
 class Element;
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
@@ -46,41 +47,36 @@ private:
 
     public:
         virtual int
-        compare(std::unordered_map<std::wstring, int> &bridge1, std::unordered_map<std::wstring, int> &bridge2);
+        compare(std::unordered_map<std::wstring, int> & bridge1, std::unordered_map<std::wstring, int> & bridge2);
     };
 
     //match a fusion bracket with only numerical locants. If this is followed by a HW group it probably wasn't a fusion bracket
 private:
-    static Pattern *const matchNumberLocantsOnlyFusionBracket = Pattern::compile(L"\\[\\d+(,\\d+)*\\]");
-    static Pattern *const matchCommaOrDot = Pattern::compile(L"[\\.,]");
-    static Pattern *const matchAnnulene = Pattern::compile(L"[\\[\\(\\{]([1-9]\\d*)[\\]\\)\\}]annulen");
-    static const std::wstring elementSymbols;
-    static Pattern *const matchStereochemistry = Pattern::compile(
-            L"(.*?)(SR|R/?S|r/?s|[Ee][Zz]|[RSEZrsezabx]|[cC][iI][sS]|[tT][rR][aA][nN][sS]|[aA][lL][pP][hH][aA]|[bB][eE][tT][aA]|[xX][iI]|[eE][xX][oO]|[eE][nN][dD][oO]|[sS][yY][nN]|[aA][nN][tT][iI]|M|P|Ra|Sa|Sp|Rp)");
-    static Pattern *const matchStar = Pattern::compile(L"\\^?\\*");
-    static Pattern *const matchRacemic = Pattern::compile(L"rac(\\.|em(\\.|ic)?)?-?", Pattern::CASE_INSENSITIVE);
-    static Pattern *const matchRS = Pattern::compile(L"[Rr]/?[Ss]?|[Ss][Rr]?");
-    static Pattern *const matchEZ = Pattern::compile(L"[EZez]|[Ee][Zz]");
-    static Pattern *const matchAlphaBetaStereochem = Pattern::compile(
-            L"a|b|x|[aA][lL][pP][hH][aA]|[bB][eE][tT][aA]|[xX][iI]");
-    static Pattern *const matchCisTrans = Pattern::compile(L"[cC][iI][sS]|[tT][rR][aA][nN][sS]");
-    static Pattern *const matchEndoExoSynAnti = Pattern::compile(
-            L"[eE][xX][oO]|[eE][nN][dD][oO]|[sS][yY][nN]|[aA][nN][tT][iI]");
-    static Pattern *const matchAxialStereo = Pattern::compile(L"M|P|Ra|Sa|Sp|Rp");
-    static Pattern *const matchLambdaConvention = Pattern::compile(L"(\\S+)?lambda\\D*(\\d+)\\D*",
-                                                                   Pattern::CASE_INSENSITIVE);
-    static Pattern *const matchHdigit = Pattern::compile(L"H\\d");
-    static Pattern *const matchDigit = Pattern::compile(L"\\d+");
-    static Pattern *const matchNonDigit = Pattern::compile(L"\\D+");
-    static Pattern *const matchSuperscriptedLocant = Pattern::compile(std::wstring(L"(") + elementSymbols +
-                                                                      std::wstring(
-                                                                              L"'*)[\\^\\[\\(\\{~\\*\\<]*(?:[sS][uU][pP][ ]?)?([^\\^\\[\\(\\{~\\*\\<\\]\\)\\}\\>]+)[^\\[\\(\\{]*"));
-    static Pattern *const matchIUPAC2004ElementLocant = Pattern::compile(
-            std::wstring(L"(\\d+'*)-(") + elementSymbols + std::wstring(L"'*)(.*)"));
-    static Pattern *const matchBracketAtEndOfLocant = Pattern::compile(L"-?[\\[\\(\\{](.*)[\\]\\)\\}]$");
-    static Pattern *const matchGreek = Pattern::compile(L"alpha|beta|gamma|delta|epsilon|zeta|eta|omega",
-                                                        Pattern::CASE_INSENSITIVE);
-    static Pattern *const matchInlineSuffixesThatAreAlsoGroups = Pattern::compile(
+    static const boost::regex matchNumberLocantsOnlyFusionBracket{L"\\[\\d+(,\\d+)*\\]"};
+    static const boost::regex matchCommaOrDot{L"[\\.,]"};
+    static const boost::regex matchAnnulene{L"[\\[\\(\\{]([1-9]\\d*)[\\]\\)\\}]annulen"};
+    
+    static const std::wstring elementSymbols{"(?:He|Li|Be|B|C|N|O|F|Ne|Na|Mg|Al|Si|P|S|Cl|Ar|K|Ca|Sc|Ti|V|Cr|Mn|Fe|Co|Ni|Cu|Zn|Ga|Ge|As|Se|Br|Kr|Rb|Sr|Y|Zr|Nb|Mo|Tc|Ru|Rh|Pd|Ag|Cd|In|Sn|Sb|Te|I|Xe|Cs|Ba|La|Ce|Pr|Nd|Pm|Sm|Eu|Gd|Tb|Dy|Ho|Er|Tm|Yb|Lu|Hf|Ta|W|Re|Os|Ir|Pt|Au|Hg|Tl|Pb|Po|At|Rn|Fr|Ra|Ac|Th|Pa|U|Np|Pu|Am|Cm|Bk|Cf|Es|Fm|Md|No|Lr|Rf|Db|Sg|Bh|Hs|Mt|Ds)"};
+
+    static const boost::regex matchStereochemistry{L"(.*?)(SR|R/?S|r/?s|[Ee][Zz]|[RSEZrsezabx]|[cC][iI][sS]|[tT][rR][aA][nN][sS]|[aA][lL][pP][hH][aA]|[bB][eE][tT][aA]|[xX][iI]|[eE][xX][oO]|[eE][nN][dD][oO]|[sS][yY][nN]|[aA][nN][tT][iI]|M|P|Ra|Sa|Sp|Rp)"};
+    static const boost::regex matchStar{L"\\^?\\*"};
+    static const boost::regex matchRacemic{L"rac(\\.|em(\\.|ic)?)?-?", boost::regex::icase};
+    static const boost::regex matchRS{L"[Rr]/?[Ss]?|[Ss][Rr]?"};
+    static const boost::regex matchEZ{L"[EZez]|[Ee][Zz]"};
+    static const boost::regex matchAlphaBetaStereochem{L"a|b|x|[aA][lL][pP][hH][aA]|[bB][eE][tT][aA]|[xX][iI]"};
+    static const boost::regex matchCisTrans{L"[cC][iI][sS]|[tT][rR][aA][nN][sS]"};
+    static const boost::regex matchEndoExoSynAnti{L"[eE][xX][oO]|[eE][nN][dD][oO]|[sS][yY][nN]|[aA][nN][tT][iI]"};
+    static const boost::regex matchAxialStereo{L"M|P|Ra|Sa|Sp|Rp"};
+    static const boost::regex matchLambdaConvention{L"(\\S+)?lambda\\D*(\\d+};\\D*", boost::regex::icase};
+    static const boost::regex matchHdigit{L"H\\d"};
+    static const boost::regex matchDigit{L"\\d+"};
+    static const boost::regex matchNonDigit{L"\\D+"};
+    static const boost::regex matchSuperscriptedLocant{std::wstring(L"(" + elementSymbols + std::wstring(L"'*)[\\^\\[\\(\\{~\\*\\<]*(?:[sS][uU][pP][ ]?)?([^\\^\\[\\(\\{~\\*\\<\\]\\)\\}\\>]+)[^\\[\\(\\{]*"))
+    };
+    static const boost::regex matchIUPAC2004ElementLocant{std::wstring(L"(\\d+'*)-(") + elementSymbols + std::wstring(L"'*)(.*)")};
+    static const boost::regex matchBracketAtEndOfLocant{L"-?[\\[\\(\\{](.*)[\\]\\)\\}]$"};
+    static const boost::regex matchGreek{L"alpha|beta|gamma|delta|epsilon|zeta|eta|omega",  boost::regex::icase};
+    static const boost::regex matchInlineSuffixesThatAreAlsoGroups{
             L"carbonyl|oxy|sulfenyl|sulfinyl|sulfonyl|selenenyl|seleninyl|selenonyl|tellurenyl|tellurinyl|telluronyl");
 
 

@@ -9,7 +9,9 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/optional.hpp>
+#include <boost/regex.hpp>
 #include "stringhelper.h"
+#include <set>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class BuildState;
@@ -25,7 +27,7 @@ class BuildResults;
 using org::apache::log4j::Logger;
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
@@ -41,7 +43,7 @@ class StructureBuildingMethods {
 private:
     static Logger *const LOG = Logger::getLogger(StructureBuildingMethods::
     typeid);
-    static Pattern *const matchCompoundLocant = Pattern::compile(L"[\\[\\(\\{](\\d+[a-z]?'*)[\\]\\)\\}]");
+    static const boost::regex matchCompoundLocant {L"[\\[\\(\\{](\\d+[a-z]?'*)[\\]\\)\\}]"};
 
     StructureBuildingMethods();
 
@@ -232,7 +234,7 @@ public:
 
 private:
     static std::vector<Bond *>
-    findAlternativeBondsToUnSaturate(Fragment *frag, int bondOrder, Collection<Bond *> *bondsToIgnore);
+    findAlternativeBondsToUnSaturate(Fragment *frag, int bondOrder, std::vector<Bond *> *bondsToIgnore);
 
     /// <summary>
     /// Finds bond within the fragment that can have their bondOrder increased to the specified bond order
@@ -246,7 +248,7 @@ public:
 
 private:
     static std::vector<Bond *> findBondsToUnSaturate(Fragment *frag, int bondOrder, bool allowAdjacentUnsaturatedBonds,
-                                                     Set<Bond *> *bondsToIgnore);
+                                                     std::set<Bond *> *bondsToIgnore);
 
 
     /// <summary>

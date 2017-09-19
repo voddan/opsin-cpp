@@ -75,7 +75,7 @@ std::vector<Atom *> CycleDetector::PathSearchState::getOrderAtomsVisited() {
 }
 
 std::vector<std::vector<Atom *>>
-CycleDetector::getPathBetweenAtomsUsingBonds(Atom *a1, Atom *a2, Set<Bond *> *peripheryBonds) {
+CycleDetector::getPathBetweenAtomsUsingBonds(Atom *a1, Atom *a2, std::set<Bond *> *peripheryBonds) {
     std::vector<std::vector<Atom *>> paths;
     Deque < PathSearchState * > *stateStack = new ArrayDeque<PathSearchState *>();
     PathSearchState tempVar(a1, new std::vector<Atom *>());

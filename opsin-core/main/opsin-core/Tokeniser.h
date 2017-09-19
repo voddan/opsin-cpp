@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/predicate.hpp>
+#include <boost/algorithm/string/regex.hpp>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class ParseRules;
@@ -24,10 +25,8 @@ class ParseWord;
 class Tokeniser {
 private:
     ParseRules *const parseRules;
-    Pattern *const matchCasCollectiveIndex = Pattern::compile(
-            L"([\\[\\(\\{]([1-9][0-9]?[cC][iI][, ]?)+[\\]\\)\\}])+|[1-9][0-9]?[cC][iI]", Pattern::CASE_INSENSITIVE);
-    Pattern *const matchCompoundWithPhrase = Pattern::compile(L"(compd\\. with|compound with|and) ",
-                                                              Pattern::CASE_INSENSITIVE);
+    const boost::regex matchCasCollectiveIndex{L"([\\[\\(\\{]([1-9][0-9]?[cC][iI][, ]?)+[\\]\\)\\}])+|[1-9][0-9]?[cC][iI]", boost::regex::icase};
+    const boost::regex matchCompoundWithPhrase{L"(compd\\. with|compound with|and) ", boost::regex::icase};
 
 public:
     virtual ~Tokeniser() {

@@ -12,7 +12,7 @@
 #include "ValencyChecker.h"
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.OpsinTools.*;
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 
@@ -50,7 +50,7 @@ bool Fragment::removeBond(Bond *bond) {
     return bondSet->remove(bond);
 }
 
-Set<Bond *> *Fragment::getBondSet() {
+std::set<Bond *> *Fragment::getBondSet() {
     return Collections::unmodifiableSet(bondSet);
 }
 
@@ -325,7 +325,7 @@ bool Fragment::hasLocant(const std::wstring &locant) {
     return getAtomByLocant(locant) != nullptr;
 }
 
-Set <std::wstring> *Fragment::getLocants() {
+std::set <std::wstring> *Fragment::getLocants() {
     return Collections::unmodifiableSet(atomMapFromLocant.keySet());
 }
 

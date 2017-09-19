@@ -11,6 +11,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/optional.hpp>
+#include <boost/regex.hpp>
 #include "stringhelper.h"
 #include "stringbuilder.h"
 
@@ -25,7 +26,7 @@ class Fragment;
 class Atom;
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
@@ -40,11 +41,10 @@ using namespace uk::ac::cam::ch::wwmm::opsin;
 
 class ComponentProcessor {
 private:
-    static Pattern *const matchAddedHydrogenBracket = Pattern::compile(L"[\\[\\(\\{]([^\\[\\(\\{]*)H[\\]\\)\\}]");
-    static Pattern *const matchElementSymbolOrAminoAcidLocant = Pattern::compile(L"[A-Z][a-z]?'*(\\d+[a-z]?'*)?");
-    static Pattern *const matchChalcogenReplacement = Pattern::compile(L"thio|seleno|telluro");
-    static Pattern *const matchGroupsThatAreAlsoInlineSuffixes = Pattern::compile(
-            L"carbon|oxy|sulfen|sulfin|sulfon|selenen|selenin|selenon|telluren|tellurin|telluron");
+    static const boost::regex matchAddedHydrogenBracket {L"[\\[\\(\\{]([^\\[\\(\\{]*)H[\\]\\)\\}]"};
+    static const boost::regex matchElementSymbolOrAminoAcidLocant {L"[A-Z][a-z]?'*(\\d+[a-z]?'*)?"};
+    static const boost::regex matchChalcogenReplacement {L"thio|seleno|telluro"};
+    static const boost::regex matchGroupsThatAreAlsoInlineSuffixes {L"carbon|oxy|sulfen|sulfin|sulfon|selenen|selenin|selenon|telluren|tellurin|telluron"};
     static std::vector<std::wstring> const traditionalAlkanePositionNames;
 
     FunctionalReplacement *const functionalReplacement;

@@ -15,7 +15,7 @@
 #include "ValencyChecker.h"
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.OpsinTools.*;
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 
@@ -210,7 +210,7 @@ void FragmentTools::detectAndCorrectHydrazoneDerivativeViolation(std::vector<Fra
 
 void FragmentTools::processMainGroupLabelling(Fragment *suffixableFragment,
                                               std::unordered_map<std::wstring, int> &elementCount,
-                                              Set<Atom *> *atomsToIgnore) {
+                                              std::set<Atom *> *atomsToIgnore) {
     Set <std::wstring> *elementToIgnore = std::unordered_set<std::wstring>(elementCount.keySet());
     std::vector<Atom *> atomList = suffixableFragment->getAtomList();
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
@@ -249,7 +249,7 @@ void FragmentTools::processMainGroupLabelling(Fragment *suffixableFragment,
 
 void FragmentTools::processSuffixLabelling(std::vector<Fragment *> &suffixFragments,
                                            std::unordered_map<std::wstring, int> &elementCount,
-                                           Set<Atom *> *atomsToIgnore) {
+                                           std::set<Atom *> *atomsToIgnore) {
     std::vector<Atom *> startingAtoms;
     Set < Atom * > *atomsVisited = std::unordered_set<Atom *>();
     for (auto fragment : suffixFragments) {
@@ -271,7 +271,7 @@ void FragmentTools::processSuffixLabelling(std::vector<Fragment *> &suffixFragme
 
 void FragmentTools::processNonCarboxylicAcidLabelling(Fragment *suffixableFragment,
                                                       std::unordered_map<std::wstring, int> &elementCount,
-                                                      Set<Atom *> *atomsToIgnore) {
+                                                      std::set<Atom *> *atomsToIgnore) {
     Set < Atom * > *atomsVisited = std::unordered_set<Atom *>();
     Atom *firstAtom = suffixableFragment->getFirstAtom();
     std::vector<Atom *> startingAtoms = getIntraFragmentNeighboursAndSetVisitedBondOrder(firstAtom);
@@ -292,7 +292,7 @@ void FragmentTools::processNonCarboxylicAcidLabelling(Fragment *suffixableFragme
 }
 
 void FragmentTools::assignLocantsAndExploreNeighbours(std::unordered_map<std::wstring, int> &elementCount,
-                                                      Set<Atom *> *atomsToIgnore, Set<Atom *> *atomsVisited,
+                                                      std::set<Atom *> *atomsToIgnore, std::set<Atom *> *atomsVisited,
                                                       Deque<Atom *> *atomsToConsider) {
     Atom *atom = atomsToConsider->removeFirst();
     atomsVisited->add(atom);

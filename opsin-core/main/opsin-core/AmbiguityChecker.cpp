@@ -36,7 +36,7 @@ bool AmbiguityChecker::isSubstitutionAmbiguous(std::vector<Atom *> & substitutab
              (numberToBeSubstituted == 1 || numberToBeSubstituted == substitutableAtoms.size() - 1));
 }
 
-bool AmbiguityChecker::allAtomsEquivalent(std::vector<Atom> & atoms) {
+bool AmbiguityChecker::allAtomsEquivalent(std::vector<Atom*> & atoms) {
     StereoAnalyser * analyser = analyseRelevantAtomsAndBonds(atoms);
     std::set<std::wstring> * uniqueEnvironments = new std::set<std::wstring>();
     for (Atom a: atoms) {
@@ -46,7 +46,7 @@ bool AmbiguityChecker::allAtomsEquivalent(std::vector<Atom> & atoms) {
 }
 
 bool AmbiguityChecker::allBondsEquivalent(std::vector<Bond *> * bonds) {
-    Set < Atom * > *relevantAtoms = std::unordered_set<Atom *>();
+    std::set < Atom * > &relevantAtoms = new std::unordered_set<Atom *>();
     for (auto b : bonds) {
         relevantAtoms->add(b->getFromAtom());
         relevantAtoms->add(b->getToAtom());

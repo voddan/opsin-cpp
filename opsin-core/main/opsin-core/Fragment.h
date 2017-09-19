@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <stdexcept>
 #include <boost/optional.hpp>
+#include <set>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class Atom;
@@ -16,7 +17,7 @@ class FunctionalAtom;
 class StructureBuildingException;
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
 //						import static uk.ac.cam.ch.wwmm.opsin.OpsinTools.*;
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
@@ -34,11 +35,11 @@ class Fragment {
     /// <summary>
     ///A mapping between IDs and the atoms in this fragment, by default is ordered by the order atoms are added to the fragment </summary>
 private:
-    const std::unordered_map<int, Atom *> atomMapFromId = new LinkedHashMap<int, Atom *>();
+    const std::unordered_map<int, Atom *> atomMapFromId{};  // LinkedHasMap
 
     /// <summary>
     ///Equivalent to and synced to atomMapFromId.values() </summary>
-    Collection<Atom *> *const atomCollection = atomMapFromId.values();
+    std::vector<Atom *> *const atomCollection{};
 
     /// <summary>
     ///A mapping between locants and the atoms in this fragment </summary>
@@ -46,7 +47,7 @@ private:
 
     /// <summary>
     ///The bonds in the fragment </summary>
-    Set<Bond *> *const bondSet = new LinkedHashSet<Bond *>();
+    std::set<Bond *> *const bondSet{};  // LinkedHashSet
 
     /// <summary>
     ///The associated token element </summary>
@@ -129,7 +130,7 @@ public:
 
     /// <summary>
     ///Gets bondSet. </summary>
-    virtual Set<Bond *> *getBondSet();
+    virtual std::set<Bond *> *getBondSet();
 
     /// <summary>
     ///Gets the id of the atom in the fragment with the specified locant.
@@ -371,7 +372,7 @@ public:
     /// Returns an unmodifiable list of the locants associated with this fragment
     /// @return
     /// </summary>
-    virtual Set <std::wstring> *getLocants();
+    virtual std::set <std::wstring> *getLocants();
 
     virtual std::vector<Atom *> getIndicatedHydrogen();
 

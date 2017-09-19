@@ -8,8 +8,8 @@
 #include "StereochemistryHandler.h"
 
 
-using SMILES_BOND_DIRECTION = uk::ac::cam::ch::wwmm::opsin::Bond::SMILES_BOND_DIRECTION;
-using BondStereoValue = uk::ac::cam::ch::wwmm::opsin::BondStereo::BondStereoValue;
+using SMILES_BOND_DIRECTION = Bond::SMILES_BOND_DIRECTION;
+using BondStereoValue = BondStereo::BondStereoValue;
 const std::unordered_map<ChemEl, std::vector<Integer>> SMILESWriter::organicAtomsToStandardValencies = new java::util::EnumMap<ChemEl, std::vector<Integer>>(
         ChemEl::
 typeid);
@@ -86,7 +86,7 @@ void SMILESWriter::writeExtendedSmilesLayer() {
     std::vector<std::wstring> positionVariationBonds;
     boost::optional<int> lastLabel = boost::none;
     int attachmentPointCounter = 1;
-    Set<int> *seenAttachmentpoints = std::unordered_set<int>();
+    std::set<int> *seenAttachmentpoints = std::unordered_set<int>();
     std::vector<Atom *> polymerAttachPoints = structure->getPolymerAttachmentPoints();
     bool isPolymer = polymerAttachPoints.size() > 0 && polymerAttachPoints.size() > 0;
     for (int i = 0, l = smilesOutputOrder.size(); i < l; i++) {

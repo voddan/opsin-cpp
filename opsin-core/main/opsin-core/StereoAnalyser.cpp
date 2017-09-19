@@ -119,7 +119,7 @@ int StereoAnalyser::AtomNeighbouringColoursComparator::compare(Atom *a, Atom *b)
 StereoAnalyser::StereoAnalyser(Fragment *molecule) : StereoAnalyser(molecule->getAtomList(), molecule->getBondSet()) {
 }
 
-StereoAnalyser::StereoAnalyser(Collection < Atom * > *atoms, Collection < Bond * > *bonds) : atoms(atoms), bonds(bonds),
+StereoAnalyser::StereoAnalyser(std::vector < Atom * > *atoms, std::vector < Bond * > *bonds) : atoms(atoms), bonds(bonds),
                                                                                              mappingToColour(
                                                                                                      std::unordered_map<Atom *, int>(
                                                                                                              atomsToSort->size())),

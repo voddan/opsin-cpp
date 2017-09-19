@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <set>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class OutAtom;
@@ -35,7 +36,7 @@ private:
 
     /// <summary>
     ///A list of fragments that have been evaluated to form this BuildResults. They are in the order they would be found in the XML </summary>
-    Set<Fragment *> *const fragments = new LinkedHashSet<Fragment *>();
+    std::set<Fragment *> *const fragments = new LinkedHashSet<Fragment *>();
 
     /// <summary>
     ///A BuildResults is constructed from a list of Fragments.
@@ -57,7 +58,7 @@ public:
     /// Returns a read only view of the fragments in this BuildResults
     /// @return
     /// </summary>
-    virtual Set<Fragment *> *getFragments();
+    virtual std::set<Fragment *> *getFragments();
 
     virtual int getFragmentCount();
 

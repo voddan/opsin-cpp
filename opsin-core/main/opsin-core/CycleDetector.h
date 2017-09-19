@@ -53,6 +53,6 @@ private:
     /// @return </param>
 public:
     static std::vector<std::vector<Atom *>>
-    getPathBetweenAtomsUsingBonds(Atom *a1, Atom *a2, Set<Bond *> *peripheryBonds);
+    getPathBetweenAtomsUsingBonds(Atom *a1, Atom *a2, std::set<Bond *> *peripheryBonds);
 };
 

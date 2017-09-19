@@ -18,9 +18,9 @@
 #include "StructureBuildingMethods.h"
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
-using IsotopeSpecification = uk::ac::cam::ch::wwmm::opsin::IsotopeSpecificationParser::IsotopeSpecification;
+using IsotopeSpecification = IsotopeSpecificationParser::IsotopeSpecification;
 
 SuffixApplier::SuffixApplier(BuildState *state, SuffixRules *suffixRules) : state(state), suffixRules(suffixRules) {
 }

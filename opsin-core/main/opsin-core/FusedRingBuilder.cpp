@@ -16,7 +16,7 @@
 #include "ComponentProcessor.h"
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.OpsinTools.*;
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 

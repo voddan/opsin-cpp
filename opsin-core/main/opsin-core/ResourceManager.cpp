@@ -8,7 +8,7 @@
 
 
 using dk::brics::automaton::RunAutomaton;
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 
 ResourceManager::ResourceManager(ResourceGetter *resourceGetter) throw(IOException) : resourceGetter(resourceGetter),

@@ -2,7 +2,7 @@
 #include "Atom.h"
 
 
-using BondStereoValue = uk::ac::cam::ch::wwmm::opsin::BondStereo::BondStereoValue;
+using BondStereoValue = BondStereo::BondStereoValue;
 
 Bond::Bond(Atom *from, Atom *to, int order) : from(from), to(to) {
     if (from == to) {

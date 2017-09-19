@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
+#include <boost/regex.hpp>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class Element;
@@ -13,8 +14,8 @@ class StructureBuildingException;
 class IsotopeSpecificationParser {
 
 private:
-    static Pattern *const matchBoughtonIsotope = Pattern::compile(L"(?:-([^,]+(?:,[^,]+)*))?-d(\\d+)?");
-    static Pattern *const matchIupacIsotope = Pattern::compile(L"(?:([^,]+(?:,[^,]+)*)-)?(\\d+)([A-Z][a-z]?)(\\d+)?");
+    static const boost::regex matchBoughtonIsotope{L"(?:-([^,]+(?:,[^,]+)*))?-d(\\d+)?"};
+    static const boost::regex matchIupacIsotope{L"(?:([^,]+(?:,[^,]+)*)-)?(\\d+)([A-Z][a-z]?)(\\d+)?"};
 
 public:
     class IsotopeSpecification {

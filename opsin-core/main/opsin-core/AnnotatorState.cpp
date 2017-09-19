@@ -3,7 +3,7 @@
 
 AnnotatorState::AnnotatorState(int state, wchar_t annot, int posInName, bool isCaseSensitive,
                                AnnotatorState *previousAs) : state(state), annot(annot), posInName(posInName),
-                                                             isCaseSensitive(isCaseSensitive), previousAs(previousAs) {
+                                                             isCaseSensitive(), previousAs(previousAs) {
 }
 
 int AnnotatorState::getState() {

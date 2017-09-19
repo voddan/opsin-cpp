@@ -7,7 +7,7 @@
 #include "ComponentGenerationException.h"
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 
 SuffixRules::ApplicableSuffix::ApplicableSuffix(const std::wstring &requiredSubType,

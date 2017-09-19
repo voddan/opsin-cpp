@@ -12,7 +12,7 @@
 #include "TokenEl.h"
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 
 WordRules::WordDescription::WordDescription(XMLStreamReader *reader) : type(static_cast<WordType>(atrValue)),

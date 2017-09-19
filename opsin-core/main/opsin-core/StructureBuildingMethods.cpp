@@ -20,8 +20,8 @@
 
 
 using org::apache::log4j::Logger;
-using IsotopeSpecification = uk::ac::cam::ch::wwmm::opsin::IsotopeSpecificationParser::IsotopeSpecification;
-using namespace uk::ac::cam::ch::wwmm::opsin;
+using IsotopeSpecification = IsotopeSpecificationParser::IsotopeSpecification;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 //						import static uk.ac.cam.ch.wwmm.opsin.OpsinTools.*;
 
@@ -1263,7 +1263,7 @@ StructureBuildingMethods::findBondsToUnSaturate(Fragment *frag, int bondOrder, b
 
 std::vector<Bond *>
 StructureBuildingMethods::findBondsToUnSaturate(Fragment *frag, int bondOrder, bool allowAdjacentUnsaturatedBonds,
-                                                Set<Bond *> *bondsToIgnore) {
+                                                std::set<Bond *> *bondsToIgnore) {
     std::vector<Bond *> bondsToUnsaturate;
     for (auto atom1 : frag->getAtomList()) {
         if (atom1->hasSpareValency() || XmlDeclarations::SUFFIX_TYPE_VAL == atom1->getType() ||

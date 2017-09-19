@@ -12,7 +12,7 @@
 #include "WordRule.h"
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 //						import static uk.ac.cam.ch.wwmm.opsin.OpsinTools.*;
 

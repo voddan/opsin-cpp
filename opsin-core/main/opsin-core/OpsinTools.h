@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <stdexcept>
+#include <boost/regex.hpp>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class Element;
@@ -12,7 +13,7 @@ class Atom;
 class ParsingException;
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 
@@ -24,13 +25,12 @@ using namespace uk::ac::cam::ch::wwmm::opsin;
 class OpsinTools {
 
 public:
-    static Pattern *const MATCH_COLONORSEMICOLON = Pattern::compile(L"[:;]");
+    static const boost::regex MATCH_COLONORSEMICOLON{L"[:;]"};
 
-    static Pattern *const MATCH_AMINOACID_STYLE_LOCANT = Pattern::compile(
-            L"([A-Z][a-z]?)('*)((\\d+[a-z]?|alpha|beta|gamma|delta|epsilon|zeta|eta|omega)'*)");
-    static Pattern *const MATCH_ELEMENT_SYMBOL = Pattern::compile(L"[A-Z][a-z]?");
-    static Pattern *const MATCH_ELEMENT_SYMBOL_LOCANT = Pattern::compile(L"[A-Z][a-z]?'*");
-    static Pattern *const MATCH_NUMERIC_LOCANT = Pattern::compile(L"(\\d+)[a-z]?'*");
+    static const boost::regex MATCH_AMINOACID_STYLE_LOCANT{L"([A-Z][a-z]?)('*)((\\d+[a-z]?|alpha|beta|gamma|delta|epsilon|zeta|eta|omega)'*)"};
+    static const boost::regex MATCH_ELEMENT_SYMBOL{L"[A-Z][a-z]?"};
+    static const boost::regex MATCH_ELEMENT_SYMBOL_LOCANT{L"[A-Z][a-z]?'*"};
+    static const boost::regex MATCH_NUMERIC_LOCANT{L"(\\d+)[a-z]?'*"};
     static constexpr wchar_t END_OF_SUBSTITUENT = L'\u00e9';
     static constexpr wchar_t END_OF_MAINGROUP = L'\u00e2';
     static constexpr wchar_t END_OF_FUNCTIONALTERM = L'\u00FB';

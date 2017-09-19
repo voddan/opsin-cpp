@@ -8,6 +8,7 @@
 #include <cmath>
 #include <stdexcept>
 #include <boost/optional.hpp>
+#include <set>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class Atom;
@@ -18,7 +19,7 @@ class OutAtom;
 class BuildState;
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
 //						import static uk.ac.cam.ch.wwmm.opsin.OpsinTools.*;
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
@@ -81,18 +82,18 @@ private:
 
     static void
     processMainGroupLabelling(Fragment *suffixableFragment, std::unordered_map<std::wstring, int> &elementCount,
-                              Set<Atom *> *atomsToIgnore);
+                              std::set<Atom *> *atomsToIgnore);
 
     static void processSuffixLabelling(std::vector<Fragment *> &suffixFragments,
-                                       std::unordered_map<std::wstring, int> &elementCount, Set<Atom *> *atomsToIgnore);
+                                       std::unordered_map<std::wstring, int> &elementCount, std::set<Atom *> *atomsToIgnore);
 
     static void
     processNonCarboxylicAcidLabelling(Fragment *suffixableFragment, std::unordered_map<std::wstring, int> &elementCount,
-                                      Set<Atom *> *atomsToIgnore);
+                                      std::set<Atom *> *atomsToIgnore);
 
     static void
-    assignLocantsAndExploreNeighbours(std::unordered_map<std::wstring, int> &elementCount, Set<Atom *> *atomsToIgnore,
-                                      Set<Atom *> *atomsVisited, Deque<Atom *> *atomsToConsider);
+    assignLocantsAndExploreNeighbours(std::unordered_map<std::wstring, int> &elementCount, std::set<Atom *> *atomsToIgnore,
+                                      std::set<Atom *> *atomsVisited, Deque<Atom *> *atomsToConsider);
 
     /// <summary>
     /// Gets the neighbours of an atom that claim to be within the same frag

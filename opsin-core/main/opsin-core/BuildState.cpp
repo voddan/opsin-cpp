@@ -6,7 +6,7 @@
 #include "IDManager.h"
 
 
-using OpsinWarningType = uk::ac::cam::ch::wwmm::opsin::OpsinWarning::OpsinWarningType;
+using OpsinWarningType = OpsinWarning::OpsinWarningType;
 
 BuildState::BuildState(NameToStructureConfig *n2sConfig) : fragManager(new FragmentManager(&tempVar, idManager)),
                                                            xmlSuffixMap(

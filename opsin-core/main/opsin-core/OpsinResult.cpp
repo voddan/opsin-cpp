@@ -6,7 +6,7 @@
 
 
 using org::apache::log4j::Logger;
-using OpsinWarningType = uk::ac::cam::ch::wwmm::opsin::OpsinWarning::OpsinWarningType;
+using OpsinWarningType = OpsinWarning::OpsinWarningType;
 
 //JAVA TO C++ CONVERTER TODO TASK: There is no native C++ equivalent to 'toString':
 OpsinResult::OpsinResult(Fragment *frag, OPSIN_RESULT_STATUS status, std::vector<OpsinWarning *> &warnings,

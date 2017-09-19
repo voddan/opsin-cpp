@@ -7,6 +7,7 @@
 #include <cmath>
 #include <stdexcept>
 #include <boost/optional.hpp>
+#include <boost/regex.hpp>
 #include "stringhelper.h"
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
@@ -18,7 +19,7 @@ class StructureBuildingException;
 class BuildResults;
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
@@ -160,11 +161,10 @@ private:
 
     void buildAmineDiConjunctiveSuffix(std::vector<Element *> &words) throw(StructureBuildingException);
 
-    static Pattern *const matchCommonCarboxylicSalt = Pattern::compile(L"tri-?fluoro-?acetate?$",
-                                                                       Pattern::CASE_INSENSITIVE);
-    static Pattern *const matchCommonEsterFormingInorganicSalt = Pattern::compile(
+    static const boost::regex matchCommonCarboxylicSalt{L"tri-?fluoro-?acetate?$", boost::regex::icase};
+    static const boost::regex matchCommonEsterFormingInorganicSalt{
             L"(ortho-?)?(bor|phosphor|phosphate?|phosphite?)|carbam|carbon|sulfur|sulfate?|sulfite?|diphosphate?|triphosphate?",
-            Pattern::CASE_INSENSITIVE);
+            boost::regex::icase};
 
     /// <summary>
     /// CAS endorses the use of ...ol ...ate names means esters

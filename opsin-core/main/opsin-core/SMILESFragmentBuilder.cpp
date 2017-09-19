@@ -1,3 +1,5 @@
+#include <set>
+#include <unordered_set>
 #include "SMILESFragmentBuilder.h"
 #include "Atom.h"
 #include "IDManager.h"
@@ -12,10 +14,10 @@
 #include "ValencyChecker.h"
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
-using SMILES_BOND_DIRECTION = uk::ac::cam::ch::wwmm::opsin::Bond::SMILES_BOND_DIRECTION;
-using BondStereoValue = uk::ac::cam::ch::wwmm::opsin::BondStereo::BondStereoValue;
+using SMILES_BOND_DIRECTION = Bond::SMILES_BOND_DIRECTION;
+using BondStereoValue = BondStereo::BondStereoValue;
 
 SMILESFragmentBuilder::StackFrame::StackFrame(Atom *a, int bondOrderVal) {
     atom = a;
@@ -27,8 +29,8 @@ SMILESFragmentBuilder::StackFrame::StackFrame(const StackFrame &sf) {
     bondOrder = sf->bondOrder;
 }
 
-java::util::Set <std::wstring> *const SMILESFragmentBuilder::organicAtoms = std::unordered_set<std::wstring>();
-java::util::Set <std::wstring> *const SMILESFragmentBuilder::aromaticAtoms = std::unordered_set<std::wstring>();
+std::set <std::wstring> & SMILESFragmentBuilder::organicAtoms =  std::unordered_set<std::wstring>();
+std::set <std::wstring> & SMILESFragmentBuilder::aromaticAtoms = new std::unordered_set<std::wstring>();
 
 SMILESFragmentBuilder::StaticConstructor::StaticConstructor() {
     organicAtoms->add(L"B");

@@ -162,4 +162,7 @@ add_library(opsin-core
 
 target_include_directories(opsin-core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
+target_link_libraries(opsin-core utils)
+target_include_directories(opsin-core PRIVATE $<TARGET_PROPERTY:utils,INTERFACE_INCLUDE_DIRECTORIES>)
+
 set_target_properties(opsin-core PROPERTIES LINKER_LANGUAGE CXX)

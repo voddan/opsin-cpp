@@ -9,7 +9,7 @@ class Atom;
 class BondStereo;
 
 
-using BondStereoValue = uk::ac::cam::ch::wwmm::opsin::BondStereo::BondStereoValue;
+using BondStereoValue = BondStereo::BondStereoValue;
 
 /// <summary>
 ///A bond, between two atoms.

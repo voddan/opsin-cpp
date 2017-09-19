@@ -23,11 +23,11 @@
 #include "FragmentTools.h"
 
 
-using BondStereoValue = uk::ac::cam::ch::wwmm::opsin::BondStereo::BondStereoValue;
-using OpsinWarningType = uk::ac::cam::ch::wwmm::opsin::OpsinWarning::OpsinWarningType;
-using StereoBond = uk::ac::cam::ch::wwmm::opsin::StereoAnalyser::StereoBond;
-using StereoCentre = uk::ac::cam::ch::wwmm::opsin::StereoAnalyser::StereoCentre;
-using namespace uk::ac::cam::ch::wwmm::opsin;
+using BondStereoValue = BondStereo::BondStereoValue;
+using OpsinWarningType = OpsinWarning::OpsinWarningType;
+using StereoBond = StereoAnalyser::StereoBond;
+using StereoCentre = StereoAnalyser::StereoCentre;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 
 StereochemistryHandler::StereochemistryHandler(BuildState *state,

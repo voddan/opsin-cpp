@@ -21,12 +21,12 @@ class Element;
 class Bond;
 
 
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //JAVA TO C++ CONVERTER TODO TASK: The Java 'import static' statement cannot be converted to C++:
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 
 
-using SMILES_BOND_DIRECTION = uk::ac::cam::ch::wwmm::opsin::Bond::SMILES_BOND_DIRECTION;
+using SMILES_BOND_DIRECTION = Bond::SMILES_BOND_DIRECTION;
 
 /// <summary>
 /// A builder for fragments specified as SMILES. A slightly custom SMILES dialect is used.
@@ -112,10 +112,10 @@ private:
 
     /// <summary>
     ///Organic Atoms. </summary>
-    static Set <std::wstring> *const organicAtoms;
+    static std::set <std::wstring> *const organicAtoms;
     /// <summary>
     ///Aromatic Atoms. </summary>
-    static Set <std::wstring> *const aromaticAtoms;
+    static std::set <std::wstring> *const aromaticAtoms;
 
 private:
     class StaticConstructor {

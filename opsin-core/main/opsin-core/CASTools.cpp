@@ -8,11 +8,15 @@
 #include "OpsinTools.h"
 #include "WordType.h"
 #include "StringTools.h"
+#include <boost/algorithm/string/regex.hpp>
 
 
 std::wstring CASTools::uninvertCASName(const std::wstring &name, ParseRules *parseRules) throw(ParsingException) {
 //JAVA TO C++ CONVERTER TODO TASK: There is no direct native C++ equivalent to the Java String 'split' method:
-    std::vector<std::wstring> nameComponents(Arrays::asList(matchCommaSpace->split(name)));
+    std::wstring & splitted();
+    boost::split_regex(splitted, name, matchCommaSpace);
+
+    std::vector<std::wstring> nameComponents(splitted);
     std::vector<std::wstring> substituents;
     std::vector<std::wstring> seperateWordSubstituents;
     std::vector<std::wstring> functionalTerms;
@@ -215,23 +219,26 @@ std::wstring CASTools::uninvertEster(const std::wstring &parent) throw(ParsingEx
         throw ParsingException(L"Failed to uninvert CAS ester");
     }
     wchar_t lastChar = parent[len - 1];
+
+    std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t>> result;
+
     if (lastChar == L')') {
         if (StringTools::endsWithCaseInsensitive(parent, L"ic acid)")) {
-            parent = parent.substr(0, parent.length() - 8) + std::wstring(L"ate)");
+            result = parent.substr(0, parent.length() - 8) + std::wstring(L"ate)");
         } else if (StringTools::endsWithCaseInsensitive(parent, L"ous acid)")) {
-            parent = parent.substr(0, parent.length() - 9) + std::wstring(L"ite)");
+            result = parent.substr(0, parent.length() - 9) + std::wstring(L"ite)");
         } else if (StringTools::endsWithCaseInsensitive(parent, L"ine)")) { //amino acid
-            parent = parent.substr(0, parent.length() - 2) + std::wstring(L"ate)");
+            result = parent.substr(0, parent.length() - 2) + std::wstring(L"ate)");
         } else {
             throw ParsingException(L"Failed to uninvert CAS ester");
         }
     } else {
         if (StringTools::endsWithCaseInsensitive(parent, L"ic acid")) {
-            parent = parent.substr(0, parent.length() - 7) + std::wstring(L"ate");
+            result = parent.substr(0, parent.length() - 7) + std::wstring(L"ate");
         } else if (StringTools::endsWithCaseInsensitive(parent, L"ous acid")) {
-            parent = parent.substr(0, parent.length() - 8) + std::wstring(L"ite");
+            result = parent.substr(0, parent.length() - 8) + std::wstring(L"ite");
         } else if (StringTools::endsWithCaseInsensitive(parent, L"ine")) { //amino acid
-            parent = parent.substr(0, parent.length() - 1) + std::wstring(L"ate");
+            result = parent.substr(0, parent.length() - 1) + std::wstring(L"ate");
         } else {
             throw ParsingException(L"Failed to uninvert CAS ester");
         }
