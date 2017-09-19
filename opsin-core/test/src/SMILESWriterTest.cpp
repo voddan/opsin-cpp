@@ -14,7 +14,7 @@
 //						import static org.junit.Assert.*;
 using org::junit::Before;
 using org::junit::Test;
-using BondStereoValue = uk::ac::cam::ch::wwmm::opsin::BondStereo::BondStereoValue;
+using BondStereoValue = BondStereo::BondStereoValue;
 
 //JAVA TO C++ CONVERTER TODO TASK: Most Java annotations will not have direct C++ equivalents:
 //ORIGINAL LINE: @Before public void setup()

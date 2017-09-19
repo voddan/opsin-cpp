@@ -12,7 +12,7 @@ using org::junit::AfterClass;
 using org::junit::BeforeClass;
 using org::junit::Test;
 //						import static org.junit.Assert.*;
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 ResourceGetter *VerifyFragmentsTest::resourceGetter;
 SMILESFragmentBuilder *VerifyFragmentsTest::sBuilder;

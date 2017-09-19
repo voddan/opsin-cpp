@@ -14,7 +14,7 @@
 using org::junit::Before;
 using org::junit::Test;
 //						import static org.junit.Assert.*;
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 
 //JAVA TO C++ CONVERTER TODO TASK: Most Java annotations will not have direct C++ equivalents:

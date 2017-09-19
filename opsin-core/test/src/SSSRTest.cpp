@@ -7,8 +7,8 @@
 
 //						import static org.junit.Assert.*;
 using org::junit::Test;
-using Fragment = uk::ac::cam::ch::wwmm::opsin::Fragment;
-using NameToStructure = uk::ac::cam::ch::wwmm::opsin::NameToStructure;
+using Fragment = Fragment;
+using NameToStructure = NameToStructure;
 
 //JAVA TO C++ CONVERTER TODO TASK: Most Java annotations will not have direct C++ equivalents:
 //ORIGINAL LINE: @Test public void testFindSSSR() throws Exception

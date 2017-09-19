@@ -9,7 +9,7 @@
 using org::junit::AfterClass;
 using org::junit::BeforeClass;
 using org::junit::Test;
-using OPSIN_RESULT_STATUS = uk::ac::cam::ch::wwmm::opsin::OpsinResult::OPSIN_RESULT_STATUS;
+using OPSIN_RESULT_STATUS = OpsinResult::OPSIN_RESULT_STATUS;
 NameToStructure *NameToStructureConfigurationsTest::n2s;
 
 //JAVA TO C++ CONVERTER TODO TASK: Most Java annotations will not have direct C++ equivalents:

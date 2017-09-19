@@ -2,7 +2,7 @@
 #include "../../../../../../../../../../opsin-core/src/main/java/uk/ac/cam/ch/wwmm/opsin/StringTools.h"
 
 
-using StringTools = uk::ac::cam::ch::wwmm::opsin::StringTools;
+using StringTools = StringTools;
 
 std::wstring InchiPruner::mainAndChargeLayers(const std::wstring &inchi) {
 //JAVA TO C++ CONVERTER TODO TASK: There is no direct native C++ equivalent to the Java String 'split' method:

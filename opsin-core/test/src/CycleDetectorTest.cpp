@@ -9,7 +9,7 @@
 
 //						import static org.junit.Assert.*;
 using org::junit::Test;
-using Fragment = uk::ac::cam::ch::wwmm::opsin::Fragment;
+using Fragment = Fragment;
 
 //JAVA TO C++ CONVERTER TODO TASK: Most Java annotations will not have direct C++ equivalents:
 //ORIGINAL LINE: @Test public void testAssignCyclic1() throws StructureBuildingException

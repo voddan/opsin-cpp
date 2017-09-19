@@ -14,7 +14,7 @@
 
 
 using org::junit::Test;
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 //						import static org.junit.Assert.*;
 //						import static org.mockito.Mockito.mock;

@@ -9,7 +9,7 @@
 
 
 using org::apache::log4j::Logger;
-using BondStereoValue = uk::ac::cam::ch::wwmm::opsin::BondStereo::BondStereoValue;
+using BondStereoValue = BondStereo::BondStereoValue;
 using net::sf::jniinchi::INCHI_BOND_TYPE;
 using net::sf::jniinchi::INCHI_OPTION;
 using net::sf::jniinchi::INCHI_PARITY;

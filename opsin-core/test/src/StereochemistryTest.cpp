@@ -21,9 +21,9 @@ using org::junit::AfterClass;
 using org::junit::Before;
 using org::junit::BeforeClass;
 using org::junit::Test;
-using BondStereoValue = uk::ac::cam::ch::wwmm::opsin::BondStereo::BondStereoValue;
-using StereoBond = uk::ac::cam::ch::wwmm::opsin::StereoAnalyser::StereoBond;
-using StereoCentre = uk::ac::cam::ch::wwmm::opsin::StereoAnalyser::StereoCentre;
+using BondStereoValue = BondStereo::BondStereoValue;
+using StereoBond = StereoAnalyser::StereoBond;
+using StereoCentre = StereoAnalyser::StereoCentre;
 
 //JAVA TO C++ CONVERTER TODO TASK: Most Java annotations will not have direct C++ equivalents:
 //ORIGINAL LINE: @Before public void setup()

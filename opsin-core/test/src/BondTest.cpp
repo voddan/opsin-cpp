@@ -10,8 +10,8 @@
 //						import static org.junit.Assert.*;
 //						import static org.mockito.Mockito.mock;
 using org::junit::Test;
-using SMILES_BOND_DIRECTION = uk::ac::cam::ch::wwmm::opsin::Bond::SMILES_BOND_DIRECTION;
-using BondStereoValue = uk::ac::cam::ch::wwmm::opsin::BondStereo::BondStereoValue;
+using SMILES_BOND_DIRECTION = Bond::SMILES_BOND_DIRECTION;
+using BondStereoValue = BondStereo::BondStereoValue;
 
 //JAVA TO C++ CONVERTER TODO TASK: Most Java annotations will not have direct C++ equivalents:
 //ORIGINAL LINE: @Test public void testBond()

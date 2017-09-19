@@ -10,7 +10,7 @@
 
 
 //						import static org.junit.Assert.*;
-using namespace uk::ac::cam::ch::wwmm::opsin;
+
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 using org::junit::Test;
 
