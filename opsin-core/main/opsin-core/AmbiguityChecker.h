@@ -7,6 +7,7 @@
 #include <boost/optional.hpp>
 #include <set>
 #include "stringhelper.h"
+#include "bitarray.h"
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class Atom;
@@ -24,7 +25,7 @@ class AmbiguityChecker {
 public:
     static bool isSubstitutionAmbiguous(std::vector<Atom *> &substitutableAtoms, int numberToBeSubstituted);
 
-    static bool allAtomsEquivalent(std::vector<Atom *> atoms);
+    static bool allAtomsEquivalent(std::vector<Atom *> &atoms);
 
     static bool allBondsEquivalent(Collection<Bond *> *bonds);
 
@@ -38,7 +39,7 @@ private:
     static bool allAtomsConnectToDefaultInAtom(std::vector<Atom *> &substitutableAtoms, int numberToBeSubstituted);
 
 public:
-    static StereoAnalyser *analyseRelevantAtomsAndBonds(Collection<Atom *> *startingAtoms);
+    static StereoAnalyser *analyseRelevantAtomsAndBonds(std::vector<Atom *> &startingAtoms);
 
     static std::vector<Atom *>
     useAtomEnvironmentsToGivePlausibleSubstitution(std::vector<Atom *> &substitutableAtoms, int numberToBeSubstituted);

@@ -11,7 +11,7 @@
 
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.ELEMENTARYATOM_SUBTYPE_VAL;
 
-bool AmbiguityChecker::isSubstitutionAmbiguous(std::vector<Atom *> &substitutableAtoms, int numberToBeSubstituted) {
+bool AmbiguityChecker::isSubstitutionAmbiguous(std::vector<Atom *> & substitutableAtoms, int numberToBeSubstituted) {
     if (substitutableAtoms.empty()) {
         throw std::invalid_argument("OPSIN Bug: Must provide at least one substituable atom");
     }
@@ -24,10 +24,10 @@ bool AmbiguityChecker::isSubstitutionAmbiguous(std::vector<Atom *> &substitutabl
     if (allAtomsConnectToDefaultInAtom(substitutableAtoms, numberToBeSubstituted)) {
         return false;
     }
-    
-    std::set< Atom * > uniqueAtoms;
+
+    std::set<Atom *> uniqueAtoms;
     uniqueAtoms.insert(substitutableAtoms.begin(), substitutableAtoms.end());
-    
+
     if (uniqueAtoms.size() == 1) {
         return false;
     }
@@ -36,30 +36,30 @@ bool AmbiguityChecker::isSubstitutionAmbiguous(std::vector<Atom *> &substitutabl
              (numberToBeSubstituted == 1 || numberToBeSubstituted == substitutableAtoms.size() - 1));
 }
 
-bool AmbiguityChecker::allAtomsEquivalent(std::vector<Atom *> atoms) {
-    StereoAnalyser *analyser = analyseRelevantAtomsAndBonds(atoms);
-    std::set <std::wstring> *uniqueEnvironments = std::unordered_set<std::wstring>();
-    for (auto a : atoms) {
-        uniqueEnvironments->add(getAtomEnviron(analyser, a));
+bool AmbiguityChecker::allAtomsEquivalent(std::vector<Atom> & atoms) {
+    StereoAnalyser * analyser = analyseRelevantAtomsAndBonds(atoms);
+    std::set<std::wstring> * uniqueEnvironments = new std::set<std::wstring>();
+    for (Atom a: atoms) {
+        uniqueEnvironments->insert(getAtomEnviron(analyser, a));
     }
     return uniqueEnvironments->size() == 1;
 }
 
-bool AmbiguityChecker::allBondsEquivalent(Collection < Bond * > *bonds) {
+bool AmbiguityChecker::allBondsEquivalent(std::vector<Bond *> * bonds) {
     Set < Atom * > *relevantAtoms = std::unordered_set<Atom *>();
     for (auto b : bonds) {
         relevantAtoms->add(b->getFromAtom());
         relevantAtoms->add(b->getToAtom());
     }
-    StereoAnalyser *analyser = analyseRelevantAtomsAndBonds(relevantAtoms);
-    Set <std::wstring> *uniqueBonds = std::unordered_set<std::wstring>();
+    StereoAnalyser * analyser = analyseRelevantAtomsAndBonds(relevantAtoms);
+    Set <std::wstring> * uniqueBonds = std::unordered_set<std::wstring>();
     for (auto b : bonds) {
         uniqueBonds->add(bondToCanonicalEnvironString(analyser, b));
     }
     return uniqueBonds->size() == 1;
 }
 
-std::wstring AmbiguityChecker::bondToCanonicalEnvironString(StereoAnalyser *analyser, Bond *b) {
+std::wstring AmbiguityChecker::bondToCanonicalEnvironString(StereoAnalyser * analyser, Bond * b) {
     std::wstring s1 = getAtomEnviron(analyser, b->getFromAtom());
     std::wstring s2 = getAtomEnviron(analyser, b->getToAtom());
     if (s1.compare(s2) > 0) {
@@ -69,7 +69,7 @@ std::wstring AmbiguityChecker::bondToCanonicalEnvironString(StereoAnalyser *anal
     }
 }
 
-std::wstring AmbiguityChecker::getAtomEnviron(StereoAnalyser *analyser, Atom *a) {
+std::wstring AmbiguityChecker::getAtomEnviron(StereoAnalyser * analyser, Atom * a) {
     boost::optional<int> env = analyser->getAtomEnvironmentNumber(a);
     if (!env) {
 //JAVA TO C++ CONVERTER TODO TASK: The std::exception constructor has no parameters:
@@ -82,8 +82,8 @@ std::wstring AmbiguityChecker::getAtomEnviron(StereoAnalyser *analyser, Atom *a)
 }
 
 bool
-AmbiguityChecker::allAtomsConnectToDefaultInAtom(std::vector<Atom *> &substitutableAtoms, int numberToBeSubstituted) {
-    Atom *defaultInAtom = substitutableAtoms[0]->getFrag().getDefaultInAtom();
+AmbiguityChecker::allAtomsConnectToDefaultInAtom(std::vector<Atom *> & substitutableAtoms, int numberToBeSubstituted) {
+    Atom * defaultInAtom = substitutableAtoms[0]->getFrag().getDefaultInAtom();
     if (defaultInAtom != nullptr) {
         for (int i = 0; i < numberToBeSubstituted; i++) {
             if (!substitutableAtoms[i]->equals(defaultInAtom)) {
@@ -95,12 +95,12 @@ AmbiguityChecker::allAtomsConnectToDefaultInAtom(std::vector<Atom *> &substituta
     return false;
 }
 
-StereoAnalyser *AmbiguityChecker::analyseRelevantAtomsAndBonds(Collection < Atom * > *startingAtoms) {
+StereoAnalyser * AmbiguityChecker::analyseRelevantAtomsAndBonds(std::vector<Atom *> & startingAtoms) {
     Set < Atom * > *atoms = std::unordered_set<Atom *>();
     Set < Bond * > *bonds = std::unordered_set<Bond *>();
     Deque < Atom * > *stack = new ArrayDeque<Atom *>(startingAtoms);
     while (!stack->isEmpty()) {
-        Atom *a = stack->removeLast();
+        Atom * a = stack->removeLast();
         if (!atoms->contains(a)) {
             atoms->add(a);
             for (auto b : a->getBonds()) {
@@ -118,24 +118,24 @@ StereoAnalyser *AmbiguityChecker::analyseRelevantAtomsAndBonds(Collection < Atom
         }
         int explicitHydrogensToAdd = StructureBuildingMethods::calculateSubstitutableHydrogenAtoms(atom);
         for (int i = 0; i < explicitHydrogensToAdd; i++) {
-            Atom *ghostHydrogen = new Atom(ChemEl::H);
-            Bond *b = new Bond(ghostHydrogen, atom, 1);
+            Atom * ghostHydrogen = new Atom(ChemEl::H);
+            Bond * b = new Bond(ghostHydrogen, atom, 1);
             atom->addBond(b);
             ghostHydrogen->addBond(b);
             ghostHydrogens.push_back(ghostHydrogen);
         }
     }
     atoms->addAll(ghostHydrogens);
-    StereoAnalyser *analyzer = new StereoAnalyser(atoms, bonds);
+    StereoAnalyser * analyzer = new StereoAnalyser(atoms, bonds);
     for (auto ghostHydrogen : ghostHydrogens) {
-        Bond *b = ghostHydrogen->getFirstBond();
+        Bond * b = ghostHydrogen->getFirstBond();
         b->getOtherAtom(ghostHydrogen)->removeBond(b);
     }
     return analyzer;
 }
 
 std::vector<Atom *>
-AmbiguityChecker::useAtomEnvironmentsToGivePlausibleSubstitution(std::vector<Atom *> &substitutableAtoms,
+AmbiguityChecker::useAtomEnvironmentsToGivePlausibleSubstitution(std::vector<Atom *> & substitutableAtoms,
                                                                  int numberToBeSubstituted) {
     if (substitutableAtoms.empty()) {
         throw std::invalid_argument("OPSIN Bug: Must provide at least one substituable atom");
@@ -156,10 +156,10 @@ AmbiguityChecker::useAtomEnvironmentsToGivePlausibleSubstitution(std::vector<Ato
 }
 
 std::vector<Atom *>
-AmbiguityChecker::findPlausibleSubstitutionPatternUsingSymmmetry(std::vector<Atom *> &substitutableAtoms,
+AmbiguityChecker::findPlausibleSubstitutionPatternUsingSymmmetry(std::vector<Atom *> & substitutableAtoms,
                                                                  int numberToBeSubstituted) {
     //cf. octaethylporphyrin (8 identical atoms capable of substitution)
-    StereoAnalyser *analyser = analyseRelevantAtomsAndBonds(std::unordered_set<Atom *>(substitutableAtoms));
+    StereoAnalyser * analyser = analyseRelevantAtomsAndBonds(std::unordered_set<Atom *>(substitutableAtoms));
     std::unordered_map<std::wstring, std::vector<Atom *>> atomsInEachEnvironment;
     for (auto a : substitutableAtoms) {
         std::wstring env = getAtomEnviron(analyser, a);
@@ -198,7 +198,7 @@ AmbiguityChecker::findPlausibleSubstitutionPatternUsingSymmmetry(std::vector<Ato
 }
 
 std::vector<Atom *>
-AmbiguityChecker::findPlausibleSubstitutionPatternUsingLocalEnvironment(std::vector<Atom *> &substitutableAtoms,
+AmbiguityChecker::findPlausibleSubstitutionPatternUsingLocalEnvironment(std::vector<Atom *> & substitutableAtoms,
                                                                         int numberToBeSubstituted) {
     //cf. pentachlorotoluene (5 sp2 carbons vs sp3 methyl)
     std::unordered_map<std::wstring, std::vector<Atom *>> atomsInEachLocalEnvironment;

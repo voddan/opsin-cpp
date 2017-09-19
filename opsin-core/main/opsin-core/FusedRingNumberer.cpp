@@ -13,7 +13,6 @@
 
 #include "RectangularVectors.h"
 
-using utils::RectangularVectors
 
 using org::apache::log4j::Logger;
 
