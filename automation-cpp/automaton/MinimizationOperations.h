@@ -8,11 +8,11 @@
 #include <unordered_set>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
-namespace dk { namespace brics { namespace automaton { class Automaton; } } }
-namespace dk { namespace brics { namespace automaton { class Transition; } } }
-namespace dk { namespace brics { namespace automaton { class IntPair; } } }
-namespace dk { namespace brics { namespace automaton { class State; } } }
-namespace dk { namespace brics { namespace automaton { class StateListNode; } } }
+namespace dk { namespace brics { namespace automaton { class Automaton; }}}
+namespace dk { namespace brics { namespace automaton { class Transition; }}}
+namespace dk { namespace brics { namespace automaton { class IntPair; }}}
+namespace dk { namespace brics { namespace automaton { class State; }}}
+namespace dk { namespace brics { namespace automaton { class StateListNode; }}}
 
 /*
  * dk.brics.automaton
@@ -43,154 +43,150 @@ namespace dk { namespace brics { namespace automaton { class StateListNode; } } 
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace dk
-{
-	namespace brics
-	{
-		namespace automaton
-		{
+namespace dk {
+    namespace brics {
+        namespace automaton {
 
 
-			/// <summary>
-			/// Operations for minimizing automata.
-			/// </summary>
-			class MinimizationOperations final
-			{
+            /// <summary>
+            /// Operations for minimizing automata.
+            /// </summary>
+            class MinimizationOperations final {
 
-			private:
-				MinimizationOperations();
+            private:
+                MinimizationOperations();
 
-				/// <summary>
-				/// Minimizes (and determinizes if not already deterministic) the given automaton. </summary>
-				/// <seealso cref= Automaton#setMinimization(int) </seealso>
-			public:
-				static void minimize(Automaton *a);
+                /// <summary>
+                /// Minimizes (and determinizes if not already deterministic) the given automaton. </summary>
+                /// <seealso cref= Automaton#setMinimization(int) </seealso>
+            public:
+                static void minimize(Automaton * a);
 
-			private:
-				static bool statesAgree(std::vector<std::vector<Transition*>> &transitions, std::vector<std::vector<bool>> &mark, int n1, int n2);
+            private:
+                static bool
+                statesAgree(std::vector<std::vector<Transition *>> & transitions, std::vector<std::vector<bool>> & mark,
+                            int n1, int n2);
 
-				static void addTriggers(std::vector<std::vector<Transition*>> &transitions, std::vector<std::vector<std::unordered_set<IntPair*>>> &triggers, int n1, int n2);
+                static void addTriggers(std::vector<std::vector<Transition *>> & transitions,
+                                        std::vector<std::vector<std::unordered_set<IntPair *>>> & triggers, int n1,
+                                        int n2);
 
-				static void markPair(std::vector<std::vector<bool>> &mark, std::vector<std::vector<std::unordered_set<IntPair*>>> &triggers, int n1, int n2);
+                static void markPair(std::vector<std::vector<bool>> & mark,
+                                     std::vector<std::vector<std::unordered_set<IntPair *>>> & triggers, int n1,
+                                     int n2);
 
-				template<typename T>
-				static void initialize(std::vector<T> &list, int size);
+                template<typename T>
+                static void initialize(std::vector<T> & list, int size);
 
-				/// <summary>
-				/// Minimizes the given automaton using Huffman's algorithm. 
-				/// </summary>
-			public:
-				static void minimizeHuffman(Automaton *a);
+                /// <summary>
+                /// Minimizes the given automaton using Huffman's algorithm.
+                /// </summary>
+            public:
+                static void minimizeHuffman(Automaton * a);
 
-				/// <summary>
-				/// Minimizes the given automaton using Brzozowski's algorithm. 
-				/// </summary>
-				static void minimizeBrzozowski(Automaton *a);
+                /// <summary>
+                /// Minimizes the given automaton using Brzozowski's algorithm.
+                /// </summary>
+                static void minimizeBrzozowski(Automaton * a);
 
-				/// <summary>
-				/// Minimizes the given automaton using Hopcroft's algorithm. 
-				/// </summary>
-				static void minimizeHopcroft(Automaton *a);
+                /// <summary>
+                /// Minimizes the given automaton using Hopcroft's algorithm.
+                /// </summary>
+                static void minimizeHopcroft(Automaton * a);
 
-				/// <summary>
-				/// Minimizes the given automaton using Valmari's algorithm.
-				/// </summary>
-				static void minimizeValmari(Automaton *automaton);
+                /// <summary>
+                /// Minimizes the given automaton using Valmari's algorithm.
+                /// </summary>
+                static void minimizeValmari(Automaton * automaton);
 
-			private:
-				static void makeAdjacent(std::vector<int> &A, std::vector<int> &F, std::vector<int> &K, int nn, int mm);
+            private:
+                static void
+                makeAdjacent(std::vector<int> & A, std::vector<int> & F, std::vector<int> & K, int nn, int mm);
 
-				static void splitTransitions(std::set<State*> *states);
+                static void splitTransitions(std::set<State *> * states);
 
-			public:
-				class IntPair
-				{
+            public:
+                class IntPair {
 
-				public:
-					int n1 = 0, n2 = 0;
+                public:
+                    int n1 = 0, n2 = 0;
 
-					IntPair(int n1, int n2);
-				};
+                    IntPair(int n1, int n2);
+                };
 
-			public:
-				class StateList
-				{
+            public:
+                class StateList {
 
-				public:
-					int size = 0;
+                public:
+                    int size = 0;
 
-					StateListNode *first, *last;
+                    StateListNode * first, * last;
 
-					virtual ~StateList()
-					{
-						delete first;
-						delete last;
-					}
+                    virtual ~StateList() {
+                        delete first;
+                        delete last;
+                    }
 
-					virtual StateListNode *add(State *q);
-				};
+                    virtual StateListNode * add(State * q);
+                };
 
-			public:
-				class StateListNode
-				{
+            public:
+                class StateListNode {
 
-				public:
-					State *q;
+                public:
+                    State * q;
 
-					StateListNode *next, *prev;
+                    StateListNode * next, * prev;
 
-					StateList *sl;
+                    StateList * sl;
 
-					virtual ~StateListNode()
-					{
-						delete q;
-						delete next;
-						delete prev;
-						delete sl;
-					}
+                    virtual ~StateListNode() {
+                        delete q;
+                        delete next;
+                        delete prev;
+                        delete sl;
+                    }
 
-					StateListNode(State *q, StateList *sl);
+                    StateListNode(State * q, StateList * sl);
 
-					virtual void remove();
-				};
+                    virtual void remove();
+                };
 
-			public:
-				class Partition
-				{
+            public:
+                class Partition {
 
-				public:
-					std::vector<int> markedElementCount; // number of marked elements in set
-					std::vector<int> touchedSets; // sets with marked elements
-					int touchedSetCount = 0; // number of sets with marked elements
+                public:
+                    std::vector<int> markedElementCount; // number of marked elements in set
+                    std::vector<int> touchedSets; // sets with marked elements
+                    int touchedSetCount = 0; // number of sets with marked elements
 
-					int setCount = 0; // number of sets
-					std::vector<boost::optional<int>> elements; // elements, i.e s = { elements[first[s]], elements[first[s] + 1], ..., elements[past[s]-1] }
-					std::vector<int> locations; // location of element i in elements
-					std::vector<int> setNo; // the set number element i belongs to
-					std::vector<int> first; // "first": start index of set
-					std::vector<int> past; // "past": end index of set
+                    int setCount = 0; // number of sets
+                    std::vector<boost::optional<int>> elements; // elements, i.e s = { elements[first[s]], elements[first[s] + 1], ..., elements[past[s]-1] }
+                    std::vector<int> locations; // location of element i in elements
+                    std::vector<int> setNo; // the set number element i belongs to
+                    std::vector<int> first; // "first": start index of set
+                    std::vector<int> past; // "past": end index of set
 
-					Partition(int size);
+                    Partition(int size);
 
-					virtual void mark(int e);
+                    virtual void mark(int e);
 
-					virtual void split();
-				};
+                    virtual void split();
+                };
 
-			public:
-				class LabelComparator : public Comparator<int>
-				{
+            public:
+                class LabelComparator : public Comparator<int> {
 
-				private:
-					std::vector<IntPair*> labels;
+                private:
+                    std::vector<IntPair *> labels;
 
-				public:
-					LabelComparator(std::vector<IntPair*> &labels);
+                public:
+                    LabelComparator(std::vector<IntPair *> & labels);
 
-					virtual int compare(boost::optional<int> i, boost::optional<int> j);
-				};
-			};
+                    virtual int compare(boost::optional<int> i, boost::optional<int> j);
+                };
+            };
 
-		}
-	}
+        }
+    }
 }

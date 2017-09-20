@@ -4,7 +4,7 @@
 #include <string>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
-namespace dk { namespace brics { namespace automaton { class Automaton; } } }
+namespace dk { namespace brics { namespace automaton { class Automaton; }}}
 
 /*
  * dk.brics.automaton
@@ -35,40 +35,36 @@ namespace dk { namespace brics { namespace automaton { class Automaton; } } }
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace dk
-{
-	namespace brics
-	{
-		namespace automaton
-		{
+namespace dk {
+    namespace brics {
+        namespace automaton {
 
-			/// <summary>
-			/// Automaton provider based on <seealso cref="Datatypes"/>.
-			/// </summary>
-			class DatatypesAutomatonProvider : public AutomatonProvider
-			{
+            /// <summary>
+            /// Automaton provider based on <seealso cref="Datatypes"/>.
+            /// </summary>
+            class DatatypesAutomatonProvider : public AutomatonProvider {
 
-			private:
-				bool enable_unicodeblocks = false, enable_unicodecategories = false, enable_xml = false;
+            private:
+                bool enable_unicodeblocks = false, enable_unicodecategories = false, enable_xml = false;
 
-				/// <summary>
-				/// Constructs a new automaton provider that recognizes all names
-				/// from <seealso cref="Datatypes#get(String)"/>.
-				/// </summary>
-			public:
-				DatatypesAutomatonProvider();
+                /// <summary>
+                /// Constructs a new automaton provider that recognizes all names
+                /// from <seealso cref="Datatypes#get(String)"/>.
+                /// </summary>
+            public:
+                DatatypesAutomatonProvider();
 
-				/// <summary>
-				/// Constructs a new automaton provider that recognizes some of the names
-				/// from <seealso cref="Datatypes#get(String)"/> </summary>
-				/// <param name="enable_unicodeblocks"> if true, enable Unicode block names </param>
-				/// <param name="enable_unicodecategories"> if true, enable Unicode category names </param>
-				/// <param name="enable_xml"> if true, enable XML related names </param>
-				DatatypesAutomatonProvider(bool enable_unicodeblocks, bool enable_unicodecategories, bool enable_xml);
+                /// <summary>
+                /// Constructs a new automaton provider that recognizes some of the names
+                /// from <seealso cref="Datatypes#get(String)"/> </summary>
+                /// <param name="enable_unicodeblocks"> if true, enable Unicode block names </param>
+                /// <param name="enable_unicodecategories"> if true, enable Unicode category names </param>
+                /// <param name="enable_xml"> if true, enable XML related names </param>
+                DatatypesAutomatonProvider(bool enable_unicodeblocks, bool enable_unicodecategories, bool enable_xml);
 
-				virtual Automaton *getAutomaton(const std::wstring &name);
-			};
+                virtual Automaton * getAutomaton(const std::wstring & name);
+            };
 
-		}
-	}
+        }
+    }
 }

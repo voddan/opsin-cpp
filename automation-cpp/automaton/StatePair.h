@@ -1,7 +1,7 @@
 #pragma once
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
-namespace dk { namespace brics { namespace automaton { class State; } } }
+namespace dk { namespace brics { namespace automaton { class State; }}}
 
 /*
  * dk.brics.automaton
@@ -32,61 +32,56 @@ namespace dk { namespace brics { namespace automaton { class State; } } }
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace dk
-{
-	namespace brics
-	{
-		namespace automaton
-		{
+namespace dk {
+    namespace brics {
+        namespace automaton {
 
-			/// <summary>
-			/// Pair of states.
-			/// @author Anders M&oslash;ller &lt;<a href="mailto:amoeller@cs.au.dk">amoeller@cs.au.dk</a>&gt;
-			/// </summary>
-			class StatePair
-			{
-			public:
-				State *s;
-				State *s1;
-				State *s2;
+            /// <summary>
+            /// Pair of states.
+            /// @author Anders M&oslash;ller &lt;<a href="mailto:amoeller@cs.au.dk">amoeller@cs.au.dk</a>&gt;
+            /// </summary>
+            class StatePair {
+            public:
+                State * s;
+                State * s1;
+                State * s2;
 
-				virtual ~StatePair()
-				{
-					delete s;
-					delete s1;
-					delete s2;
-				}
+                virtual ~StatePair() {
+                    delete s;
+                    delete s1;
+                    delete s2;
+                }
 
-				StatePair(State *s, State *s1, State *s2);
+                StatePair(State * s, State * s1, State * s2);
 
-				/// <summary>
-				/// Constructs a new state pair. </summary>
-				/// <param name="s1"> first state </param>
-				/// <param name="s2"> second state </param>
-				StatePair(State *s1, State *s2);
+                /// <summary>
+                /// Constructs a new state pair. </summary>
+                /// <param name="s1"> first state </param>
+                /// <param name="s2"> second state </param>
+                StatePair(State * s1, State * s2);
 
-				/// <summary>
-				/// Returns first component of this pair. </summary>
-				/// <returns> first state </returns>
-				virtual State *getFirstState();
+                /// <summary>
+                /// Returns first component of this pair. </summary>
+                /// <returns> first state </returns>
+                virtual State * getFirstState();
 
-				/// <summary>
-				/// Returns second component of this pair. </summary>
-				/// <returns> second state </returns>
-				virtual State *getSecondState();
+                /// <summary>
+                /// Returns second component of this pair. </summary>
+                /// <returns> second state </returns>
+                virtual State * getSecondState();
 
-				/// <summary>
-				/// Checks for equality. </summary>
-				/// <param name="obj"> object to compare with </param>
-				/// <returns> true if <tt>obj</tt> represents the same pair of states as this pair </returns>
-				virtual bool equals(void *obj);
+                /// <summary>
+                /// Checks for equality. </summary>
+                /// <param name="obj"> object to compare with </param>
+                /// <returns> true if <tt>obj</tt> represents the same pair of states as this pair </returns>
+                virtual bool equals(void * obj);
 
-				/// <summary>
-				/// Returns hash code. </summary>
-				/// <returns> hash code </returns>
-				virtual int hashCode();
-			};
+                /// <summary>
+                /// Returns hash code. </summary>
+                /// <returns> hash code </returns>
+                virtual int hashCode();
+            };
 
-		}
-	}
+        }
+    }
 }

@@ -3,7 +3,7 @@
 #include <string>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
-namespace dk { namespace brics { namespace automaton { class Automaton; } } }
+namespace dk { namespace brics { namespace automaton { class Automaton; }}}
 
 /*
  * dk.brics.automaton
@@ -34,29 +34,25 @@ namespace dk { namespace brics { namespace automaton { class Automaton; } } }
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace dk
-{
-	namespace brics
-	{
-		namespace automaton
-		{
+namespace dk {
+    namespace brics {
+        namespace automaton {
 
 
-			/// <summary>
-			/// Automaton provider for <code>RegExp.</code><seealso cref="RegExp#toAutomaton(AutomatonProvider)"/>
-			/// </summary>
-			class AutomatonProvider
-			{
+            /// <summary>
+            /// Automaton provider for <code>RegExp.</code><seealso cref="RegExp#toAutomaton(AutomatonProvider)"/>
+            /// </summary>
+            class AutomatonProvider {
 
-				/// <summary>
-				/// Returns automaton of the given name. </summary>
-				/// <param name="name"> automaton name </param>
-				/// <returns> automaton </returns>
-				/// <exception cref="IOException"> if errors occur </exception>
-			public:
-				virtual Automaton *getAutomaton(const std::wstring &name) = 0;
-			};
+                /// <summary>
+                /// Returns automaton of the given name. </summary>
+                /// <param name="name"> automaton name </param>
+                /// <returns> automaton </returns>
+                /// <exception cref="IOException"> if errors occur </exception>
+            public:
+                virtual Automaton * getAutomaton(const std::wstring & name) = 0;
+            };
 
-		}
-	}
+        }
+    }
 }

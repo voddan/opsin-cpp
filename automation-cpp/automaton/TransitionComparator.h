@@ -1,7 +1,7 @@
 #pragma once
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
-namespace dk { namespace brics { namespace automaton { class Transition; } } }
+namespace dk { namespace brics { namespace automaton { class Transition; }}}
 
 /*
  * dk.brics.automaton
@@ -32,30 +32,27 @@ namespace dk { namespace brics { namespace automaton { class Transition; } } }
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace dk
-{
-	namespace brics
-	{
-		namespace automaton
-		{
+namespace dk {
+    namespace brics {
+        namespace automaton {
 
 
-			class TransitionComparator //: public Comparator<Transition*>, public Serializable
-			{
+            class TransitionComparator //: public Comparator<Transition*>, public Serializable
+            {
 
-			public:
-				static constexpr long long serialVersionUID = 10001;
+            public:
+                static constexpr long long serialVersionUID = 10001;
 
-				bool to_first = false;
+                bool to_first = false;
 
-				TransitionComparator(bool to_first);
+                TransitionComparator(bool to_first);
 
-				/// <summary>
-				/// Compares by (min, reverse max, to) or (to, min, reverse max). 
-				/// </summary>
-				virtual int compare(Transition *t1, Transition *t2);
-			};
+                /// <summary>
+                /// Compares by (min, reverse max, to) or (to, min, reverse max).
+                /// </summary>
+                virtual int compare(Transition * t1, Transition * t2);
+            };
 
-		}
-	}
+        }
+    }
 }

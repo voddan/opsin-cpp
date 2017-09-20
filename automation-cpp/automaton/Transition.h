@@ -5,7 +5,7 @@
 #include "stringbuilder.h"
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
-namespace dk { namespace brics { namespace automaton { class State; } } }
+namespace dk { namespace brics { namespace automaton { class State; }}}
 
 /*
  * dk.brics.automaton
@@ -36,97 +36,93 @@ namespace dk { namespace brics { namespace automaton { class State; } } }
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace dk
-{
-	namespace brics
-	{
-		namespace automaton
-		{
+namespace dk {
+    namespace brics {
+        namespace automaton {
 
 
-			/// <summary>
-			/// <tt>Automaton</tt> transition. 
-			/// <para>
-			/// A transition, which belongs to a source state, consists of a Unicode character interval
-			/// and a destination state.
-			/// @author Anders M&oslash;ller &lt;<a href="mailto:amoeller@cs.au.dk">amoeller@cs.au.dk</a>&gt;
-			/// </para>
-			/// </summary>
-			class Transition //: public Serializable, public Cloneable
-			{
+            /// <summary>
+            /// <tt>Automaton</tt> transition.
+            /// <para>
+            /// A transition, which belongs to a source state, consists of a Unicode character interval
+            /// and a destination state.
+            /// @author Anders M&oslash;ller &lt;<a href="mailto:amoeller@cs.au.dk">amoeller@cs.au.dk</a>&gt;
+            /// </para>
+            /// </summary>
+            class Transition //: public Serializable, public Cloneable
+            {
 
-			public:
-				static constexpr long long serialVersionUID = 40001;
+            public:
+                static constexpr long long serialVersionUID = 40001;
 
-				/* 
-				 * CLASS INVARIANT: min<=max
-				 */
+                /*
+                 * CLASS INVARIANT: min<=max
+                 */
 
-				wchar_t min = L'\0';
-				wchar_t max = L'\0';
+                wchar_t min = L'\0';
+                wchar_t max = L'\0';
 
-				State *to;
+                State * to;
 
-				/// <summary>
-				/// Constructs a new singleton interval transition. </summary>
-				/// <param name="c"> transition character </param>
-				/// <param name="to"> destination state </param>
-				virtual ~Transition()
-				{
-					delete to;
-				}
+                /// <summary>
+                /// Constructs a new singleton interval transition. </summary>
+                /// <param name="c"> transition character </param>
+                /// <param name="to"> destination state </param>
+                virtual ~Transition() {
+                    delete to;
+                }
 
-				Transition(wchar_t c, State *to);
+                Transition(wchar_t c, State * to);
 
-				/// <summary>
-				/// Constructs a new transition. 
-				/// Both end points are included in the interval. </summary>
-				/// <param name="min"> transition interval minimum </param>
-				/// <param name="max"> transition interval maximum </param>
-				/// <param name="to"> destination state </param>
-				Transition(wchar_t min, wchar_t max, State *to);
+                /// <summary>
+                /// Constructs a new transition.
+                /// Both end points are included in the interval. </summary>
+                /// <param name="min"> transition interval minimum </param>
+                /// <param name="max"> transition interval maximum </param>
+                /// <param name="to"> destination state </param>
+                Transition(wchar_t min, wchar_t max, State * to);
 
-				/// <summary>
-				/// Returns minimum of this transition interval. </summary>
-				virtual wchar_t getMin();
+                /// <summary>
+                /// Returns minimum of this transition interval. </summary>
+                virtual wchar_t getMin();
 
-				/// <summary>
-				/// Returns maximum of this transition interval. </summary>
-				virtual wchar_t getMax();
+                /// <summary>
+                /// Returns maximum of this transition interval. </summary>
+                virtual wchar_t getMax();
 
-				/// <summary>
-				/// Returns destination of this transition. </summary>
-				virtual State *getDest();
+                /// <summary>
+                /// Returns destination of this transition. </summary>
+                virtual State * getDest();
 
-				/// <summary>
-				/// Checks for equality. </summary>
-				/// <param name="obj"> object to compare with </param>
-				/// <returns> true if <tt>obj</tt> is a transition with same 
-				///         character interval and destination state as this transition. </returns>
-				virtual bool equals(void *obj);
+                /// <summary>
+                /// Checks for equality. </summary>
+                /// <param name="obj"> object to compare with </param>
+                /// <returns> true if <tt>obj</tt> is a transition with same
+                ///         character interval and destination state as this transition. </returns>
+                virtual bool equals(void * obj);
 
-				/// <summary>
-				/// Returns hash code.
-				/// The hash code is based on the character interval (not the destination state). </summary>
-				/// <returns> hash code </returns>
-				virtual int hashCode();
+                /// <summary>
+                /// Returns hash code.
+                /// The hash code is based on the character interval (not the destination state). </summary>
+                /// <returns> hash code </returns>
+                virtual int hashCode();
 
-				/// <summary>
-				/// Clones this transition. </summary>
-				/// <returns> clone with same character interval and destination state </returns>
-				virtual Transition *clone();
+                /// <summary>
+                /// Clones this transition. </summary>
+                /// <returns> clone with same character interval and destination state </returns>
+                virtual Transition * clone();
 
-				static void appendCharString(wchar_t c, StringBuilder *b);
+                static void appendCharString(wchar_t c, StringBuilder * b);
 
-				/// <summary>
-				/// Returns a string describing this state. Normally invoked via 
-				/// <seealso cref="Automaton#toString()"/>. 
-				/// </summary>
-				virtual std::wstring toString();
+                /// <summary>
+                /// Returns a string describing this state. Normally invoked via
+                /// <seealso cref="Automaton#toString()"/>.
+                /// </summary>
+                virtual std::wstring toString();
 
-				virtual void appendDot(StringBuilder *b);
-			};
+                virtual void appendDot(StringBuilder * b);
+            };
 
-		}
-	}
+        }
+    }
 }
