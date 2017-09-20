@@ -268,7 +268,7 @@ namespace dk
 				return a;
 			}
 
-			Automaton *BasicAutomata::makeStringUnion(std::vector<CharSequence> &strings)
+			Automaton *BasicAutomata::makeStringUnion(std::vector<std::string> &strings)
 			{
 				if (strings->length == 0)
 				{

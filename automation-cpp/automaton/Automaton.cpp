@@ -108,10 +108,10 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 				return info;
 			}
 
-			Set<State*> *Automaton::getStates()
+			std::set<State*> *Automaton::getStates()
 			{
 				expandSingleton();
-				Set<State*> *visited;
+				std::set<State*> *visited;
 				if (isDebug())
 				{
 					visited = new LinkedHashSet<State*>();
@@ -147,7 +147,7 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 				return visited;
 			}
 
-			Set<State*> *Automaton::getAcceptStates()
+			std::set<State*> *Automaton::getAcceptStates()
 			{
 				expandSingleton();
 				std::unordered_set<State*> accepts;
@@ -174,7 +174,7 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 				return accepts;
 			}
 
-			void Automaton::setStateNumbers(Set<State*> *states)
+			void Automaton::setStateNumbers(std::set<State*> *states)
 			{
 				if (states->size() == std::numeric_limits<int>::max())
 				{
@@ -226,7 +226,7 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 				{
 					return;
 				}
-				Set<State*> *states = getStates();
+				std::set<State*> *states = getStates();
 				setStateNumbers(states);
 				for (auto s : states)
 				{
@@ -279,7 +279,7 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 
 			std::vector<wchar_t> Automaton::getStartPoints()
 			{
-				Set<wchar_t> *pointset = std::unordered_set<wchar_t>();
+				std::set<wchar_t> *pointset = std::unordered_set<wchar_t>();
 				pointset->add(std::numeric_limits<wchar_t>::min());
 				for (auto s : getStates())
 				{
@@ -302,15 +302,15 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 				return points;
 			}
 
-			Set<State*> *Automaton::getLiveStates()
+			std::set<State*> *Automaton::getLiveStates()
 			{
 				expandSingleton();
 				return getLiveStates(getStates());
 			}
 
-			Set<State*> *Automaton::getLiveStates(Set<State*> *states)
+			std::set<State*> *Automaton::getLiveStates(std::set<State*> *states)
 			{
-				std::unordered_map<State*, Set<State*>*> map;
+				std::unordered_map<State*, std::set<State*>*> map;
 				for (auto s : states)
 				{
 					map[s] = std::unordered_set<State*>();
@@ -322,7 +322,7 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 						map[t->to]->add(s);
 					}
 				}
-				Set<State*> *live = std::unordered_set<State*>(getAcceptStates());
+				std::set<State*> *live = std::unordered_set<State*>(getAcceptStates());
 				std::list<State*> worklist(live);
 				while (worklist.size() > 0)
 				{
@@ -346,11 +346,11 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 				{
 					return;
 				}
-				Set<State*> *states = getStates();
-				Set<State*> *live = getLiveStates(states);
+				std::set<State*> *states = getStates();
+				std::set<State*> *live = getLiveStates(states);
 				for (auto s : states)
 				{
-					Set<Transition*> *st = s->transitions;
+					std::set<Transition*> *st = s->transitions;
 					s->resetTransitions();
 					for (auto t : st)
 					{
@@ -363,7 +363,7 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 				reduce();
 			}
 
-			std::vector<std::vector<Transition*>> Automaton::getSortedTransitions(Set<State*> *states)
+			std::vector<std::vector<Transition*>> Automaton::getSortedTransitions(std::set<State*> *states)
 			{
 				setStateNumbers(states);
 				std::vector<std::vector<Transition*>> transitions(states->size());
@@ -472,7 +472,7 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 				}
 				else
 				{
-					Set<State*> *states = getStates();
+					std::set<State*> *states = getStates();
 					setStateNumbers(states);
 					b->append(L"initial state: ")->append(initial->number)->append(L"\n");
 					for (auto s : states)
@@ -488,7 +488,7 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 			{
 				StringBuilder *b = new StringBuilder(L"digraph Automaton {\n");
 				b->append(L"  rankdir = LR;\n");
-				Set<State*> *states = getStates();
+				std::set<State*> *states = getStates();
 				setStateNumbers(states);
 				for (auto s : states)
 				{
@@ -544,7 +544,7 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 					if (!isSingleton())
 					{
 						std::unordered_map<State*, State*> m;
-						Set<State*> *states = getStates();
+						std::set<State*> *states = getStates();
 						for (auto s : states)
 						{
 							m[s] = new State();
@@ -586,18 +586,18 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 				}
 			}
 
-			Automaton *Automaton::load(URL *url) throw(IOException, ClassCastException, ClassNotFoundException)
-			{
-				return load(url->openStream());
-			}
+//			Automaton *Automaton::load(URL *url) throw(IOException, ClassCastException, ClassNotFoundException)
+//			{
+//				return load(url->openStream());
+//			}
 
-			Automaton *Automaton::load(InputStream *stream) throw(IOException, ClassCastException, ClassNotFoundException)
+			Automaton *Automaton::load(std::istream stream) throw(IOException, ClassCastException, ClassNotFoundException)
 			{
 				ObjectInputStream *s = new ObjectInputStream(stream);
 				return static_cast<Automaton*>(s->readObject());
 			}
 
-			void Automaton::store(OutputStream *stream) throw(IOException)
+			void Automaton::store(std::ostream stream) throw(IOException)
 			{
 				ObjectOutputStream *s = new ObjectOutputStream(stream);
 				s->writeObject(this);
@@ -649,7 +649,7 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 				return BasicAutomata::makeString(s);
 			}
 
-			Automaton *Automaton::makeStringUnion(std::vector<CharSequence> &strings)
+			Automaton *Automaton::makeStringUnion(std::vector<std::string> &strings)
 			{
 				return BasicAutomata::makeStringUnion(strings);
 			}
@@ -744,7 +744,7 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 				return BasicOperations::union_Renamed(this, a);
 			}
 
-			Automaton *Automaton::union_Renamed(Collection<Automaton*> *l)
+			Automaton *Automaton::union_Renamed(std::vector<Automaton*> *l)
 			{
 				return BasicOperations::union_Renamed(l);
 			}
@@ -754,7 +754,7 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 				BasicOperations::determinize(this);
 			}
 
-			void Automaton::addEpsilons(Collection<StatePair*> *pairs)
+			void Automaton::addEpsilons(std::vector<StatePair*> *pairs)
 			{
 				BasicOperations::addEpsilons(this, pairs);
 			}
@@ -815,7 +815,7 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 				return SpecialOperations::compress(this, set, c);
 			}
 
-			Automaton *Automaton::subst(std::unordered_map<wchar_t, Set<wchar_t>*> &map)
+			Automaton *Automaton::subst(std::unordered_map<wchar_t, std::set<wchar_t>*> &map)
 			{
 				return SpecialOperations::subst(this, map);
 			}
@@ -830,7 +830,7 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 				return SpecialOperations::homomorph(this, source, dest);
 			}
 
-			Automaton *Automaton::projectChars(Set<wchar_t> *chars)
+			Automaton *Automaton::projectChars(std::set<wchar_t> *chars)
 			{
 				return SpecialOperations::projectChars(this, chars);
 			}
@@ -840,17 +840,17 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 				return SpecialOperations::isFinite(this);
 			}
 
-			Set<std::wstring> *Automaton::getStrings(int length)
+			std::set<std::wstring> *Automaton::getStrings(int length)
 			{
 				return SpecialOperations::getStrings(this, length);
 			}
 
-			Set<std::wstring> *Automaton::getFiniteStrings()
+			std::set<std::wstring> *Automaton::getFiniteStrings()
 			{
 				return SpecialOperations::getFiniteStrings(this);
 			}
 
-			Set<std::wstring> *Automaton::getFiniteStrings(int limit)
+			std::set<std::wstring> *Automaton::getFiniteStrings(int limit)
 			{
 				return SpecialOperations::getFiniteStrings(this, limit);
 			}
@@ -875,7 +875,7 @@ boost::optional<bool> Automaton::is_debug = nullptr;
 				return SpecialOperations::replaceWhitespace(a);
 			}
 
-			std::wstring Automaton::shuffleSubsetOf(Collection<Automaton*> *ca, Automaton *a, boost::optional<wchar_t> suspend_shuffle, boost::optional<wchar_t> resume_shuffle)
+			std::wstring Automaton::shuffleSubsetOf(std::vector<Automaton*> *ca, Automaton *a, boost::optional<wchar_t> suspend_shuffle, boost::optional<wchar_t> resume_shuffle)
 			{
 				return ShuffleOperations::shuffleSubsetOf(ca, a, suspend_shuffle, resume_shuffle);
 			}

@@ -54,7 +54,7 @@ int State::next_id = 0;
 				return nullptr;
 			}
 
-			void State::step(wchar_t c, Collection<State*> *dest)
+			void State::step(wchar_t c, std::vector<State*> *dest)
 			{
 				for (auto t : transitions)
 				{

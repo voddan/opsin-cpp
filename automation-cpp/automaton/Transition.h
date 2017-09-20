@@ -52,7 +52,7 @@ namespace dk
 			/// @author Anders M&oslash;ller &lt;<a href="mailto:amoeller@cs.au.dk">amoeller@cs.au.dk</a>&gt;
 			/// </para>
 			/// </summary>
-			class Transition : public Serializable, public Cloneable
+			class Transition //: public Serializable, public Cloneable
 			{
 
 			public:
@@ -103,18 +103,18 @@ namespace dk
 				/// <param name="obj"> object to compare with </param>
 				/// <returns> true if <tt>obj</tt> is a transition with same 
 				///         character interval and destination state as this transition. </returns>
-				virtual bool equals(void *obj) override;
+				virtual bool equals(void *obj);
 
 				/// <summary>
 				/// Returns hash code.
 				/// The hash code is based on the character interval (not the destination state). </summary>
 				/// <returns> hash code </returns>
-				virtual int hashCode() override;
+				virtual int hashCode();
 
 				/// <summary>
 				/// Clones this transition. </summary>
 				/// <returns> clone with same character interval and destination state </returns>
-				virtual Transition *clone() override;
+				virtual Transition *clone();
 
 				static void appendCharString(wchar_t c, StringBuilder *b);
 
@@ -122,7 +122,7 @@ namespace dk
 				/// Returns a string describing this state. Normally invoked via 
 				/// <seealso cref="Automaton#toString()"/>. 
 				/// </summary>
-				virtual std::wstring toString() override;
+				virtual std::wstring toString();
 
 				virtual void appendDot(StringBuilder *b);
 			};

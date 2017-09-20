@@ -8,7 +8,7 @@ namespace dk
 		namespace automaton
 		{
 
-			AutomatonMatcher::AutomatonMatcher(CharSequence *const chars, RunAutomaton *const automaton) : automaton(automaton), chars(chars)
+			AutomatonMatcher::AutomatonMatcher(std::string *const chars, RunAutomaton *const automaton) : automaton(automaton), chars(chars)
 			{
 			}
 
@@ -106,7 +106,7 @@ namespace dk
 				return matchEnd;
 			}
 
-			CharSequence *AutomatonMatcher::getChars()
+			 std::string *AutomatonMatcher::getChars()
 			{
 				return chars;
 			}
@@ -153,7 +153,7 @@ namespace dk
 				return start();
 			}
 
-			MatchResult *AutomatonMatcher::toMatchResult()
+			AutomatonMatcher *AutomatonMatcher::toMatchResult()
 			{
 				AutomatonMatcher * const match = new AutomatonMatcher(chars, automaton);
 				match->matchStart = this->matchStart;

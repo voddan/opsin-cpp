@@ -1,6 +1,7 @@
 #include "Datatypes.h"
 #include "Automaton.h"
 #include "RegExp.h"
+#include <fstream>
 
 namespace dk
 {
@@ -11,9 +12,9 @@ namespace dk
 
 const std::unordered_map<std::wstring, Automaton*> Datatypes::automata;
 Automaton *const Datatypes::ws;
-Set<std::wstring> *const Datatypes::unicodeblock_names;
-Set<std::wstring> *const Datatypes::unicodecategory_names;
-Set<std::wstring> *const Datatypes::xml_names;
+std::set<std::wstring> *const Datatypes::unicodeblock_names;
+std::set<std::wstring> *const Datatypes::unicodecategory_names;
+std::set<std::wstring> *const Datatypes::xml_names;
 std::vector<std::wstring> const Datatypes::unicodeblock_names_array = {L"BasicLatin", L"Latin-1Supplement", L"LatinExtended-A", L"LatinExtended-B", L"IPAExtensions", L"SpacingModifierLetters", L"CombiningDiacriticalMarks", L"Greek", L"Cyrillic", L"Armenian", L"Hebrew", L"Arabic", L"Syriac", L"Thaana", L"Devanagari", L"Bengali", L"Gurmukhi", L"Gujarati", L"Oriya", L"Tamil", L"Telugu", L"Kannada", L"Malayalam", L"Sinhala", L"Thai", L"Lao", L"Tibetan", L"Myanmar", L"Georgian", L"HangulJamo", L"Ethiopic", L"Cherokee", L"UnifiedCanadianAboriginalSyllabics", L"Ogham", L"Runic", L"Khmer", L"Mongolian", L"LatinExtendedAdditional", L"GreekExtended", L"GeneralPunctuation", L"SuperscriptsandSubscripts", L"CurrencySymbols", L"CombiningMarksforSymbols", L"LetterlikeSymbols", L"NumberForms", L"Arrows", L"MathematicalOperators", L"MiscellaneousTechnical", L"ControlPictures", L"OpticalCharacterRecognition", L"EnclosedAlphanumerics", L"BoxDrawing", L"BlockElements", L"GeometricShapes", L"MiscellaneousSymbols", L"Dingbats", L"BraillePatterns", L"CJKRadicalsSupplement", L"KangxiRadicals", L"IdeographicDescriptionCharacters", L"CJKSymbolsandPunctuation", L"Hiragana", L"Katakana", L"Bopomofo", L"HangulCompatibilityJamo", L"Kanbun", L"BopomofoExtended", L"EnclosedCJKLettersandMonths", L"CJKCompatibility", L"CJKUnifiedIdeographsExtensionA", L"CJKUnifiedIdeographs", L"YiSyllables", L"YiRadicals", L"HangulSyllables", L"CJKCompatibilityIdeographs", L"AlphabeticPresentationForms", L"ArabicPresentationForms-A", L"CombiningHalfMarks", L"CJKCompatibilityForms", L"SmallFormVariants", L"ArabicPresentationForms-B", L"Specials", L"HalfwidthandFullwidthForms", L"Specials", L"OldItalic", L"Gothic", L"Deseret", L"ByzantineMusicalSymbols", L"MusicalSymbols", L"MathematicalAlphanumericSymbols", L"CJKUnifiedIdeographsExtensionB", L"CJKCompatibilityIdeographsSupplement", L"Tags"};
 std::vector<std::wstring> const Datatypes::unicodecategory_names_array = {L"Lu", L"Ll", L"Lt", L"Lm", L"Lo", L"L", L"Mn", L"Mc", L"Me", L"M", L"Nd", L"Nl", L"No", L"N", L"Pc", L"Pd", L"Ps", L"Pe", L"Pi", L"Pf", L"Po", L"P", L"Zs", L"Zl", L"Zp", L"Z", L"Sm", L"Sc", L"Sk", L"So", L"S", L"Cc", L"Cf", L"Co", L"Cn", L"C"};
 std::vector<std::wstring> const Datatypes::xml_names_array = {L"NCName", L"QName", L"Char", L"NameChar", L"URI", L"anyname", L"noap", L"whitespace", L"whitespacechar", L"string", L"boolean", L"decimal", L"float", L"integer", L"duration", L"dateTime", L"time", L"date", L"gYearMonth", L"gYear", L"gMonthDay", L"gDay", L"hexBinary", L"base64Binary", L"NCName2", L"NCNames", L"QName2", L"Nmtoken2", L"Nmtokens", L"Name2", L"Names", L"language"};
@@ -91,9 +92,8 @@ Datatypes::StaticConstructor Datatypes::staticConstructor;
 			{
 				try
 				{
-					URL *url = Datatypes::typeid->getClassLoader().getResource(name + std::wstring(L".aut"));
-					//noinspection ConstantConditions
-					return Automaton::load(url->openStream());
+					std::ifstream resource{name + std::wstring(L".aut")};
+					return Automaton::load(resource);
 				}
 				catch (const IOException &e)
 				{

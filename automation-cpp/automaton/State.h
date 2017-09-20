@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <set>
 #include "stringbuilder.h"
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
@@ -48,14 +49,14 @@ namespace dk
 			/// <tt>Automaton</tt> state. 
 			/// @author Anders M&oslash;ller &lt;<a href="mailto:amoeller@cs.au.dk">amoeller@cs.au.dk</a>&gt;
 			/// </summary>
-			class State : public Serializable, public Comparable<State*>
+			class State //: public Serializable, public Comparable<State*>
 			{
 
 			public:
 				static constexpr long long serialVersionUID = 30001;
 
 				bool accept = false;
-				Set<Transition*> *transitions;
+				std::set<Transition*> *transitions;
 
 				int number = 0;
 
@@ -81,7 +82,7 @@ namespace dk
 				/// Returns the set of outgoing transitions. 
 				/// Subsequent changes are reflected in the automaton. </summary>
 				/// <returns> transition set </returns>
-				virtual Set<Transition*> *getTransitions();
+				virtual std::set<Transition*> *getTransitions();
 
 				/// <summary>
 				/// Adds an outgoing transition. </summary>
@@ -110,7 +111,7 @@ namespace dk
 				/// <param name="c"> character to look up </param>
 				/// <param name="dest"> collection where destination states are stored </param>
 				/// <seealso cref= #step(char) </seealso>
-				virtual void step(wchar_t c, Collection<State*> *dest);
+				virtual void step(wchar_t c, std::vector<State*> *dest);
 
 				virtual void addEpsilon(State *to);
 
@@ -128,7 +129,7 @@ namespace dk
 				/// Returns string describing this state. Normally invoked via 
 				/// <seealso cref="Automaton#toString()"/>. 
 				/// </summary>
-				virtual std::wstring toString() override;
+				virtual std::wstring toString();
 
 				/// <summary>
 				/// Compares this object with the specified object for order.
@@ -139,12 +140,12 @@ namespace dk
 				/// <summary>
 				/// See <seealso cref="java.lang.Object#equals(java.lang.Object)"/>.
 				/// </summary>
-				virtual bool equals(void *obj) override;
+				virtual bool equals(void *obj);
 
 				/// <summary>
 				/// See <seealso cref="java.lang.Object#hashCode()"/>.
 				/// </summary>
-				virtual int hashCode() override;
+				virtual int hashCode();
 			};
 
 		}

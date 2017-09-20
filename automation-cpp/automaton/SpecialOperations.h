@@ -64,7 +64,7 @@ namespace dk
 				/// the set of new initial states.
 				/// </summary>
 			public:
-				static Set<State*> *reverse(Automaton *a);
+				static std::set<State*> *reverse(Automaton *a);
 
 				/// <summary>
 				/// Returns an automaton that accepts the overlap of strings that in more than one way can be split into
@@ -118,7 +118,7 @@ namespace dk
 				/// </summary>
 				/// <param name="map"> map from characters to sets of characters (where characters 
 				///            are <code>Character</code> objects) </param>
-				static Automaton *subst(Automaton *a, std::unordered_map<wchar_t, Set<wchar_t>*> &map);
+				static Automaton *subst(Automaton *a, std::unordered_map<wchar_t, std::set<wchar_t>*> &map);
 
 				/// <summary>
 				/// Finds the largest entry whose value is less than or equal to c, 
@@ -157,7 +157,7 @@ namespace dk
 				/// assumed that all other characters from <code>chars</code> are in the
 				/// interval uE000-uF8FF.
 				/// </summary>
-				static Automaton *projectChars(Automaton *a, Set<wchar_t> *chars);
+				static Automaton *projectChars(Automaton *a, std::set<wchar_t> *chars);
 
 				/// <summary>
 				/// Returns true if the language of this automaton is finite.
@@ -175,17 +175,17 @@ namespace dk
 				/// Returns the set of accepted strings of the given length.
 				/// </summary>
 			public:
-				static Set<std::wstring> *getStrings(Automaton *a, int length);
+				static std::set<std::wstring> *getStrings(Automaton *a, int length);
 
 			private:
-				static void getStrings(State *s, Set<std::wstring> *strings, StringBuilder *path, int length);
+				static void getStrings(State *s, std::set<std::wstring> *strings, StringBuilder *path, int length);
 
 				/// <summary>
 				/// Returns the set of accepted strings, assuming this automaton has a finite
 				/// language. If the language is not finite, null is returned.
 				/// </summary>
 			public:
-				static Set<std::wstring> *getFiniteStrings(Automaton *a);
+				static std::set<std::wstring> *getFiniteStrings(Automaton *a);
 
 				/// <summary>
 				/// Returns the set of accepted strings, assuming that at most <code>limit</code>
@@ -193,7 +193,7 @@ namespace dk
 				/// accepted, null is returned. If <code>limit</code>&lt;0, then this
 				/// methods works like <seealso cref="#getFiniteStrings(Automaton)"/>.
 				/// </summary>
-				static Set<std::wstring> *getFiniteStrings(Automaton *a, int limit);
+				static std::set<std::wstring> *getFiniteStrings(Automaton *a, int limit);
 
 				/// <summary>
 				/// Returns the strings that can be produced from the given state, or false if more than 

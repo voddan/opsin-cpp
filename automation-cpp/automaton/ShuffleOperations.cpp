@@ -72,7 +72,10 @@ namespace dk
 				return c;
 			}
 
-			std::wstring ShuffleOperations::shuffleSubsetOf(Collection<Automaton*> *ca, Automaton *a, boost::optional<wchar_t> suspend_shuffle, boost::optional<wchar_t> resume_shuffle)
+			std::wstring ShuffleOperations::shuffleSubsetOf(std::vector<Automaton*> *ca,
+															Automaton *a,
+															boost::optional<wchar_t> suspend_shuffle,
+															boost::optional<wchar_t> resume_shuffle)
 			{
 				if (ca->size() == 0)
 				{
@@ -237,7 +240,12 @@ namespace dk
 				return L"";
 			}
 
-			void ShuffleOperations::add(boost::optional<wchar_t> suspend_shuffle, boost::optional<wchar_t> resume_shuffle, std::list<ShuffleConfiguration*> &pending, Set<ShuffleConfiguration*> *visited, ShuffleConfiguration *c, int i1, Transition *t1, Transition *t2, wchar_t min, wchar_t max)
+			void ShuffleOperations::add(boost::optional<wchar_t> suspend_shuffle,
+										boost::optional<wchar_t> resume_shuffle,
+										std::list<ShuffleConfiguration*> &pending,
+										std::set<ShuffleConfiguration*> *visited,
+										ShuffleConfiguration *c,
+										int i1, Transition *t1, Transition *t2, wchar_t min, wchar_t max)
 			{
 				constexpr wchar_t HIGH_SURROGATE_BEGIN = L'\uD800';
 				constexpr wchar_t HIGH_SURROGATE_END = L'\uDBFF';
@@ -303,11 +311,9 @@ namespace dk
 
 //JAVA TO C++ CONVERTER TODO TASK: Most Java annotations will not have direct C++ equivalents:
 //ORIGINAL LINE: @SuppressWarnings("unused") private ShuffleConfiguration()
-			ShuffleOperations::ShuffleConfiguration::ShuffleConfiguration()
-			{
-			}
+			ShuffleOperations::ShuffleConfiguration::ShuffleConfiguration() {}
 
-			ShuffleOperations::ShuffleConfiguration::ShuffleConfiguration(Collection<Automaton*> *ca, Automaton *a)
+			ShuffleOperations::ShuffleConfiguration::ShuffleConfiguration(std::vector<Automaton*> *ca, Automaton *a)
 			{
 				ca_states = std::vector<State*>(ca->size());
 				int i = 0;

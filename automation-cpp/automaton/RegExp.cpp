@@ -356,14 +356,14 @@ bool RegExp::allow_mutation = false;
 				b->append(c);
 			}
 
-			Set<std::wstring> *RegExp::getIdentifiers()
+			std::set<std::wstring> *RegExp::getIdentifiers()
 			{
 				std::unordered_set<std::wstring> set;
 				getIdentifiers(set);
 				return set;
 			}
 
-			void RegExp::getIdentifiers(Set<std::wstring> *set)
+			void RegExp::getIdentifiers(std::set<std::wstring> *set)
 			{
 				switch (kind)
 				{

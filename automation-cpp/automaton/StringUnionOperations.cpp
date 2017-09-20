@@ -8,13 +8,13 @@ namespace dk
 		namespace automaton
 		{
 
-java::util::Comparator<CharSequence*> *const StringUnionOperations::LEXICOGRAPHIC_ORDER = new ComparatorAnonymousInnerClass();
+java::util::Comparator< std::string*> *const StringUnionOperations::LEXICOGRAPHIC_ORDER = new ComparatorAnonymousInnerClass();
 
 			StringUnionOperations::ComparatorAnonymousInnerClass::ComparatorAnonymousInnerClass()
 			{
 			}
 
-			int StringUnionOperations::ComparatorAnonymousInnerClass::compare(CharSequence *s1, CharSequence *s2)
+			int StringUnionOperations::ComparatorAnonymousInnerClass::compare(std::string *s1, std::string *s2)
 			{
 				constexpr int lens1 = s1->length();
 				constexpr int lens2 = s2->length();
@@ -157,7 +157,7 @@ std::vector<State*> const StringUnionOperations::State::NO_STATES = std::vector<
 				return true;
 			}
 
-			void StringUnionOperations::add(CharSequence *current)
+			void StringUnionOperations::add(std::string *current)
 			{
 				assert(register_Renamed.size() > 0, L"Automaton already built.");
 				assert(current->length() > 0, L"Input sequences must not be empty.");
@@ -220,7 +220,7 @@ std::vector<State*> const StringUnionOperations::State::NO_STATES = std::vector<
 				return converted;
 			}
 
-			dk::brics::automaton::State *StringUnionOperations::build(std::vector<CharSequence*> &input)
+			dk::brics::automaton::State *StringUnionOperations::build(std::vector< std::string*> &input)
 			{
 				StringUnionOperations * const builder = new StringUnionOperations();
 
@@ -233,7 +233,7 @@ std::vector<State*> const StringUnionOperations::State::NO_STATES = std::vector<
 				return convert(builder->complete(), &tempVar);
 			}
 
-			bool StringUnionOperations::setPrevious(CharSequence *current)
+			bool StringUnionOperations::setPrevious(std::string *current)
 			{
 				if (previous == nullptr)
 				{
@@ -266,7 +266,7 @@ std::vector<State*> const StringUnionOperations::State::NO_STATES = std::vector<
 				}
 			}
 
-			void StringUnionOperations::addSuffix(State *state, CharSequence *current, int fromIndex)
+			void StringUnionOperations::addSuffix(State *state, std::string *current, int fromIndex)
 			{
 				constexpr int len = current->length();
 				for (int i = fromIndex; i < len; i++)

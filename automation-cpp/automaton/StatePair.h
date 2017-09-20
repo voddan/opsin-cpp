@@ -79,12 +79,12 @@ namespace dk
 				/// Checks for equality. </summary>
 				/// <param name="obj"> object to compare with </param>
 				/// <returns> true if <tt>obj</tt> represents the same pair of states as this pair </returns>
-				virtual bool equals(void *obj) override;
+				virtual bool equals(void *obj);
 
 				/// <summary>
 				/// Returns hash code. </summary>
 				/// <returns> hash code </returns>
-				virtual int hashCode() override;
+				virtual int hashCode();
 			};
 
 		}

@@ -50,7 +50,7 @@ namespace dk
 			/// @author John Gibson &lt;<a href="mailto:jgibson@mitre.org">jgibson@mitre.org</a>&gt; </summary>
 			/// <seealso cref= RunAutomaton#newMatcher(java.lang.CharSequence) </seealso>
 			/// <seealso cref= RunAutomaton#newMatcher(java.lang.CharSequence, int, int) </seealso>
-			class AutomatonMatcher : public MatchResult
+			class AutomatonMatcher //: public MatchResult
 			{
 
 			public:
@@ -60,11 +60,11 @@ namespace dk
 					delete chars;
 				}
 
-				AutomatonMatcher(CharSequence *const chars, RunAutomaton *const automaton);
+				AutomatonMatcher(std::string *const chars, RunAutomaton *const automaton);
 
 			private:
 				RunAutomaton *const automaton;
-				CharSequence *const chars;
+				 std::string *const chars;
 
 				int matchStart = -1;
 
@@ -87,7 +87,7 @@ namespace dk
 
 				int getMatchEnd();
 
-				CharSequence *getChars();
+				 std::string *getChars();
 
 				/// <summary>
 				/// Returns the offset after the last character matched.
@@ -96,7 +96,7 @@ namespace dk
 				/// <exception cref="IllegalStateException"> if there has not been a match attempt or
 				///  if the last attempt yielded no results. </exception>
 			public:
-				virtual int end() throw(IllegalStateException);
+				virtual int end() throw(std::domain_error);
 
 				/// <summary>
 				/// Returns the offset after the last character matched of the specified
@@ -112,7 +112,7 @@ namespace dk
 				///  if the last attempt yielded no results. </exception>
 				/// <exception cref="IndexOutOfBoundsException"> if the specified capturing group does
 				///  not exist in the underlying automaton. </exception>
-				virtual int end(int const group) throw(std::out_of_range, IllegalStateException);
+				virtual int end(int const group) throw(std::out_of_range, std::domain_error);
 
 				/// <summary>
 				/// Returns the subsequence of the input found by the previous match.
@@ -120,7 +120,7 @@ namespace dk
 				/// <returns> The subsequence of the input found by the previous match. </returns>
 				/// <exception cref="IllegalStateException"> if there has not been a match attempt or
 				///  if the last attempt yielded no results. </exception>
-				virtual std::wstring group() throw(IllegalStateException);
+				virtual std::wstring group() throw(std::domain_error);
 
 				/// <summary>
 				/// Returns the subsequence of the input found by the specified capturing
@@ -137,7 +137,7 @@ namespace dk
 				///  if the last attempt yielded no results. </exception>
 				/// <exception cref="IndexOutOfBoundsException"> if the specified capturing group does
 				///  not exist in the underlying automaton. </exception>
-				virtual std::wstring group(int const group) throw(std::out_of_range, IllegalStateException);
+				virtual std::wstring group(int const group) throw(std::out_of_range, std::domain_error);
 
 				/// <summary>
 				/// Returns the number of capturing groups in the underlying automaton.
@@ -154,7 +154,7 @@ namespace dk
 				/// <returns> The offset of the first character matched. </returns>
 				/// <exception cref="IllegalStateException"> if there has not been a match attempt or
 				///  if the last attempt yielded no results. </exception>
-				virtual int start() throw(IllegalStateException);
+				virtual int start() throw(std::domain_error);
 
 				/// <summary>
 				/// Returns the offset of the first character matched of the specified
@@ -170,7 +170,7 @@ namespace dk
 				///  if the last attempt yielded no results. </exception>
 				/// <exception cref="IndexOutOfBoundsException"> if the specified capturing group does
 				///  not exist in the underlying automaton. </exception>
-				virtual int start(int group) throw(std::out_of_range, IllegalStateException);
+				virtual int start(int group) throw(std::out_of_range, std::domain_error);
 
 				/// <summary>
 				/// Returns the current state of this {@code AutomatonMatcher} as a
@@ -179,7 +179,7 @@ namespace dk
 				/// </summary>
 				/// <returns> a {@code MatchResult} with the state of this
 				///  {@code AutomatonMatcher}. </returns>
-				virtual MatchResult *toMatchResult();
+				virtual AutomatonMatcher *toMatchResult();
 
 				/// <summary>
 				/// Helper method that requires the group argument to be 0. </summary>
@@ -188,7 +188,7 @@ namespace dk
 
 				/// <summary>
 				/// Helper method to check that the last match attempt was valid. </summary>
-				void matchGood() throw(IllegalStateException);
+				void matchGood() throw(std::domain_error);
 			};
 
 		}

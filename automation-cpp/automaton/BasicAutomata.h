@@ -104,7 +104,7 @@ namespace dk
 				/// Constructs sub-automaton corresponding to decimal numbers of value 
 				/// at least x.substring(n) and length x.substring(n).length().
 				/// </summary>
-				static State *atLeast(const std::wstring &x, int n, Collection<State*> *initials, bool zeros);
+				static State *atLeast(const std::wstring &x, int n, std::vector<State*> *initials, bool zeros);
 
 				/// <summary>
 				/// Constructs sub-automaton corresponding to decimal numbers of value 
@@ -117,7 +117,7 @@ namespace dk
 				/// between x.substring(n) and y.substring(n) and of
 				/// length x.substring(n).length() (which must be equal to y.substring(n).length()).
 				/// </summary>
-				static State *between(const std::wstring &x, const std::wstring &y, int n, Collection<State*> *initials, bool zeros);
+				static State *between(const std::wstring &x, const std::wstring &y, int n, std::vector<State*> *initials, bool zeros);
 
 				/// <summary>
 				/// Returns a new automaton that accepts strings representing 
@@ -142,7 +142,7 @@ namespace dk
 				/// given set of strings. The input character sequences are internally sorted in-place,
 				/// so the input array is modified. </summary>
 				/// <seealso cref= StringUnionOperations </seealso>
-				static Automaton *makeStringUnion(std::vector<CharSequence> &strings);
+				static Automaton *makeStringUnion(std::vector< std::string> &strings);
 
 				/// <summary>
 				/// Constructs automaton that accept strings representing nonnegative integers

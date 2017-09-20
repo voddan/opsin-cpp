@@ -619,7 +619,7 @@ template<typename T>
 				}
 			}
 
-			void MinimizationOperations::splitTransitions(Set<State*> *states)
+			void MinimizationOperations::splitTransitions(std::set<State*> *states)
 			{
 				std::set<wchar_t> pointSet;
 				for (auto s : states)

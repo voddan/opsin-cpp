@@ -58,11 +58,11 @@ namespace dk
 
 				static Automaton *const ws;
 
-				static Set<std::wstring> *const unicodeblock_names;
+				static std::set<std::wstring> *const unicodeblock_names;
 
-				static Set<std::wstring> *const unicodecategory_names;
+				static std::set<std::wstring> *const unicodecategory_names;
 
-				static Set<std::wstring> *const xml_names;
+				static std::set<std::wstring> *const xml_names;
 
 				static std::vector<std::wstring> const unicodeblock_names_array;
 

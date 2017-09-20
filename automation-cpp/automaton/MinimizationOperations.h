@@ -5,6 +5,7 @@
 #include <set>
 #include <limits>
 #include <boost/optional.hpp>
+#include <unordered_set>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 namespace dk { namespace brics { namespace automaton { class Automaton; } } }
@@ -99,7 +100,7 @@ namespace dk
 			private:
 				static void makeAdjacent(std::vector<int> &A, std::vector<int> &F, std::vector<int> &K, int nn, int mm);
 
-				static void splitTransitions(Set<State*> *states);
+				static void splitTransitions(std::set<State*> *states);
 
 			public:
 				class IntPair

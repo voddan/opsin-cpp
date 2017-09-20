@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <vector>
 #include <stdexcept>
+#include <set>
 #include "stringbuilder.h"
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
@@ -289,7 +290,7 @@ namespace dk
 				/// Constructs string from parsed regular expression. 
 				/// </summary>
 			public:
-				virtual std::wstring toString() override;
+				virtual std::wstring toString();
 
 				virtual StringBuilder *toStringBuilder(StringBuilder *b);
 
@@ -300,9 +301,9 @@ namespace dk
 				/// Returns set of automaton identifiers that occur in this regular expression. 
 				/// </summary>
 			public:
-				virtual Set<std::wstring> *getIdentifiers();
+				virtual std::set<std::wstring> *getIdentifiers();
 
-				virtual void getIdentifiers(Set<std::wstring> *set);
+				virtual void getIdentifiers(std::set<std::wstring> *set);
 
 				static RegExp *makeUnion(RegExp *exp1, RegExp *exp2);
 

@@ -6,6 +6,7 @@
 #include <list>
 #include <algorithm>
 #include <limits>
+#include <set>
 #include "stringhelper.h"
 #include "stringbuilder.h"
 
@@ -173,7 +174,7 @@ namespace dk
 				/// Complexity: linear in number of states.
 				/// </para>
 				/// </summary>
-				static Automaton *union_Renamed(Collection<Automaton*> *l);
+				static Automaton *union_Renamed(std::vector<Automaton*> *l);
 
 				/// <summary>
 				/// Determinizes the given automaton.
@@ -186,7 +187,7 @@ namespace dk
 				/// <summary>
 				/// Determinizes the given automaton using the given set of initial states. 
 				/// </summary>
-				static void determinize(Automaton *a, Set<State*> *initialset);
+				static void determinize(Automaton *a, std::set<State*> *initialset);
 
 				/// <summary>
 				/// Adds epsilon transitions to the given automaton.
@@ -194,7 +195,7 @@ namespace dk
 				/// set of epsilon transitions. </summary>
 				/// <param name="pairs"> collection of <seealso cref="StatePair"/> objects representing pairs of source/destination states 
 				///        where epsilon transitions should be added </param>
-				static void addEpsilons(Automaton *a, Collection<StatePair*> *pairs);
+				static void addEpsilons(Automaton *a, std::vector<StatePair*> *pairs);
 
 				/// <summary>
 				/// Returns true if the given automaton accepts the empty string and nothing else.

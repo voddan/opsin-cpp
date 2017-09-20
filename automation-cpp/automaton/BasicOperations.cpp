@@ -432,7 +432,7 @@ namespace dk
 				return a1;
 			}
 
-			Automaton *BasicOperations::union_Renamed(Collection<Automaton*> *l)
+			Automaton *BasicOperations::union_Renamed(std::vector<Automaton*> *l)
 			{
 				Set<int> *ids = std::unordered_set<int>();
 				for (auto a : l)
@@ -477,7 +477,7 @@ namespace dk
 				determinize(a, initialset);
 			}
 
-			void BasicOperations::determinize(Automaton *a, Set<State*> *initialset)
+			void BasicOperations::determinize(Automaton *a, std::set<State*> *initialset)
 			{
 				std::vector<wchar_t> points = a->getStartPoints();
 				// subset construction
@@ -539,7 +539,7 @@ namespace dk
 				a->removeDeadTransitions();
 			}
 
-			void BasicOperations::addEpsilons(Automaton *a, Collection<StatePair*> *pairs)
+			void BasicOperations::addEpsilons(Automaton *a, std::vector<StatePair*> *pairs)
 			{
 				a->expandSingleton();
 				std::unordered_map<State*, std::unordered_set<State*>> forward;

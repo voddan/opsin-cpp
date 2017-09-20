@@ -5,6 +5,7 @@
 #include <vector>
 #include <list>
 #include <boost/optional.hpp>
+#include <set>
 #include "stringbuilder.h"
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
@@ -87,10 +88,10 @@ namespace dk
 				/// is already deterministic).
 				/// </para>
 				/// </summary>
-				static std::wstring shuffleSubsetOf(Collection<Automaton*> *ca, Automaton *a, boost::optional<wchar_t> suspend_shuffle, boost::optional<wchar_t> resume_shuffle);
+				static std::wstring shuffleSubsetOf(std::vector<Automaton*> *ca, Automaton *a, boost::optional<wchar_t> suspend_shuffle, boost::optional<wchar_t> resume_shuffle);
 
 			private:
-				static void add(boost::optional<wchar_t> suspend_shuffle, boost::optional<wchar_t> resume_shuffle, std::list<ShuffleConfiguration*> &pending, Set<ShuffleConfiguration*> *visited, ShuffleConfiguration *c, int i1, Transition *t1, Transition *t2, wchar_t min, wchar_t max);
+				static void add(boost::optional<wchar_t> suspend_shuffle, boost::optional<wchar_t> resume_shuffle, std::list<ShuffleConfiguration*> &pending, std::set<ShuffleConfiguration*> *visited, ShuffleConfiguration *c, int i1, Transition *t1, Transition *t2, wchar_t min, wchar_t max);
 
 			public:
 				class ShuffleConfiguration
@@ -118,15 +119,15 @@ namespace dk
 					ShuffleConfiguration();
 
 				public:
-					ShuffleConfiguration(Collection<Automaton*> *ca, Automaton *a);
+					ShuffleConfiguration(std::vector<Automaton*> *ca, Automaton *a);
 
 					ShuffleConfiguration(ShuffleConfiguration *c, int i1, State *s1, wchar_t min);
 
 					ShuffleConfiguration(ShuffleConfiguration *c, int i1, State *s1, State *s2, wchar_t min);
 
-					virtual bool equals(void *obj) override;
+					virtual bool equals(void *obj);
 
-					virtual int hashCode() override;
+					virtual int hashCode();
 
 				private:
 					void computeHash();

@@ -40,7 +40,7 @@ namespace dk
 		{
 
 
-			class TransitionComparator : public Comparator<Transition*>, public Serializable
+			class TransitionComparator //: public Comparator<Transition*>, public Serializable
 			{
 
 			public:

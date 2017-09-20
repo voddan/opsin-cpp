@@ -105,20 +105,20 @@ namespace dk
 			{
 			}
 
-			RunAutomaton *RunAutomaton::load(URL *url) throw(IOException, ClassCastException, ClassNotFoundException)
-			{
-				return load(url->openStream());
-			}
+//			RunAutomaton *RunAutomaton::load(URL *url) throw(IOException, ClassCastException, ClassNotFoundException)
+//			{
+//				return load(url->openStream());
+//			}
 
-			RunAutomaton *RunAutomaton::load(InputStream *stream) throw(IOException, ClassCastException, ClassNotFoundException)
+			RunAutomaton *RunAutomaton::load(std::istream stream) throw(IOException, ClassCastException, ClassNotFoundException)
 			{
-				ObjectInputStream *s = new ObjectInputStream(stream);
+				ObjectInputStream *s = new ObjectInputStream(*stream);
 				return static_cast<RunAutomaton*>(s->readObject());
 			}
 
-			void RunAutomaton::store(OutputStream *stream) throw(IOException)
+			void RunAutomaton::store(std::ostream stream) throw(IOException)
 			{
-				ObjectOutputStream *s = new ObjectOutputStream(stream);
+				ObjectOutputStream *s = new ObjectOutputStream(*stream);
 				s->writeObject(this);
 				s->flush();
 			}
@@ -207,12 +207,12 @@ namespace dk
 				return max;
 			}
 
-			AutomatonMatcher *RunAutomaton::newMatcher(CharSequence *s)
+			AutomatonMatcher *RunAutomaton::newMatcher(std::string *s)
 			{
 				return new AutomatonMatcher(s, this);
 			}
 
-			AutomatonMatcher *RunAutomaton::newMatcher(CharSequence *s, int startOffset, int endOffset)
+			AutomatonMatcher *RunAutomaton::newMatcher(std::string *s, int startOffset, int endOffset)
 			{
 				return new AutomatonMatcher(s->substr(startOffset, endOffset - startOffset), this);
 			}

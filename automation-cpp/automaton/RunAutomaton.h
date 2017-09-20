@@ -50,7 +50,7 @@ namespace dk
 			/// Finite-state automaton with fast run operation.
 			/// @author Anders M&oslash;ller &lt;<a href="mailto:amoeller@cs.au.dk">amoeller@cs.au.dk</a>&gt;
 			/// </summary>
-			class RunAutomaton : public Serializable
+			class RunAutomaton //: public Serializable
 			{
 
 			public:
@@ -71,7 +71,7 @@ namespace dk
 				/// <summary>
 				/// Returns a string representation of this automaton. 
 				/// </summary>
-				virtual std::wstring toString() override;
+				virtual std::wstring toString();
 
 				/// <summary>
 				/// Returns number of states in automaton. 
@@ -117,7 +117,7 @@ namespace dk
 				/// <exception cref="IOException"> if input/output related exception occurs </exception>
 				/// <exception cref="ClassCastException"> if the data is not a serialized <code>RunAutomaton</code> </exception>
 				/// <exception cref="ClassNotFoundException"> if the class of the serialized object cannot be found </exception>
-				static RunAutomaton *load(URL *url) throw(IOException, ClassCastException, ClassNotFoundException);
+//				static RunAutomaton *load(URL *url) throw(std::ios_base::failure, std::bad_cast);
 
 				/// <summary>
 				/// Retrieves a serialized <code>RunAutomaton</code> from a stream. </summary>
@@ -125,13 +125,13 @@ namespace dk
 				/// <exception cref="IOException"> if input/output related exception occurs </exception>
 				/// <exception cref="ClassCastException"> if the data is not a serialized <code>RunAutomaton</code> </exception>
 				/// <exception cref="ClassNotFoundException"> if the class of the serialized object cannot be found </exception>
-				static RunAutomaton *load(InputStream *stream) throw(IOException, ClassCastException, ClassNotFoundException);
+				static RunAutomaton *load(std::istream stream) throw(std::ios_base::failure, std::bad_cast);
 
 				/// <summary>
 				/// Writes this <code>RunAutomaton</code> to the given stream. </summary>
 				/// <param name="stream"> output stream for serialized automaton </param>
 				/// <exception cref="IOException"> if input/output related exception occurs </exception>
-				virtual void store(OutputStream *stream) throw(IOException);
+				virtual void store(std::ostream stream) throw(std::ios_base::failure);
 
 				/// <summary>
 				/// Constructs a new <code>RunAutomaton</code> from a deterministic
@@ -168,7 +168,7 @@ namespace dk
 				/// Creates a new automaton matcher for the given input. </summary>
 				/// <param name="s"> the CharSequence to search </param>
 				/// <returns> A new automaton matcher for the given input </returns>
-				virtual AutomatonMatcher *newMatcher(CharSequence *s);
+				virtual AutomatonMatcher *newMatcher(std::string *s);
 
 				/// <summary>
 				/// Creates a new automaton matcher for the given input. </summary>
@@ -176,7 +176,7 @@ namespace dk
 				/// <param name="startOffset"> the starting offset of the given character sequence </param>
 				/// <param name="endOffset"> the ending offset of the given character sequence </param>
 				/// <returns> A new automaton matcher for the given input </returns>
-				virtual AutomatonMatcher *newMatcher(CharSequence *s, int startOffset, int endOffset);
+				virtual AutomatonMatcher *newMatcher(std::string *s, int startOffset, int endOffset);
 			};
 
 		}

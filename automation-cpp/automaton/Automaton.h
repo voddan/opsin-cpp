@@ -8,6 +8,7 @@
 #include <limits>
 #include <stdexcept>
 #include <boost/optional.hpp>
+#include <set>
 #include "stringbuilder.h"
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
@@ -75,7 +76,7 @@ namespace dk
 			/// @author Anders M&oslash;ller &lt;<a href="mailto:amoeller@cs.au.dk">amoeller@cs.au.dk</a>&gt;
 			/// </para>
 			/// </summary>
-			class Automaton : public Serializable, public Cloneable
+			class Automaton // : public Serializable, public Cloneable
 			{
 
 			public:
@@ -239,17 +240,17 @@ namespace dk
 				/// <summary>
 				/// Returns the set of states that are reachable from the initial state. </summary>
 				/// <returns> set of <seealso cref="State"/> objects </returns>
-				virtual Set<State*> *getStates();
+				virtual std::set<State*> *getStates();
 
 				/// <summary>
 				/// Returns the set of reachable accept states. </summary>
 				/// <returns> set of <seealso cref="State"/> objects </returns>
-				virtual Set<State*> *getAcceptStates();
+				virtual std::set<State*> *getAcceptStates();
 
 				/// <summary>
 				/// Assigns consecutive numbers to the given states. 
 				/// </summary>
-				static void setStateNumbers(Set<State*> *states);
+				static void setStateNumbers(std::set<State*> *states);
 
 				/// <summary>
 				/// Adds transitions to explicit crash state to ensure that transition function is total. 
@@ -277,10 +278,10 @@ namespace dk
 				/// <summary>
 				/// Returns the set of live states. A state is "live" if an accept state is reachable from it. </summary>
 				/// <returns> set of <seealso cref="State"/> objects </returns>
-				virtual Set<State*> *getLiveStates();
+				virtual std::set<State*> *getLiveStates();
 
 			private:
-				Set<State*> *getLiveStates(Set<State*> *states);
+				std::set<State*> *getLiveStates(std::set<State*> *states);
 
 				/// <summary>
 				/// Removes transitions to dead states and calls <seealso cref="#reduce()"/> and <seealso cref="#clearHashCode()"/>.
@@ -292,7 +293,7 @@ namespace dk
 				/// <summary>
 				/// Returns a sorted array of transitions for each state (and sets state numbers). 
 				/// </summary>
-				static std::vector<std::vector<Transition*>> getSortedTransitions(Set<State*> *states);
+				static std::vector<std::vector<Transition*>> getSortedTransitions(std::set<State*> *states);
 
 				/// <summary>
 				/// Expands singleton representation to normal representation.
@@ -316,14 +317,14 @@ namespace dk
 				/// of the given automaton. Implemented using <code>hashCode</code> and
 				/// <code>subsetOf</code>.
 				/// </summary>
-				virtual bool equals(void *obj) override;
+				virtual bool equals(void *obj);
 
 				/// <summary>
 				/// Returns hash code for this automaton. The hash code is based on the
 				/// number of states and transitions in the minimized automaton.
 				/// Invoking this method may involve minimizing the automaton.
 				/// </summary>
-				virtual int hashCode() override;
+				virtual int hashCode();
 
 				/// <summary>
 				/// Recomputes the hash code.
@@ -339,7 +340,7 @@ namespace dk
 				/// <summary>
 				/// Returns a string representation of this automaton.
 				/// </summary>
-				virtual std::wstring toString() override;
+				virtual std::wstring toString();
 
 				/// <summary>
 				/// Returns <a href="http://www.research.att.com/sw/tools/graphviz/" target="_top">Graphviz Dot</a> 
@@ -360,7 +361,7 @@ namespace dk
 				/// <summary>
 				/// Returns a clone of this automaton.
 				/// </summary>
-				virtual Automaton *clone() override;
+				virtual Automaton *clone();
 
 				/// <summary>
 				/// Returns a clone of this automaton, or this automaton itself if <code>allow_mutation</code> flag is set. 
@@ -373,7 +374,7 @@ namespace dk
 				/// <exception cref="IOException"> if input/output related exception occurs </exception>
 				/// <exception cref="ClassCastException"> if the data is not a serialized <code>Automaton</code> </exception>
 				/// <exception cref="ClassNotFoundException"> if the class of the serialized object cannot be found </exception>
-				static Automaton *load(URL *url) throw(IOException, ClassCastException, ClassNotFoundException);
+//				static Automaton *load(URL *url) throw(std::ios_base::failure, std::bad_cast);
 
 				/// <summary>
 				/// Retrieves a serialized <code>Automaton</code> from a stream. </summary>
@@ -381,13 +382,13 @@ namespace dk
 				/// <exception cref="IOException"> if input/output related exception occurs </exception>
 				/// <exception cref="ClassCastException"> if the data is not a serialized <code>Automaton</code> </exception>
 				/// <exception cref="ClassNotFoundException"> if the class of the serialized object cannot be found </exception>
-				static Automaton *load(InputStream *stream) throw(IOException, ClassCastException, ClassNotFoundException);
+				static Automaton *load(std::istream stream) throw(std::ios_base::failure, std::bad_cast);
 
 				/// <summary>
 				/// Writes this <code>Automaton</code> to the given stream. </summary>
 				/// <param name="stream"> output stream for serialized automaton </param>
 				/// <exception cref="IOException"> if input/output related exception occurs </exception>
-				virtual void store(OutputStream *stream) throw(IOException);
+				virtual void store(std::ostream stream) throw(std::ios_base::failure);
 
 				/// <summary>
 				/// See <seealso cref="BasicAutomata#makeEmpty()"/>.
@@ -437,7 +438,7 @@ namespace dk
 				/// <summary>
 				/// See <seealso cref="BasicAutomata#makeStringUnion(CharSequence...)"/>.
 				/// </summary>
-				static Automaton *makeStringUnion(std::vector<CharSequence> &strings);
+				static Automaton *makeStringUnion(std::vector<std::string> &strings);
 
 				/// <summary>
 				/// See <seealso cref="BasicAutomata#makeMaxInteger(String)"/>.
@@ -532,7 +533,7 @@ namespace dk
 				/// <summary>
 				/// See <seealso cref="BasicOperations#union(Collection)"/>.
 				/// </summary>
-				static Automaton *union_Renamed(Collection<Automaton*> *l);
+				static Automaton *union_Renamed(std::vector<Automaton*> *l);
 
 				/// <summary>
 				/// See <seealso cref="BasicOperations#determinize(Automaton)"/>.
@@ -542,7 +543,7 @@ namespace dk
 				/// <summary>
 				/// See <seealso cref="BasicOperations#addEpsilons(Automaton, Collection)"/>.
 				/// </summary>
-				virtual void addEpsilons(Collection<StatePair*> *pairs);
+				virtual void addEpsilons(std::vector<StatePair*> *pairs);
 
 				/// <summary>
 				/// See <seealso cref="BasicOperations#isEmptyString(Automaton)"/>.
@@ -603,7 +604,7 @@ namespace dk
 				/// <summary>
 				/// See <seealso cref="SpecialOperations#subst(Automaton, Map)"/>.
 				/// </summary>
-				virtual Automaton *subst(std::unordered_map<wchar_t, Set<wchar_t>*> &map);
+				virtual Automaton *subst(std::unordered_map<wchar_t, std::set<wchar_t>*> &map);
 
 				/// <summary>
 				/// See <seealso cref="SpecialOperations#subst(Automaton, char, String)"/>.
@@ -618,7 +619,7 @@ namespace dk
 				/// <summary>
 				/// See <seealso cref="SpecialOperations#projectChars(Automaton, Set)"/>.
 				/// </summary>
-				virtual Automaton *projectChars(Set<wchar_t> *chars);
+				virtual Automaton *projectChars(std::set<wchar_t> *chars);
 
 				/// <summary>
 				/// See <seealso cref="SpecialOperations#isFinite(Automaton)"/>.
@@ -628,17 +629,17 @@ namespace dk
 				/// <summary>
 				/// See <seealso cref="SpecialOperations#getStrings(Automaton, int)"/>.
 				/// </summary>
-				virtual Set<std::wstring> *getStrings(int length);
+				virtual std::set<std::wstring> *getStrings(int length);
 
 				/// <summary>
 				/// See <seealso cref="SpecialOperations#getFiniteStrings(Automaton)"/>.
 				/// </summary>
-				virtual Set<std::wstring> *getFiniteStrings();
+				virtual std::set<std::wstring> *getFiniteStrings();
 
 				/// <summary>
 				/// See <seealso cref="SpecialOperations#getFiniteStrings(Automaton, int)"/>.
 				/// </summary>
-				virtual Set<std::wstring> *getFiniteStrings(int limit);
+				virtual std::set<std::wstring> *getFiniteStrings(int limit);
 
 				/// <summary>
 				/// See <seealso cref="SpecialOperations#getCommonPrefix(Automaton)"/>.
@@ -663,7 +664,7 @@ namespace dk
 				/// <summary>
 				/// See <seealso cref="ShuffleOperations#shuffleSubsetOf(Collection, Automaton, Character, Character)"/>.
 				/// </summary>
-				static std::wstring shuffleSubsetOf(Collection<Automaton*> *ca, Automaton *a, boost::optional<wchar_t> suspend_shuffle, boost::optional<wchar_t> resume_shuffle);
+				static std::wstring shuffleSubsetOf(std::vector<Automaton*> *ca, Automaton *a, boost::optional<wchar_t> suspend_shuffle, boost::optional<wchar_t> resume_shuffle);
 
 				/// <summary>
 				/// See <seealso cref="ShuffleOperations#shuffle(Automaton, Automaton)"/>.

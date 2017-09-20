@@ -31,15 +31,15 @@ namespace dk
 				/// Lexicographic order of input sequences.
 				/// </summary>
 			public:
-				static Comparator<CharSequence*> *const LEXICOGRAPHIC_ORDER;
+				static Comparator< std::string*> *const LEXICOGRAPHIC_ORDER;
 
 			private:
-				class ComparatorAnonymousInnerClass : public Comparator<CharSequence*>
+				class ComparatorAnonymousInnerClass //: public Comparator< std::string*>
 				{
 				public:
 					ComparatorAnonymousInnerClass();
 
-					virtual int compare(CharSequence *s1, CharSequence *s2);
+					virtual int compare(std::string *s1, std::string *s2);
 				};
 
 				/// <summary>
@@ -194,7 +194,7 @@ namespace dk
 					delete previous;
 				}
 
-				void add(CharSequence *current);
+				void add(std::string *current);
 
 				/// <summary>
 				/// Finalize the automaton and return the root state. No more strings can be
@@ -213,13 +213,13 @@ namespace dk
 				/// Build a minimal, deterministic automaton from a sorted list of strings.
 				/// </summary>
 			public:
-				static dk::brics::automaton::State *build(std::vector<CharSequence*> &input);
+				static dk::brics::automaton::State *build(std::vector< std::string*> &input);
 
 				/// <summary>
 				/// Copy <code>current</code> into an internal buffer.
 				/// </summary>
 			private:
-				bool setPrevious(CharSequence *current);
+				bool setPrevious(std::string *current);
 
 				/// <summary>
 				/// Replace last child of <code>state</code> with an already registered
@@ -231,7 +231,7 @@ namespace dk
 				/// Add a suffix of <code>current</code> starting at <code>fromIndex</code>
 				/// (inclusive) to state <code>state</code>.
 				/// </summary>
-				void addSuffix(State *state, CharSequence *current, int fromIndex);
+				void addSuffix(State *state, std::string *current, int fromIndex);
 			};
 
 		}

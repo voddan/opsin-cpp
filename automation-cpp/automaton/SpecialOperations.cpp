@@ -1,3 +1,4 @@
+#include <unordered_set>
 #include "SpecialOperations.h"
 #include "Automaton.h"
 #include "State.h"
@@ -17,12 +18,12 @@ namespace dk
 			{
 			}
 
-			Set<State*> *SpecialOperations::reverse(Automaton *a)
+			std::set<State*> *SpecialOperations::reverse(Automaton *a)
 			{
 				// reverse all edges
 				std::unordered_map<State*, std::unordered_set<Transition*>> m;
-				Set<State*> *states = a->getStates();
-				Set<State*> *accept = a->getAcceptStates();
+				std::set<State*> *states = a->getStates();
+				std::set<State*> *accept = a->getAcceptStates();
 				for (auto r : states)
 				{
 					m[r] = std::unordered_set<Transition*>();
@@ -172,13 +173,13 @@ namespace dk
 				return a;
 			}
 
-			Automaton *SpecialOperations::subst(Automaton *a, std::unordered_map<wchar_t, Set<wchar_t>*> &map)
+			Automaton *SpecialOperations::subst(Automaton *a, std::unordered_map<wchar_t, std::set<wchar_t>*> &map)
 			{
 				if (map.empty())
 				{
 					return a->cloneIfRequired();
 				}
-				Set<wchar_t> *ckeys = std::set<wchar_t>(map.keySet());
+				std::set<wchar_t> *ckeys = std::set<wchar_t>(map.keySet());
 				std::vector<wchar_t> keys(ckeys->size());
 				int j = 0;
 				for (* : :optional<wchar_t> c : ckeys)
@@ -188,7 +189,7 @@ namespace dk
 				a = a->cloneExpandedIfRequired();
 				for (auto s : a->getStates())
 				{
-					Set<Transition*> *st = s->transitions;
+					std::set<Transition*> *st = s->transitions;
 					s->resetTransitions();
 					for (auto t : st)
 					{
@@ -285,10 +286,10 @@ namespace dk
 			Automaton *SpecialOperations::subst(Automaton *a, wchar_t c, const std::wstring &s)
 			{
 				a = a->cloneExpandedIfRequired();
-				Set<StatePair*> *epsilons = std::unordered_set<StatePair*>();
+				std::set<StatePair*> *epsilons = std::unordered_set<StatePair*>();
 				for (auto p : a->getStates())
 				{
-					Set<Transition*> *st = p->transitions;
+					std::set<Transition*> *st = p->transitions;
 					p->resetTransitions();
 					for (auto t : st)
 					{
@@ -347,7 +348,7 @@ namespace dk
 				a = a->cloneExpandedIfRequired();
 				for (auto s : a->getStates())
 				{
-					Set<Transition*> *st = s->transitions;
+					std::set<Transition*> *st = s->transitions;
 					s->resetTransitions();
 					for (auto t : st)
 					{
@@ -378,7 +379,7 @@ namespace dk
 				return a;
 			}
 
-			Automaton *SpecialOperations::projectChars(Automaton *a, Set<wchar_t> *chars)
+			Automaton *SpecialOperations::projectChars(Automaton *a, std::set<wchar_t> *chars)
 			{
 				std::vector<boost::optional<wchar_t>> c = chars->toArray(std::vector<boost::optional<wchar_t>*>(chars->size()));
 				std::vector<wchar_t> cc(c.size());
@@ -498,7 +499,7 @@ namespace dk
 				return true;
 			}
 
-			Set<std::wstring> *SpecialOperations::getStrings(Automaton *a, int length)
+			std::set<std::wstring> *SpecialOperations::getStrings(Automaton *a, int length)
 			{
 				std::unordered_set<std::wstring> strings;
 				if (a->isSingleton() && a->singleton.length() == length)
@@ -513,7 +514,7 @@ namespace dk
 				return strings;
 			}
 
-			void SpecialOperations::getStrings(State *s, Set<std::wstring> *strings, StringBuilder *path, int length)
+			void SpecialOperations::getStrings(State *s, std::set<std::wstring> *strings, StringBuilder *path, int length)
 			{
 				if (length == 0)
 				{
@@ -536,7 +537,7 @@ namespace dk
 				}
 			}
 
-			Set<std::wstring> *SpecialOperations::getFiniteStrings(Automaton *a)
+			std::set<std::wstring> *SpecialOperations::getFiniteStrings(Automaton *a)
 			{
 				std::unordered_set<std::wstring> strings;
 				if (a->isSingleton())
@@ -550,7 +551,7 @@ namespace dk
 				return strings;
 			}
 
-			Set<std::wstring> *SpecialOperations::getFiniteStrings(Automaton *a, int limit)
+			std::set<std::wstring> *SpecialOperations::getFiniteStrings(Automaton *a, int limit)
 			{
 				std::unordered_set<std::wstring> strings;
 				if (a->isSingleton())
@@ -642,10 +643,10 @@ namespace dk
 
 			Automaton *SpecialOperations::hexCases(Automaton *a)
 			{
-				std::unordered_map<wchar_t, Set<wchar_t>*> map;
+				std::unordered_map<wchar_t, std::set<wchar_t>*> map;
 				for (wchar_t c1 = L'a', c2 = L'A'; c1 <= L'f'; c1++, c2++)
 				{
-					Set<wchar_t> *ws = std::unordered_set<wchar_t>();
+					std::set<wchar_t> *ws = std::unordered_set<wchar_t>();
 					ws->add(c1);
 					ws->add(c2);
 					map[c1] = ws;
@@ -657,8 +658,8 @@ namespace dk
 
 			Automaton *SpecialOperations::replaceWhitespace(Automaton *a)
 			{
-				std::unordered_map<wchar_t, Set<wchar_t>*> map;
-				Set<wchar_t> *ws = std::unordered_set<wchar_t>();
+				std::unordered_map<wchar_t, std::set<wchar_t>*> map;
+				std::set<wchar_t> *ws = std::unordered_set<wchar_t>();
 				ws->add(L' ');
 				ws->add(L'\t');
 				ws->add(L'\n');
