@@ -11,6 +11,7 @@
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/optional.hpp>
 #include <boost/regex.hpp>
+#include <utils/Comparator.hpp>
 #include "stringhelper.h"
 #include "stringbuilder.h"
 
@@ -46,8 +47,8 @@ private:
     class VonBaeyerSecondaryBridgeSort : public Comparator<std::unordered_map<std::wstring, int>> {
 
     public:
-        virtual int
-        compare(std::unordered_map<std::wstring, int> & bridge1, std::unordered_map<std::wstring, int> & bridge2);
+        virtual int compare(std::unordered_map<std::wstring, int> * bridge1,
+                            std::unordered_map<std::wstring, int> * bridge2) override;
     };
 
     //match a fusion bracket with only numerical locants. If this is followed by a HW group it probably wasn't a fusion bracket

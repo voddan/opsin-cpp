@@ -53,7 +53,7 @@ int FusedRingNumberer::Chain::getY() {
     return y;
 }
 
-int FusedRingNumberer::SortAtomSequences::compare(std::vector<Atom *> &sequenceA, std::vector<Atom *> &sequenceB) {
+int FusedRingNumberer::SortAtomSequences::compare(std::vector<Atom *> *sequenceA, std::vector<Atom *> *sequenceB) {
     if (sequenceA.size() != sequenceB.size()) {
         //Error in fused ring building. Identified ring sequences not the same lengths!
         return 0;
@@ -226,8 +226,8 @@ void FusedRingNumberer::numberFusedRing(Fragment *fusedRing) throw(StructureBuil
     // find the preferred numbering scheme then relabel with this scheme
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(atomSequences, new SortAtomSequences());
-    SortAtomSequences tempVar();
-    std::sort(atomSequences.begin(), atomSequences.end(), &tempVar);
+    SortAtomSequences tempVar{};
+    std::sort(atomSequences.begin(), atomSequences.end(), tempVar.cmp);
     FragmentTools::relabelLocantsAsFusedRingSystem(atomSequences[0]);
     fusedRing->reorderAtomCollection(atomSequences[0]);
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <utils/Comparator.hpp>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class Element;
@@ -18,7 +19,7 @@ class Element;
 /// Prefer the parse with the least elements that have 0 children e.g. benzal beats benz al (1 childless element vs 2 childless elements)
 /// Prefer less elements e.g. <acryl(acidStem)amide(suffix)> beats <acryl(substituent)><amide(group)>
 /// </summary>
-class SortParses : public Comparator<Element *> {
+class SortParses : public Comparator<Element> {
 public:
-    virtual int compare(Element *el1, Element *el2);
+    virtual int compare(Element *el1, Element *el2) override;
 };

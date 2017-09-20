@@ -365,7 +365,7 @@ void Fragment::sortAtomListByLocant() throw(StructureBuildingException) {
     std::vector<Atom *> atomList = getAtomList();
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(atomList, new FragmentTools.SortByLocants());
-    FragmentTools::SortByLocants tempVar();
-    std::sort(atomList.begin(), atomList.end(), &tempVar);
+    FragmentTools::SortByLocants tempVar{};
+    std::sort(atomList.begin(), atomList.end(), tempVar.cmp);
     reorderAtomCollection(atomList);
 }

@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/predicate.hpp>
+#include <utils/Comparator.hpp>
 #include "stringhelper.h"
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
@@ -39,7 +40,7 @@ class FunctionalReplacement {
 private:
     class SortInfixTransformations : public Comparator<std::wstring> {
     public:
-        virtual int compare(const std::wstring &infixTransformation1, const std::wstring &infixTransformation2);
+        virtual int compare(std::wstring *infixTransformation1, std::wstring *infixTransformation2) override;
     };
 
 private:

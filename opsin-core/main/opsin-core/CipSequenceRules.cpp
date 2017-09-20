@@ -16,7 +16,7 @@ std::vector<Atom *> CipSequenceRules::getNeighbouringAtomsInCipOrder() throw(Cip
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(neighbours, new SortByCipOrder(chiralAtom));
         SortByCipOrder tempVar(this, chiralAtom);
-        std::sort(neighbours.begin(), neighbours.end(), &tempVar);
+        std::sort(neighbours.begin(), neighbours.end(), tempVar.cmp);
     }
     catch (const CipOrderingRunTimeException &e) {
         throw CipOrderingException(e->what());
@@ -36,7 +36,7 @@ std::vector<Atom *> CipSequenceRules::getNeighbouringAtomsInCipOrderIgnoringGive
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(neighbours, new SortByCipOrder(chiralAtom));
         SortByCipOrder tempVar(this, chiralAtom);
-        std::sort(neighbours.begin(), neighbours.end(), &tempVar);
+        std::sort(neighbours.begin(), neighbours.end(), tempVar.cmp);
     }
     catch (const CipOrderingRunTimeException &e) {
         throw CipOrderingException(e->what());
@@ -148,7 +148,7 @@ CipSequenceRules::SortByCipOrder::getNextLevelNeighbours(std::vector<AtomWithHis
     }
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(neighbourLists, atomListCipComparator);
-    std::sort(neighbourLists.begin(), neighbourLists.end(), atomListCipComparator);
+    std::sort(neighbourLists.begin(), neighbourLists.end(), atomListCipComparator->cmp);
     return neighbourLists;
 }
 
@@ -185,7 +185,7 @@ std::vector<std::vector<AtomWithHistory *>> CipSequenceRules::SortByCipOrder::fo
         std::vector<AtomWithHistory *> neighbourList = neighbourLists[i];
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(neighbourList, cipComparator);
-        std::sort(neighbourList.begin(), neighbourList.end(), cipComparator);
+        std::sort(neighbourList.begin(), neighbourList.end(), cipComparator->cmp);
         AtomWithHistory *lastAtom = nullptr;
         std::vector<AtomWithHistory *> currentAtomList;
         for (int j = 0, lstLen = neighbourList.size(); j < lstLen; j++) {
@@ -216,8 +216,8 @@ CipSequenceRules::SortByCipOrder::AtomListCipComparator::AtomListCipComparator(
         CipSequenceRules::SortByCipOrder *outerInstance) : outerInstance(outerInstance) {
 }
 
-int CipSequenceRules::SortByCipOrder::AtomListCipComparator::compare(std::vector<AtomWithHistory *> &a,
-                                                                     std::vector<AtomWithHistory *> &b) {
+int CipSequenceRules::SortByCipOrder::AtomListCipComparator::compare(std::vector<AtomWithHistory *> *a,
+                                                                     std::vector<AtomWithHistory *> *b) {
     int aSize = a.size();
     int bSize = b.size();
     int differenceInSize = aSize - bSize;
@@ -245,8 +245,8 @@ CipSequenceRules::SortByCipOrder::ListOfAtomListsCipComparator::ListOfAtomListsC
 }
 
 int
-CipSequenceRules::SortByCipOrder::ListOfAtomListsCipComparator::compare(std::vector<std::vector<AtomWithHistory *>> &a,
-                                                                        std::vector<std::vector<AtomWithHistory *>> &b) {
+CipSequenceRules::SortByCipOrder::ListOfAtomListsCipComparator::compare(std::vector<std::vector<AtomWithHistory *>> *a,
+                                                                        std::vector<std::vector<AtomWithHistory *>> *b) {
     int aSize = a.size();
     int bSize = b.size();
     int differenceInSize = aSize - bSize;
@@ -333,7 +333,7 @@ CipSequenceRules::SortByCipOrder::getNextAtomsWithAppropriateGhostAtoms(AtomWith
     }
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(neighboursWithHistory, cipComparator);
-    std::sort(neighboursWithHistory.begin(), neighboursWithHistory.end(), cipComparator);
+    std::sort(neighboursWithHistory.begin(), neighboursWithHistory.end(), cipComparator->cmp);
     return neighboursWithHistory;
 }
 

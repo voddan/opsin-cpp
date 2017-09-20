@@ -12,6 +12,7 @@
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/optional.hpp>
 #include <boost/regex.hpp>
+#include <utils/Comparator.hpp>
 #include "stringhelper.h"
 #include "stringbuilder.h"
 
@@ -552,14 +553,14 @@ private:
             std::vector<Element *> &elementsToResolve) throw(StructureBuildingException, ComponentGenerationException);
 
 private:
-    class SortBridgesByHighestLocantedBridgehead : public Comparator<Fragment *> {
+    class SortBridgesByHighestLocantedBridgehead : public Comparator<Fragment> {
 
     private:
         const std::unordered_map<Fragment *, std::vector<Atom *>> bridgeToRingAtoms;
     public:
         SortBridgesByHighestLocantedBridgehead(std::unordered_map<Fragment *, std::vector<Atom *>> &bridgeToRingAtoms);
 
-        virtual int compare(Fragment *bridge1, Fragment *bridge2);
+        virtual int compare(Fragment *bridge1, Fragment *bridge2) override;
 
     };
 

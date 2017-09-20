@@ -131,7 +131,7 @@ StereoAnalyser::StereoAnalyser(std::vector < Atom * > *atoms, std::vector < Bond
     atomsToSort.insert(atomsToSort.end(), ghostAtoms.begin(), ghostAtoms.end());
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(atomsToSort, atomicNumberThenAtomicMassComparator);
-    std::sort(atomsToSort.begin(), atomsToSort.end(), atomicNumberThenAtomicMassComparator);
+    std::sort(atomsToSort.begin(), atomsToSort.end(), atomicNumberThenAtomicMassComparator->cmp);
     std::vector<std::vector<Atom *>> groupsByColour = populateColoursByAtomicNumberAndMass(atomsToSort);
     bool changeFound = true;
     while (changeFound) {

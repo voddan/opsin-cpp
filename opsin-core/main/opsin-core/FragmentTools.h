@@ -9,6 +9,7 @@
 #include <stdexcept>
 #include <boost/optional.hpp>
 #include <set>
+#include <utils/Comparator.hpp>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class Atom;
@@ -32,10 +33,10 @@ class BuildState;
 /// @author dl387
 ///
 /// </summary>
-class SortAtomsForElementSymbols : public Comparator<Atom *> {
+class SortAtomsForElementSymbols : public Comparator<Atom> {
 
 public:
-    virtual int compare(Atom *a, Atom *b);
+    virtual int compare(Atom *a, Atom *b) override;
 };
 
 /// <summary>
@@ -44,10 +45,10 @@ public:
 /// @author dl387
 ///
 /// </summary>
-class SortAtomsForMainGroupElementSymbols : public Comparator<Atom *> {
+class SortAtomsForMainGroupElementSymbols : public Comparator<Atom> {
 
 public:
-    virtual int compare(Atom *a, Atom *b);
+    virtual int compare(Atom *a, Atom *b) override;
 };
 
 class FragmentTools {
@@ -57,11 +58,11 @@ class FragmentTools {
     ///
     /// </summary>
 public:
-    class SortByLocants : public Comparator<Atom *> {
+    class SortByLocants : public Comparator<Atom> {
     public:
         static Pattern *const locantSegmenter = Pattern::compile(L"(\\d+)([a-z]?)('*)");
 
-        virtual int compare(Atom *atoma, Atom *atomb);
+        virtual int compare(Atom *atoma, Atom *atomb) override;
     };
 
     /// <summary>

@@ -17,8 +17,8 @@
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 //						import static uk.ac.cam.ch.wwmm.opsin.OpsinTools.*;
 
-int ComponentGenerator::VonBaeyerSecondaryBridgeSort::compare(std::unordered_map<std::wstring, int> &bridge1,
-                                                              std::unordered_map<std::wstring, int> &bridge2) {
+int ComponentGenerator::VonBaeyerSecondaryBridgeSort::compare(std::unordered_map<std::wstring, int> *bridge1,
+                                                              std::unordered_map<std::wstring, int> *bridge2) {
     //first we compare the larger coordinate, due to an earlier potential swapping of coordinates this is always in  "AtomId_Larger"
     int largerCoordinate1 = bridge1[L"AtomId_Larger"];
     int largerCoordinate2 = bridge2[L"AtomId_Larger"];
@@ -2032,7 +2032,7 @@ void ComponentGenerator::processVonBaeyerSystem(Element *chainEl,
     Comparator <std::unordered_map<std::wstring, int>> *sortBridges = new VonBaeyerSecondaryBridgeSort();
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(secondaryBridges, sortBridges);
-    std::sort(secondaryBridges.begin(), secondaryBridges.end(), sortBridges);
+    std::sort(secondaryBridges.begin(), secondaryBridges.end(), sortBridges->cmp);
 
     std::vector<std::unordered_map<std::wstring, int>> dependantSecondaryBridges;
     //add secondary bridges, recursively add dependent secondary bridges

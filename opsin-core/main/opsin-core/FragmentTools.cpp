@@ -215,8 +215,8 @@ void FragmentTools::processMainGroupLabelling(Fragment *suffixableFragment,
     std::vector<Atom *> atomList = suffixableFragment->getAtomList();
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(atomList, new SortAtomsForMainGroupElementSymbols());
-    SortAtomsForMainGroupElementSymbols tempVar();
-    std::sort(atomList.begin(), atomList.end(), &tempVar);
+    SortAtomsForMainGroupElementSymbols tempVar{};
+    std::sort(atomList.begin(), atomList.end(), tempVar.cmp);
     Atom *atomToAddCLabelTo = nullptr; //only add a C label if there is only one C in the main group
     bool seenMoreThanOneC = false;
     for (auto atom : atomList) {
@@ -260,8 +260,8 @@ void FragmentTools::processSuffixLabelling(std::vector<Fragment *> &suffixFragme
     }
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(startingAtoms, new SortAtomsForElementSymbols());
-    SortAtomsForElementSymbols tempVar();
-    std::sort(startingAtoms.begin(), startingAtoms.end(), &tempVar);
+    SortAtomsForElementSymbols tempVar{};
+    std::sort(startingAtoms.begin(), startingAtoms.end(), tempVar.cmp);
 
     Deque < Atom * > *atomsToConsider = new ArrayDeque<Atom *>(startingAtoms);
     while (atomsToConsider->size() > 0) {
@@ -278,8 +278,8 @@ void FragmentTools::processNonCarboxylicAcidLabelling(Fragment *suffixableFragme
 
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(startingAtoms, new SortAtomsForElementSymbols());
-    SortAtomsForElementSymbols tempVar();
-    std::sort(startingAtoms.begin(), startingAtoms.end(), &tempVar);
+    SortAtomsForElementSymbols tempVar{};
+    std::sort(startingAtoms.begin(), startingAtoms.end(), tempVar.cmp);
     atomsVisited->add(firstAtom);
     Deque < Atom * > *atomsToConsider = new ArrayDeque<Atom *>(startingAtoms);
     while (atomsToConsider->size() > 0) {
@@ -303,8 +303,8 @@ void FragmentTools::assignLocantsAndExploreNeighbours(std::unordered_map<std::ws
     atomsToExplore.removeAll(atomsVisited);
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(atomsToExplore, new SortAtomsForElementSymbols());
-    SortAtomsForElementSymbols tempVar();
-    std::sort(atomsToExplore.begin(), atomsToExplore.end(), &tempVar);
+    SortAtomsForElementSymbols tempVar{};
+    std::sort(atomsToExplore.begin(), atomsToExplore.end(), tempVar.cmp);
     for (int i = atomsToExplore.size() - 1; i >= 0; i--) {
         atomsToConsider->addFirst(atomsToExplore[i]);
     }
@@ -704,8 +704,8 @@ Atom *FragmentTools::getAtomByAminoAcidStyleLocant(Atom *backboneAtom, const std
 
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(startingAtoms, new SortAtomsForElementSymbols());
-    SortAtomsForElementSymbols tempVar();
-    std::sort(startingAtoms.begin(), startingAtoms.end(), &tempVar);
+    SortAtomsForElementSymbols tempVar{};
+    std::sort(startingAtoms.begin(), startingAtoms.end(), tempVar.cmp);
     std::unordered_map<std::wstring, int> elementCount; //keeps track of how many times each element has been seen
 
     Deque < Atom * > *atomsToConsider = new ArrayDeque<Atom *>(startingAtoms);
@@ -758,8 +758,8 @@ Atom *FragmentTools::getAtomByAminoAcidStyleLocant(Atom *backboneAtom, const std
 
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(atomNeighbours, new SortAtomsForElementSymbols());
-        SortAtomsForElementSymbols tempVar2();
-        std::sort(atomNeighbours.begin(), atomNeighbours.end(), &tempVar2);
+        SortAtomsForElementSymbols tempVar2{};
+        std::sort(atomNeighbours.begin(), atomNeighbours.end(), tempVar2.cmp);
         for (int i = atomNeighbours.size() - 1; i >= 0; i--) {
             atomsToConsider->addFirst(atomNeighbours[i]);
         }

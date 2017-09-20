@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <boost/optional.hpp>
+#include <utils/Comparator.hpp>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class Atom;
@@ -115,9 +116,9 @@ public:
     ///
     /// </summary>
 private:
-    class AtomicNumberThenAtomicMassComparator : public Comparator<Atom *> {
+    class AtomicNumberThenAtomicMassComparator : public Comparator<Atom> {
     public:
-        virtual int compare(Atom *a, Atom *b);
+        virtual int compare(Atom *a, Atom *b) override;
     };
 
 public:
@@ -137,7 +138,7 @@ private:
     ///
     /// </summary>
 private:
-    class AtomNeighbouringColoursComparator : public Comparator<Atom *> {
+    class AtomNeighbouringColoursComparator : public Comparator<Atom> {
     private:
         StereoAnalyser *outerInstance;
 
@@ -148,7 +149,7 @@ private:
 
         AtomNeighbouringColoursComparator(StereoAnalyser *outerInstance);
 
-        virtual int compare(Atom *a, Atom *b);
+        virtual int compare(Atom *a, Atom *b) override;
     };
 
     /// <summary>

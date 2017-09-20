@@ -8,6 +8,7 @@
 #include <limits>
 #include <stdexcept>
 #include <boost/optional.hpp>
+#include <utils/Comparator.hpp>
 #include "stringbuilder.h"
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
@@ -106,7 +107,7 @@ private:
     class SortAtomSequences : public Comparator<std::vector<Atom *>> {
 
     public:
-        virtual int compare(std::vector<Atom *> &sequenceA, std::vector<Atom *> &sequenceB);
+        virtual int compare(std::vector<Atom *> *sequenceA, std::vector<Atom *> *sequenceB) override;
     };
 
 private:

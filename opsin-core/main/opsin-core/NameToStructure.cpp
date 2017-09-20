@@ -122,8 +122,8 @@ OpsinResult *NameToStructure::parseChemicalName(const std::wstring &name, NameTo
         parses = parser->parse(n2sConfig, modifiedName);
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(parses, new SortParses());
-        SortParses tempVar();
-        std::sort(parses.begin(), parses.end(), &tempVar); //fewer tokens preferred
+        SortParses tempVar{};
+        std::sort(parses.begin(), parses.end(), tempVar.cmp); //fewer tokens preferred
     }
     catch (const std::exception &e) {
         if (LOG->isDebugEnabled()) {

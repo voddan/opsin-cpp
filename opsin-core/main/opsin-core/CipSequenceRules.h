@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <stdexcept>
 #include <boost/optional.hpp>
+#include <utils/Comparator.hpp>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 class Atom;
@@ -98,7 +99,7 @@ private:
     ///
     /// </summary>
 private:
-    class SortByCipOrder : public Comparator<Atom *> {
+    class SortByCipOrder : public Comparator<Atom> {
     private:
         CipSequenceRules *outerInstance;
 
@@ -120,7 +121,7 @@ private:
 
         SortByCipOrder(CipSequenceRules *outerInstance, Atom *chiralAtom);
 
-        virtual int compare(Atom *a, Atom *b);
+        virtual int compare(Atom *a, Atom *b) override;
 
         /// <summary>
         /// Compares the neighbours of the atoms specified in nextAtom1/2 in cipstate.
@@ -154,7 +155,7 @@ private:
         ///
         /// </summary>
     private:
-        class CipComparator : public Comparator<AtomWithHistory *> {
+        class CipComparator : public Comparator<AtomWithHistory> {
         private:
             CipSequenceRules::SortByCipOrder *outerInstance;
 
@@ -165,7 +166,7 @@ private:
 
             CipComparator(CipSequenceRules::SortByCipOrder *outerInstance);
 
-            virtual int compare(AtomWithHistory *a, AtomWithHistory *b);
+            virtual int compare(AtomWithHistory *a, AtomWithHistory *b)  override;
         };
 
         /// <summary>
@@ -185,7 +186,7 @@ private:
 
             AtomListCipComparator(CipSequenceRules::SortByCipOrder *outerInstance);
 
-            virtual int compare(std::vector<AtomWithHistory *> &a, std::vector<AtomWithHistory *> &b);
+            virtual int compare(std::vector<AtomWithHistory *> *a, std::vector<AtomWithHistory *> *b) override;
         };
 
         /// <summary>

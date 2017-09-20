@@ -21,8 +21,8 @@
 
 //						import static uk.ac.cam.ch.wwmm.opsin.XmlDeclarations.*;
 
-int FunctionalReplacement::SortInfixTransformations::compare(const std::wstring &infixTransformation1,
-                                                             const std::wstring &infixTransformation2) {
+int FunctionalReplacement::SortInfixTransformations::compare(std::wstring *infixTransformation1,
+                                                             std::wstring *infixTransformation2) {
 //JAVA TO C++ CONVERTER TODO TASK: There is no direct native C++ equivalent to the Java String 'split' method:
     int allowedInputs1 = infixTransformation1.split(L",")->length;
 //JAVA TO C++ CONVERTER TODO TASK: There is no direct native C++ equivalent to the Java String 'split' method:
@@ -274,8 +274,8 @@ void FunctionalReplacement::processInfixFunctionalReplacementNomenclature(std::v
              */
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(infixTransformations, new SortInfixTransformations());
-            SortInfixTransformations tempVar();
-            std::sort(infixTransformations.begin(), infixTransformations.end(), &tempVar);
+            SortInfixTransformations tempVar{};
+            std::sort(infixTransformations.begin(), infixTransformations.end(), tempVar.cmp);
 
             for (auto infixTransformation : infixTransformations) {
 //JAVA TO C++ CONVERTER TODO TASK: There is no direct native C++ equivalent to the Java String 'split' method:

@@ -767,8 +767,8 @@ void StereochemistryHandler::assignCarbohydratePrefixStereochem(Element *carbohy
     }
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(stereocentresInCarbohydrate, new FragmentTools.SortByLocants());
-    FragmentTools::SortByLocants tempVar();
-    std::sort(stereocentresInCarbohydrate.begin(), stereocentresInCarbohydrate.end(), &tempVar);
+    FragmentTools::SortByLocants tempVar{};
+    std::sort(stereocentresInCarbohydrate.begin(), stereocentresInCarbohydrate.end(), tempVar.cmp);
     for (int i = 0; i < stereocentresInCarbohydrate.size(); i++) {
         Atom *stereoAtom = stereocentresInCarbohydrate[i];
         std::wstring configuration = stereocentreConfiguration[i];

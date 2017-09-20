@@ -3784,7 +3784,7 @@ void ComponentProcessor::processFusedRingBridges(Element *subOrRoot) throw(Struc
 //JAVA TO C++ CONVERTER TODO TASK: The 'Compare' parameter of std::sort produces a boolean value, while the Java Comparator parameter produces a tri-state result:
 //ORIGINAL LINE: java.util.Collections.sort(bridgeFragments, new SortBridgesByHighestLocantedBridgehead(bridgeToRingAtoms));
     SortBridgesByHighestLocantedBridgehead tempVar(bridgeToRingAtoms);
-    std::sort(bridgeFragments.begin(), bridgeFragments.end(), &tempVar);
+    std::sort(bridgeFragments.begin(), bridgeFragments.end(), tempVar.cmp);
     for (auto bridgeFragment : bridgeFragments) {
         std::vector<Atom *> bridgeFragmentAtoms = bridgeFragment->getAtomList();
         std::vector<Atom *> ringAtoms = bridgeToRingAtoms[bridgeFragment];
