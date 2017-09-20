@@ -7,7 +7,8 @@ target_sources(utils PRIVATE
         RectangularVectors.h
         stringbuilder.h
         stringhelper.h
-        collectionhelper.hpp)
+        collectionhelper.hpp
+        Comparator.hpp)
 
 target_link_libraries(utils base_c base_cpp)
 
