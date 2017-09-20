@@ -28,4 +28,37 @@ public:
 
         return newVector;
     }
+
+    static std::vector<std::vector<bool>> ReturnRectangularBoolVector(int size1, int size2)
+    {
+        std::vector<std::vector<bool>> newVector(size1);
+        for (int vector1 = 0; vector1 < size1; vector1++)
+        {
+            newVector[vector1] = std::vector<bool>(size2);
+        }
+
+        return newVector;
+    }
+
+    static std::vector<std::vector<StateList*>> ReturnRectangularStateListVector(int size1, int size2)
+    {
+        std::vector<std::vector<StateList*>> newVector(size1);
+        for (int vector1 = 0; vector1 < size1; vector1++)
+        {
+            newVector[vector1] = std::vector<StateList*>(size2);
+        }
+
+        return newVector;
+    }
+
+    static std::vector<std::vector<StateListNode*>> ReturnRectangularStateListNodeVector(int size1, int size2)
+    {
+        std::vector<std::vector<StateListNode*>> newVector(size1);
+        for (int vector1 = 0; vector1 < size1; vector1++)
+        {
+            newVector[vector1] = std::vector<StateListNode*>(size2);
+        }
+
+        return newVector;
+    }
 };

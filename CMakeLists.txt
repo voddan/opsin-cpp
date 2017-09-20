@@ -11,6 +11,7 @@ include_directories(${Boost_INCLUDE_DIR})
 
 
 add_subdirectory(utils)
+add_subdirectory(automation-cpp)
 add_subdirectory(opsin-core)
 add_subdirectory(opsin-inchi)
 
