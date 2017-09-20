@@ -641,7 +641,7 @@ namespace dk {
                 this->labels = labels;
             }
 
-            int MinimizationOperations::LabelComparator::compare(boost::optional<int> i, boost::optional<int> j) {
+            int MinimizationOperations::LabelComparator::compare(int * i, int * j) {
                 IntPair * p1 = labels[i];
                 IntPair * p2 = labels[j];
                 if (p1->n1 < p2->n1) {

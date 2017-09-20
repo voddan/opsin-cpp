@@ -1,6 +1,8 @@
 #pragma once
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
+#include <utils/Comparator.hpp>
+
 namespace dk { namespace brics { namespace automaton { class Transition; }}}
 
 /*
@@ -37,7 +39,7 @@ namespace dk {
         namespace automaton {
 
 
-            class TransitionComparator //: public Comparator<Transition*>, public Serializable
+            class TransitionComparator : public Comparator<Transition> //, public Serializable
             {
 
             public:
@@ -50,7 +52,7 @@ namespace dk {
                 /// <summary>
                 /// Compares by (min, reverse max, to) or (to, min, reverse max).
                 /// </summary>
-                virtual int compare(Transition * t1, Transition * t2);
+                virtual int compare(Transition * t1, Transition * t2) override;
             };
 
         }

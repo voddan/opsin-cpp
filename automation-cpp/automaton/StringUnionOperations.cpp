@@ -1,3 +1,4 @@
+#include <utils/Comparator.hpp>
 #include "StringUnionOperations.h"
 #include "Transition.h"
 
@@ -5,7 +6,7 @@ namespace dk {
     namespace brics {
         namespace automaton {
 
-            java::util::Comparator<std::string *> * const StringUnionOperations::LEXICOGRAPHIC_ORDER = new ComparatorAnonymousInnerClass();
+            Comparator<std::string *> * const StringUnionOperations::LEXICOGRAPHIC_ORDER = new ComparatorAnonymousInnerClass();
 
             StringUnionOperations::ComparatorAnonymousInnerClass::ComparatorAnonymousInnerClass() {
             }

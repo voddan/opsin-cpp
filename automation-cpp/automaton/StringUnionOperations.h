@@ -30,12 +30,12 @@ namespace dk {
                 static Comparator<std::string *> * const LEXICOGRAPHIC_ORDER;
 
             private:
-                class ComparatorAnonymousInnerClass //: public Comparator< std::string*>
+                class ComparatorAnonymousInnerClass : public Comparator< std::string>
                 {
                 public:
                     ComparatorAnonymousInnerClass();
 
-                    virtual int compare(std::string * s1, std::string * s2);
+                    virtual int compare(std::string * s1, std::string * s2) override;
                 };
 
                 /// <summary>

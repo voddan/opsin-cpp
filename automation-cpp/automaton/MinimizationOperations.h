@@ -6,6 +6,7 @@
 #include <limits>
 #include <boost/optional.hpp>
 #include <unordered_set>
+#include <utils/Comparator.hpp>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:
 namespace dk { namespace brics { namespace automaton { class Automaton; }}}
@@ -183,7 +184,7 @@ namespace dk {
                 public:
                     LabelComparator(std::vector<IntPair *> & labels);
 
-                    virtual int compare(boost::optional<int> i, boost::optional<int> j);
+                    virtual int compare(int* i, int* j) override;
                 };
             };
 
