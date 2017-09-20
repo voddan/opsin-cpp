@@ -1,3 +1,4 @@
+#include <utils/RectangularVectors.h>
 #include "ComponentGenerator.h"
 #include "NameToStructureConfig.h"
 #include "ComponentGenerationException.h"
@@ -1789,7 +1790,7 @@ std::vector<std::vector<int>> ComponentGenerator::getSpiroDescriptors(const std:
 
 //JAVA TO C++ CONVERTER NOTE: The following call to the 'RectangularVectors' helper class reproduces the rectangular array initialization that is automatic in Java:
 //ORIGINAL LINE: int[][] spiroDescriptors = new int[spiroDescriptorStrings.length][2];
-    std::vector<std::vector<int>> spiroDescriptors = RectangularVectors::ReturnRectangularIntVector(
+    std::vector<std::vector<int>> spiroDescriptors = RectangularVectors::ReturnRectangularVector(
             spiroDescriptorStrings.size(), 2); // array of descriptors where number of elements and super string present
 
     for (int i = 0; i < spiroDescriptorStrings.size(); i++) {

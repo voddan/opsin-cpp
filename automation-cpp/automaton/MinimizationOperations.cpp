@@ -1,3 +1,4 @@
+#include <utils/RectangularVectors.h>
 #include "MinimizationOperations.h"
 #include "Automaton.h"
 #include "Transition.h"
@@ -165,7 +166,7 @@ template<typename T>
 				std::vector<State*> states = ss->toArray(std::vector<State*>(ss->size()));
 //JAVA TO C++ CONVERTER NOTE: The following call to the 'RectangularVectors' helper class reproduces the rectangular array initialization that is automatic in Java:
 //ORIGINAL LINE: boolean[][] mark = new boolean[states.length][states.length];
-				std::vector<std::vector<bool>> mark = RectangularVectors::ReturnRectangularBoolVector(states.size(), states.size());
+				std::vector<std::vector<bool>> mark = RectangularVectors::ReturnRectangularVector(states.size(), states.size());
 				std::vector<std::vector<std::unordered_set<IntPair*>>> triggers;
 				for (int n1 = 0; n1 < states.size(); n1++)
 				{
@@ -298,20 +299,20 @@ template<typename T>
 				}
 //JAVA TO C++ CONVERTER NOTE: The following call to the 'RectangularVectors' helper class reproduces the rectangular array initialization that is automatic in Java:
 //ORIGINAL LINE: boolean[][] reverse_nonempty = new boolean[states.length][sigma.length];
-				std::vector<std::vector<bool>> reverse_nonempty = RectangularVectors::ReturnRectangularBoolVector(states.size(), sigma.size());
+				std::vector<std::vector<bool>> reverse_nonempty = RectangularVectors::ReturnRectangularVector(states.size(), sigma.size());
 				std::vector<std::list<State*>> partition;
 				initialize(partition, states.size());
 				std::vector<int> block(states.size());
 //JAVA TO C++ CONVERTER NOTE: The following call to the 'RectangularVectors' helper class reproduces the rectangular array initialization that is automatic in Java:
 //ORIGINAL LINE: StateList[][] active = new StateList[states.length][sigma.length];
-				std::vector<std::vector<StateList*>> active = RectangularVectors::ReturnRectangularStateListVector(states.size(), sigma.size());
+				std::vector<std::vector<StateList*>> active = RectangularVectors::ReturnRectangularVector(states.size(), sigma.size());
 //JAVA TO C++ CONVERTER NOTE: The following call to the 'RectangularVectors' helper class reproduces the rectangular array initialization that is automatic in Java:
 //ORIGINAL LINE: StateListNode[][] active2 = new StateListNode[states.length][sigma.length];
-				std::vector<std::vector<StateListNode*>> active2 = RectangularVectors::ReturnRectangularStateListNodeVector(states.size(), sigma.size());
+				std::vector<std::vector<StateListNode*>> active2 = RectangularVectors::ReturnRectangularVector(states.size(), sigma.size());
 				std::list<IntPair*> pending;
 //JAVA TO C++ CONVERTER NOTE: The following call to the 'RectangularVectors' helper class reproduces the rectangular array initialization that is automatic in Java:
 //ORIGINAL LINE: boolean[][] pending2 = new boolean[sigma.length][states.length];
-				std::vector<std::vector<bool>> pending2 = RectangularVectors::ReturnRectangularBoolVector(sigma.size(), states.size());
+				std::vector<std::vector<bool>> pending2 = RectangularVectors::ReturnRectangularVector(sigma.size(), states.size());
 				std::vector<State*> split;
 				std::vector<bool> split2(states.size());
 				std::vector<int> refine;

@@ -1013,8 +1013,8 @@ FusedRingNumberer::generateRingMap(RingConnectivityTable *ct, std::vector<int> &
 
 //JAVA TO C++ CONVERTER NOTE: The following call to the 'RectangularVectors' helper class reproduces the rectangular array initialization that is automatic in Java:
 //ORIGINAL LINE: Ring[][] ringMap = new Ring[w][h];
-//							std::vector<std::vector<Ring*>> ringMap = RectangularVectors::ReturnRectangularRingVector(w, h);
-    std::vector<std::vector<Ring *>> ringMap = RectangularVectors::ReturnRectangularRingVector(w, h);
+//							std::vector<std::vector<Ring*>> ringMap = RectangularVectors::ReturnRectangularVector(w, h);
+    std::vector<std::vector<Ring *>> ringMap = RectangularVectors::ReturnRectangularVector(w, h);
 //							Ring* ringMap[w][h] = {};
 
     // Map rings using coordinates calculated in the previous step, and transform them according to found minX and minY
@@ -1446,7 +1446,7 @@ FusedRingNumberer::transformQuadrantToUpperRightOfRingMap(std::vector<std::vecto
 
 //JAVA TO C++ CONVERTER NOTE: The following call to the 'RectangularVectors' helper class reproduces the rectangular array initialization that is automatic in Java:
 //ORIGINAL LINE: Ring[][] rearrangedMap = new Ring[w][h];
-    std::vector<std::vector<Ring *>> rearrangedMap = RectangularVectors::ReturnRectangularRingVector(w, h);
+    std::vector<std::vector<Ring *>> rearrangedMap = RectangularVectors::ReturnRectangularVector(w, h);
     for (int i = 0; i < w; i++) {
         for (int j = 0; j < h; j++) {
             if (upperRightQuadrant == 0) { //already is in the upper right
@@ -1611,7 +1611,7 @@ int FusedRingNumberer::determineAbsoluteDirectionUsingPreviousDirection(FusionRi
 void FusedRingNumberer::debugRingMap(std::vector<std::vector<Ring *>> &ringMap) {
 //JAVA TO C++ CONVERTER NOTE: The following call to the 'RectangularVectors' helper class reproduces the rectangular array initialization that is automatic in Java:
 //ORIGINAL LINE: Ring[][] yxOrdered = new Ring[ringMap[0].length][ringMap.length];
-    std::vector<std::vector<Ring *>> yxOrdered = RectangularVectors::ReturnRectangularRingVector(ringMap[0].length,
+    std::vector<std::vector<Ring *>> yxOrdered = RectangularVectors::ReturnRectangularVector(ringMap[0].length,
                                                                                                  ringMap.size());
     for (int x = 0; x < ringMap.size(); x++) {
         std::vector<Ring *> yRings = ringMap[x];
