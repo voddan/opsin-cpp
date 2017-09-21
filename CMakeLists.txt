@@ -20,7 +20,3 @@ add_executable(opsin_cpp main.cpp)
 
 target_link_libraries(opsin_cpp opsin-core utils)
 target_link_libraries(opsin_cpp LINK_PUBLIC ${Boost_LIBRARIES})
-
-target_include_directories(opsin_cpp PRIVATE
-        $<TARGET_PROPERTY:opsin-core,INTERFACE_INCLUDE_DIRECTORIES>
-        $<TARGET_PROPERTY:utils,INTERFACE_INCLUDE_DIRECTORIES>)

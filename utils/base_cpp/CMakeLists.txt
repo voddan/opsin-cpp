@@ -68,8 +68,6 @@ target_sources(base_cpp PRIVATE
         tree.h
         trie.h)
 
-target_link_libraries(base_cpp base_c)
+target_link_libraries(base_cpp PUBLIC base_c)
 
 target_include_directories(base_cpp PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../)
-target_include_directories(base_cpp PUBLIC $<TARGET_PROPERTY:base_c,INTERFACE_INCLUDE_DIRECTORIES>)
-

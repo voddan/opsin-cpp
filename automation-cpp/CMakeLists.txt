@@ -37,6 +37,5 @@ add_library(automation
 target_include_directories(automation PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_link_libraries(automation utils)
-target_include_directories(automation PRIVATE $<TARGET_PROPERTY:utils,INTERFACE_INCLUDE_DIRECTORIES>)
 
 set_target_properties(automation PROPERTIES LINKER_LANGUAGE CXX)

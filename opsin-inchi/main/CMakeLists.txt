@@ -4,6 +4,8 @@ add_library(opsin-inchi
         opsin-inchi/NameToInchi.cpp
         opsin-inchi/NameToInchi.h)
 
+target_link_libraries(opsin-inchi opsin-core)
+
 target_include_directories(opsin-inchi PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 set_target_properties(opsin-inchi PROPERTIES LINKER_LANGUAGE CXX)

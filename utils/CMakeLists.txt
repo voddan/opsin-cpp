@@ -10,11 +10,8 @@ target_sources(utils PRIVATE
         collectionhelper.hpp
         Comparator.hpp)
 
-target_link_libraries(utils base_c base_cpp)
+target_link_libraries(utils INTERFACE base_c base_cpp)
 
-target_include_directories(utils INTERFACE
-        ${CMAKE_CURRENT_SOURCE_DIR}/../
-        $<TARGET_PROPERTY:base_c,INTERFACE_INCLUDE_DIRECTORIES>
-        $<TARGET_PROPERTY:base_cpp,INTERFACE_INCLUDE_DIRECTORIES>)
+target_include_directories(utils INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/../)
 
 set_target_properties(utils PROPERTIES LINKER_LANGUAGE CXX)

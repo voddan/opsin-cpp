@@ -61,4 +61,3 @@ add_executable(opsin-core-test
         src/WordToolsTest.h)
 
 target_link_libraries(opsin-core-test opsin-core)
-target_include_directories(opsin-core-test PRIVATE $<TARGET_PROPERTY:opsin-core,INTERFACE_INCLUDE_DIRECTORIES>)
