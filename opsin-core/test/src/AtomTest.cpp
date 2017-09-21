@@ -1,10 +1,10 @@
 #include "AtomTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Fragment.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/SMILESFragmentBuilder.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Element.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Atom.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ChemEl.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/StructureBuildingException.h"
+#include "opsin-core/Fragment.h"
+#include "opsin-core/SMILESFragmentBuilder.h"
+#include "opsin-core/Element.h"
+#include "opsin-core/Atom.h"
+#include "opsin-core/ChemEl.h"
+#include "opsin-core/StructureBuildingException.h"
 
 
 //						import static org.junit.Assert.*;

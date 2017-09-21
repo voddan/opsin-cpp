@@ -1,11 +1,11 @@
 #include "ComponentGeneration_AmbiguitiesAndIrregularitiesTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Element.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/GroupingEl.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/XmlDeclarations.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/TokenEl.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Attribute.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ComponentGenerator.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ComponentGenerationException.h"
+#include "opsin-core/Element.h"
+#include "opsin-core/GroupingEl.h"
+#include "opsin-core/XmlDeclarations.h"
+#include "opsin-core/TokenEl.h"
+#include "opsin-core/Attribute.h"
+#include "opsin-core/ComponentGenerator.h"
+#include "opsin-core/ComponentGenerationException.h"
 
 
 //						import static org.junit.Assert.*;

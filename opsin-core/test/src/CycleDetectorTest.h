@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/IDManager.h"
+#include "opsin-core/IDManager.h"
 #include <vector>
 
 //JAVA TO C++ CONVERTER NOTE: Forward class declarations:

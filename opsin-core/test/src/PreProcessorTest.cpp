@@ -1,6 +1,6 @@
 #include "PreProcessorTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/PreProcessingException.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/PreProcessor.h"
+#include "opsin-core/PreProcessingException.h"
+#include "opsin-core/PreProcessor.h"
 
 
 //						import static org.junit.Assert.*;

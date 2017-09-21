@@ -1,11 +1,11 @@
 #include "VerifyFragmentsTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ResourceGetter.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/SMILESFragmentBuilder.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/IDManager.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/XmlDeclarations.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Fragment.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/TokenEl.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/StructureBuildingException.h"
+#include "opsin-core/ResourceGetter.h"
+#include "opsin-core/SMILESFragmentBuilder.h"
+#include "opsin-core/IDManager.h"
+#include "opsin-core/XmlDeclarations.h"
+#include "opsin-core/Fragment.h"
+#include "opsin-core/TokenEl.h"
+#include "opsin-core/StructureBuildingException.h"
 
 
 using org::junit::AfterClass;

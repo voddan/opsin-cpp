@@ -1,5 +1,5 @@
 #include "NameToStructureTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/NameToStructure.h"
+#include "opsin-core/NameToStructure.h"
 
 
 //						import static org.junit.Assert.*;

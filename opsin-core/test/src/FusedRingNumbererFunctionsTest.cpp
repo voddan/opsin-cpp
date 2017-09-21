@@ -1,5 +1,5 @@
 #include "FusedRingNumbererFunctionsTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/FusedRingNumberer.h"
+#include "opsin-core/FusedRingNumberer.h"
 
 
 //						import static org.junit.Assert.*;

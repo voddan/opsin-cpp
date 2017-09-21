@@ -1,9 +1,9 @@
 #include "ParserTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Parser.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/NameToStructureConfig.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ParsingException.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Element.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/XmlDeclarations.h"
+#include "opsin-core/Parser.h"
+#include "opsin-core/NameToStructureConfig.h"
+#include "opsin-core/ParsingException.h"
+#include "opsin-core/Element.h"
+#include "opsin-core/XmlDeclarations.h"
 
 
 //						import static org.junit.Assert.*;

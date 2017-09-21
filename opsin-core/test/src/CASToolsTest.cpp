@@ -1,9 +1,9 @@
 #include "CASToolsTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ParseRules.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ResourceGetter.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ResourceManager.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ParsingException.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/CASTools.h"
+#include "opsin-core/ParseRules.h"
+#include "opsin-core/ResourceGetter.h"
+#include "opsin-core/ResourceManager.h"
+#include "opsin-core/ParsingException.h"
+#include "opsin-core/CASTools.h"
 
 
 //						import static org.junit.Assert.*;

@@ -1,8 +1,8 @@
 #include "SSSRTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/NameToStructure.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Fragment.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Ring.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/SSSRFinder.h"
+#include "opsin-core/NameToStructure.h"
+#include "opsin-core/Fragment.h"
+#include "opsin-core/Ring.h"
+#include "opsin-core/SSSRFinder.h"
 
 
 //						import static org.junit.Assert.*;

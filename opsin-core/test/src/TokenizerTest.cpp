@@ -1,13 +1,13 @@
 #include "TokenizerTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Tokeniser.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ReverseParseRules.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ResourceGetter.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ResourceManager.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ParseRules.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ParsingException.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/TokenizationResult.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Parse.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ParseWord.h"
+#include "opsin-core/Tokeniser.h"
+#include "opsin-core/ReverseParseRules.h"
+#include "opsin-core/ResourceGetter.h"
+#include "opsin-core/ResourceManager.h"
+#include "opsin-core/ParseRules.h"
+#include "opsin-core/ParsingException.h"
+#include "opsin-core/TokenizationResult.h"
+#include "opsin-core/Parse.h"
+#include "opsin-core/ParseWord.h"
 
 
 //						import static org.junit.Assert.*;

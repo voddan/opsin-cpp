@@ -1,7 +1,7 @@
 #include "PolymerTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ParsingException.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/NameToStructure.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/OpsinResult.h"
+#include "opsin-core/ParsingException.h"
+#include "opsin-core/NameToStructure.h"
+#include "opsin-core/OpsinResult.h"
 
 
 //						import static org.junit.Assert.assertEquals;

@@ -1,12 +1,12 @@
 #include "SMILESFragmentBuilderTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/SMILESFragmentBuilder.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/StructureBuildingException.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Fragment.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Atom.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ChemEl.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Bond.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/AtomParity.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/BondStereo.h"
+#include "opsin-core/SMILESFragmentBuilder.h"
+#include "opsin-core/StructureBuildingException.h"
+#include "opsin-core/Fragment.h"
+#include "opsin-core/Atom.h"
+#include "opsin-core/ChemEl.h"
+#include "opsin-core/Bond.h"
+#include "opsin-core/AtomParity.h"
+#include "opsin-core/BondStereo.h"
 
 
 //						import static org.junit.Assert.*;

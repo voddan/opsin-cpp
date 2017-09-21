@@ -1,5 +1,5 @@
 #include "RadixTrieTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/OpsinRadixTrie.h"
+#include "opsin-core/OpsinRadixTrie.h"
 
 
 //						import static org.junit.Assert.*;

@@ -1,11 +1,11 @@
 #include "FusedRingNumbererTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/SMILESFragmentBuilder.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/StructureBuildingException.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Element.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Fragment.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/XmlDeclarations.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/FusedRingNumberer.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Atom.h"
+#include "opsin-core/SMILESFragmentBuilder.h"
+#include "opsin-core/StructureBuildingException.h"
+#include "opsin-core/Element.h"
+#include "opsin-core/Fragment.h"
+#include "opsin-core/XmlDeclarations.h"
+#include "opsin-core/FusedRingNumberer.h"
+#include "opsin-core/Atom.h"
 
 
 //						import static org.junit.Assert.*;

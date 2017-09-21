@@ -1,6 +1,6 @@
 #include "DtdTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ResourceGetter.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/OpsinTools.h"
+#include "opsin-core/ResourceGetter.h"
+#include "opsin-core/OpsinTools.h"
 
 
 //						import static org.junit.Assert.assertTrue;

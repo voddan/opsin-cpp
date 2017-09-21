@@ -1,9 +1,9 @@
 #include "WordToolsTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ParsingException.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/OpsinTools.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ParseTokens.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/ParseWord.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/WordTools.h"
+#include "opsin-core/ParsingException.h"
+#include "opsin-core/OpsinTools.h"
+#include "opsin-core/ParseTokens.h"
+#include "opsin-core/ParseWord.h"
+#include "opsin-core/WordTools.h"
 
 
 //						import static org.junit.Assert.*;

@@ -1,10 +1,10 @@
 #include "FragmentManagerTest.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/FragmentManager.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/IDManager.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/SMILESFragmentBuilder.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/StructureBuildingException.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/Fragment.h"
-#include "../../../../../../../../main/java/uk/ac/cam/ch/wwmm/opsin/FragmentTools.h"
+#include "opsin-core/FragmentManager.h"
+#include "opsin-core/IDManager.h"
+#include "opsin-core/SMILESFragmentBuilder.h"
+#include "opsin-core/StructureBuildingException.h"
+#include "opsin-core/Fragment.h"
+#include "opsin-core/FragmentTools.h"
 
 
 //						import static org.junit.Assert.*;
