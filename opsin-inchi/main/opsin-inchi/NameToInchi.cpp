@@ -1,11 +1,11 @@
 #include "NameToInchi.h"
-#include "../../../../../../../../../../opsin-core/src/main/java/uk/ac/cam/ch/wwmm/opsin/NameToStructure.h"
-#include "../../../../../../../../../../opsin-core/src/main/java/uk/ac/cam/ch/wwmm/opsin/OpsinResult.h"
-#include "../../../../../../../../../../opsin-core/src/main/java/uk/ac/cam/ch/wwmm/opsin/Fragment.h"
-#include "../../../../../../../../../../opsin-core/src/main/java/uk/ac/cam/ch/wwmm/opsin/Atom.h"
-#include "../../../../../../../../../../opsin-core/src/main/java/uk/ac/cam/ch/wwmm/opsin/Bond.h"
-#include "../../../../../../../../../../opsin-core/src/main/java/uk/ac/cam/ch/wwmm/opsin/AtomParity.h"
-#include "../../../../../../../../../../opsin-core/src/main/java/uk/ac/cam/ch/wwmm/opsin/BondStereo.h"
+#include "opsin-core/NameToStructure.h"
+#include "opsin-core/OpsinResult.h"
+#include "opsin-core/Fragment.h"
+#include "opsin-core/Atom.h"
+#include "opsin-core/Bond.h"
+#include "opsin-core/AtomParity.h"
+#include "opsin-core/BondStereo.h"
 
 
 using org::apache::log4j::Logger;

@@ -1,5 +1,5 @@
 #include "InchiPruner.h"
-#include "../../../../../../../../../../opsin-core/src/main/java/uk/ac/cam/ch/wwmm/opsin/StringTools.h"
+#include "opsin-core/StringTools.h"
 
 
 using StringTools = StringTools;
