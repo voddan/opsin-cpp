@@ -1,4 +1,4 @@
-add_library(base_cpp
+set(SRC_COMMON
         bitinworker.cpp
         bitoutworker.cpp
         cancellation_handler.cpp
@@ -17,11 +17,23 @@ add_library(base_cpp
         properties_map.cpp
         scanner.cpp
         shared_ptr.cpp
-        shmem_posix.cpp
-        shmem_win32.cpp
         smart_output.cpp
         string_pool.cpp
         tlscont.cpp)
+
+set(SRC_POSIX
+        shmem_posix.cpp)
+
+set(SRC_WIN
+        shmem_win32.cpp)
+
+if (MSVC OR MINGW)
+    set(SRC ${SRC_COMMON} ${SRC_WIN})
+else()
+    set(SRC ${SRC_COMMON} ${SRC_POSIX})
+endif()
+
+add_library(base_cpp ${SRC})
 
 target_sources(base_cpp PRIVATE
         array.h
@@ -71,3 +83,7 @@ target_sources(base_cpp PRIVATE
 target_link_libraries(base_cpp PUBLIC base_c)
 
 target_include_directories(base_cpp PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../)
+
+if(UNIX OR APPLE)
+    set_target_properties(common PROPERTIES COMPILE_FLAGS "${COMPILE_FLAGS} -Wall")
+endif()
